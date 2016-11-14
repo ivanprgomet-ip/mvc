@@ -136,10 +136,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\GalleryModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +162,7 @@
     <Content Include="Views\Gallery\ShowImage.cshtml" />
     <Content Include="Views\Gallery\RemoveImage.cshtml" />
     <Content Include="Views\Gallery\UploadImage.cshtml" />
+    <Content Include="Views\User\UserDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

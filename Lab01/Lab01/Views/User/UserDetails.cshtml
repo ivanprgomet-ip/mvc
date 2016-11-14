@@ -1,0 +1,12 @@
+﻿
+@model Lab01.Models.UserModel
+@{
+    ViewBag.Title = "UserDetails";
+}
+
+<h2>@ViewBag.Title</h2>
+<article>
+    <p>Username: @Model.UserName</p>
+    <p>User city: @Model.UserCity</p>
+    <p>User birthdate: @Model.UserBirth.ToShortDateString()</p>
+</article>
