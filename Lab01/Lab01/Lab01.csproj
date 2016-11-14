@@ -117,6 +117,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\code1.jpg" />
+    <Content Include="Content\images\code2.jpg" />
+    <Content Include="Content\images\code3.jpg" />
+    <Content Include="Content\images\code4.png" />
+    <Content Include="Content\images\code5.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />

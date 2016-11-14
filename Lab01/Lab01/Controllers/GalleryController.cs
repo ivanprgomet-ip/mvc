@@ -1,4 +1,7 @@
 ﻿using Lab01.Models;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Lab01.Controllers
@@ -12,15 +15,20 @@ namespace Lab01.Controllers
             //ViewBag.GalleryName = "vacation images gallery";
             //ViewBag.GalleryOwner = "ivan prgoemt";
 
-            var model  = new GalleryModel();
+            var model = new GalleryModel();
             model.GalleryName = "vacation images gallery";
             model.GalleryOwner = "ivan prgomet";
 
+            //string imagesPath = Server.MapPath("../App_Data/images");
+            //model.ImagePaths = Directory.GetFiles(imagesPath).ToList();
+
             return View(model);
         }
-        public ActionResult ShowImage()
+        public ActionResult ShowImage(int id)
         {
-            return View();
+            //var model = new GalleryModel();
+            //string imgName = "code" + id;
+            return View(/*imgName*/);
         }
         public ActionResult UploadImage()
         {

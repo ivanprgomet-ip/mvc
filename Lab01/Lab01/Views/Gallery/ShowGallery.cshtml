@@ -1,23 +1,24 @@
 ﻿@*tell this view about the modell
     that is getting passed in from controller using a directive
-    @model. very important too have the model m in lowercase.*@ 
+    @model. very important too have the model m in lowercase.*@
 
-@model Lab01.Models.GalleryModel 
+@model Lab01.Models.GalleryModel
 
 @{
     ViewBag.Title = "ShowGallery";
 }
 
-@* display the gallerymodels gallery name property in this view *@
 <h2>@ViewBag.Title</h2>
 <article>
     <p>@Model.GalleryName</p>
     <p>@Model.GalleryOwner</p>
 
-    @{ 
-        Random r = new Random();
-        int rndNum= r.Next(100);
-        string rndNumStr = rndNum.ToString();
-    }
-    <p>@rndNumStr is a random number!</p>
+    @*@{
+        foreach (var imgPath in Model.ImagePaths)
+        {
+            <img src="@Url.Content(imgPath)" alt="image" />
+        }
+    }*@
+
+    <img src='@Url.Content("~/Content/Images/code1.jpg")' width="320" />
 </article>
