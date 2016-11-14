@@ -3,6 +3,7 @@ using System.Web.Mvc;
 
 namespace Lab01.Controllers
 {
+    //Controller & Actions för ditt bildgalleri – Visa Galleri, Visa Bild, Ladda Upp, Ta Bort 
     public class GalleryController:Controller
     {
         public ActionResult ShowGallery()
