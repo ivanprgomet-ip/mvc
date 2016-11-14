@@ -16,11 +16,12 @@ namespace Lab01.Controllers
             //ViewBag.GalleryOwner = "ivan prgoemt";
 
             var model = new GalleryModel();
-            model.GalleryName = "vacation images gallery";
-            model.GalleryOwner = "ivan prgomet";
+            model.GalleryName = "Coding Images Gallery";
+            model.GalleryOwner = "Google";
 
-            //string imagesPath = Server.MapPath("../App_Data/images");
-            //model.ImagePaths = Directory.GetFiles(imagesPath).ToList();
+            //get all filepathspaths in folder
+            string imagesPath = Server.MapPath("~/App_Data/Images");
+            model.ImagePaths = Directory.GetFiles(imagesPath).ToList();
 
             return View(model);
         }

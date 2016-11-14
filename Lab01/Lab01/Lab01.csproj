@@ -117,13 +117,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\images\code1.jpg" />
+    <Content Include="App_Data\images\code2.jpg" />
+    <Content Include="App_Data\images\code3.jpg" />
+    <Content Include="App_Data\images\code4.png" />
+    <Content Include="App_Data\images\code5.jpg" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\code1.jpg" />
     <Content Include="Content\images\code2.jpg" />
     <Content Include="Content\images\code3.jpg" />
     <Content Include="Content\images\code4.png" />
     <Content Include="Content\images\code5.jpg" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -175,9 +180,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

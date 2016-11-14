@@ -14,5 +14,21 @@ namespace Lab01
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+        protected void Application_End()
+        {
+
+        }
+        protected void Session_Start()
+        {
+
+        }
+        protected void Session_End()
+        {
+
+        }
+        protected void Application_Error()
+        {
+
+        }
     }
 }
