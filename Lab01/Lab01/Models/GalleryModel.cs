@@ -8,10 +8,5 @@ namespace Lab01.Models
         public string GalleryName { get; set; }
         public string GalleryOwner { get; set; }
         public List<string> ImagePaths { get; set; }
-
-        public GalleryModel()
-        {
-            ImagePaths = new List<string>();
-        }
     }
 }

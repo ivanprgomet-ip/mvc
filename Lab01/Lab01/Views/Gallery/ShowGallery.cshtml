@@ -13,11 +13,15 @@
     <h2>@Model.GalleryName</h2>
     <p>@Model.GalleryOwner</p>
 
-    @{
-        foreach (var imgPath in Model.ImagePaths)
-        {
-            string imgUrl = @Path.GetFileName(imgPath); //get only the imagename and extension
-            <img src="/Content/images/@imgUrl" alt="image" width="320" />
+
+    <figure>
+        @{
+            foreach (var imgPath in Model.ImagePaths)
+            {
+                string imgUrl = @Path.GetFileName(imgPath); //get only the imagename and extension
+                <img src="/Content/images/@imgUrl" alt="image" width="320" />
+                <figcaption>image: @imgUrl</figcaption>
+            }
         }
-    }
+    </figure>
 </article>
