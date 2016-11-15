@@ -29,11 +29,12 @@
 
     <div class="container body-content">
         @RenderBody()
+
         <hr />
-        @* todo: create my own renderpage of a html file in folder *@
-        <footer>
+        @RenderPage("Footer.cshtml")
+        @*<footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        </footer>*@
     </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
