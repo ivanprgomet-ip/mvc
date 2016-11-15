@@ -4,5 +4,10 @@
     ViewBag.Title = "ShowImage";
 }
 
-<h2>ShowImage</h2>
-<img src="~/Content/images/@Path.GetFileName(Model.ImagePath)" width="920"/>
+<article>
+    <h2>ShowImage</h2>
+    <br />
+    <img src="~/Content/images/@Path.GetFileName(Model.ImagePath)" width="920" />
+    <br />
+    @Html.ActionLink("Back to Gallery", "ShowGallery", "Gallery")
+</article>

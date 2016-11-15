@@ -164,9 +164,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Gallery\ShowGallery.cshtml" />
-    <Content Include="Views\Gallery\ShowImage.cshtml" />
     <Content Include="Views\Gallery\RemoveImage.cshtml" />
-    <Content Include="Views\Gallery\UploadImage.cshtml" />
     <Content Include="Views\Image\ShowImage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
