@@ -117,11 +117,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\images\code1.jpg" />
-    <Content Include="App_Data\images\code2.jpg" />
-    <Content Include="App_Data\images\code3.jpg" />
-    <Content Include="App_Data\images\code4.png" />
-    <Content Include="App_Data\images\code5.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\code1.jpg" />
@@ -147,12 +142,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\GalleryModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\Gallery.cs" />
+    <Compile Include="Models\Image.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -168,12 +162,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\Information.cshtml" />
-    <Content Include="Views\Gallery\ShowGallery.cshtml" />
+    <Content Include="Views\Gallery\Show.cshtml" />
     <Content Include="Views\Gallery\ShowImage.cshtml" />
     <Content Include="Views\Gallery\RemoveImage.cshtml" />
     <Content Include="Views\Gallery\UploadImage.cshtml" />
-    <Content Include="Views\User\UserDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -181,7 +173,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

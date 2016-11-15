@@ -2,25 +2,27 @@
     that is getting passed in from controller using a directive
     @model. very important too have the model m in lowercase.*@
 
-@model Lab01.Models.GalleryModel
+@model Lab01.Models.Gallery
 
 @{
-    ViewBag.Title = "ShowGallery";
+    ViewBag.Title = "Photo Gallery";
 }
 
 <h2>@ViewBag.Title</h2>
 <article>
     <h2>@Model.GalleryName</h2>
-    <p>@Model.GalleryOwner</p>
+    <h4>@Model.GalleryOwner</h4>
 
 
     <figure>
         @{
             foreach (var imgPath in Model.ImagePaths)
             {
-                string imgUrl = @Path.GetFileName(imgPath); //get only the imagename and extension
+                string imgUrl = @Path.GetFileName(imgPath); //eg. returns only "code1.jpg" etc.
+
                 <img src="/Content/images/@imgUrl" alt="image" width="320" />
                 <figcaption>image: @imgUrl</figcaption>
+                <br />
             }
         }
     </figure>
