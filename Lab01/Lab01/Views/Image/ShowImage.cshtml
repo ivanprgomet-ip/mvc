@@ -1,8 +1,8 @@
 ﻿@* this will retrieve an id *@
-
+@model Lab01.Models.Image
 @{
     ViewBag.Title = "ShowImage";
 }
 
 <h2>ShowImage</h2>
-
+<img src="~/Content/images/@Path.GetFileName(Model.ImagePath)" width="920"/>

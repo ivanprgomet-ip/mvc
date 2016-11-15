@@ -8,10 +8,11 @@ namespace Lab01.Controllers
 {
     public class ImageController:Controller
     {
-        public ActionResult ShowImage(int id)
+        public ActionResult ShowImage(Guid id)
         {
-            
-            return View();
+            //retrieve the image
+            var image = GalleryController.allImages.Where(i => i.ImageId == id).FirstOrDefault();
+            return View(image);
         }
     }
 }

@@ -10,6 +10,8 @@ namespace Lab01.Controllers
     //Controller & Actions för ditt bildgalleri – Visa Galleri, Visa Bild, Ladda Upp, Ta Bort 
     public class GalleryController : Controller
     {
+        public static List<Image> allImages {get;set;}//for retrieval in the ImageController
+
         public ActionResult ShowGallery()
         {
             var model = new Gallery("Coding Wallpapers", "Ivan Prgoemt");
@@ -23,11 +25,13 @@ namespace Lab01.Controllers
                 model.Images.Add(
                     new Image()
                     {
-                        ImageId = new Guid(),
+                        ImageId = Guid.NewGuid(),
                         ImagePath = string.Format("~/Content/images/" + @Path.GetFileName(imgPath))
                     });
-            }; 
+            };
             #endregion
+
+            allImages = model.Images;//so that we can retrieve it in the ImageController later
 
             return View(model);
         }
