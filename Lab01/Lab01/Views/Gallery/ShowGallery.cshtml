@@ -19,10 +19,11 @@
             foreach (var Img in Model.Images)
             {
                 string imgUrl = @Path.GetFileName(Img.ImagePath); //eg. returns only "code1.jpg" etc.
-
-                <img src="/Content/images/@imgUrl" alt="image" width="320" />
-                <figcaption>image: @imgUrl</figcaption>
                 <br />
+                <img src="/Content/images/@imgUrl" alt="image" width="320" />
+                <br />
+                //TODO: fråga filip vad som instantieras med new här
+                @Html.ActionLink("Show Image", "ShowImage", "Image", new { @id = Img.ImageId },null);//anonumous type
             }
         }
     </figure>
