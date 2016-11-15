@@ -16,9 +16,9 @@
 
     <figure>
         @{
-            foreach (var imgPath in Model.ImagePaths)
+            foreach (var Img in Model.Images)
             {
-                string imgUrl = @Path.GetFileName(imgPath); //eg. returns only "code1.jpg" etc.
+                string imgUrl = @Path.GetFileName(Img.ImagePath); //eg. returns only "code1.jpg" etc.
 
                 <img src="/Content/images/@imgUrl" alt="image" width="320" />
                 <figcaption>image: @imgUrl</figcaption>

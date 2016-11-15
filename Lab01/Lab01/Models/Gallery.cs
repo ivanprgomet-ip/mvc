@@ -9,12 +9,13 @@ namespace Lab01.Models
         public Guid GalleryId { get; set; }
         public string GalleryName { get; set; }
         public string GalleryOwner { get; set; }
-        public IEnumerable<string> ImagePaths { get; set; }
+        public List<Image> Images { get; set; }
 
         public Gallery(string galleryName, string galleryOwner)
         {
             this.GalleryName = galleryName;
             this.GalleryOwner = galleryOwner;
+            Images = new List<Image>();
         }
     }
 }
