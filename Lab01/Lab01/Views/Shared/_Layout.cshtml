@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    @* this is like the asp.net webforms master page *@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
@@ -29,6 +30,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
+        @* todo: create my own renderpage of a html file in folder *@
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>

@@ -19,9 +19,8 @@ namespace Lab01.Controllers
             model.GalleryName = "Coding Images Gallery";
             model.GalleryOwner = "Google";
 
-            //get all filepathspaths in folder
-            string imagesPath = Server.MapPath("~/App_Data/Images");
-            model.ImagePaths = Directory.GetFiles(imagesPath).ToList();
+            string imagesPath = Server.MapPath("~/Content/images/");//return absolute path to folder containing images
+            model.ImagePaths = Directory.GetFiles(imagesPath).ToList();//return list of absolute imagepaths of all images
 
             return View(model);
         }
@@ -31,6 +30,8 @@ namespace Lab01.Controllers
             //string imgName = "code" + id;
             return View(/*imgName*/);
         }
+
+        [HttpPost]
         public ActionResult UploadImage()
         {
             return View();
