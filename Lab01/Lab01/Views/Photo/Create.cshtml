@@ -11,7 +11,7 @@
                 actionName: "Create",
                 controllerName: "Photo",
                 method: FormMethod.Post,
-                htmlAttributes: new { enctype = "multipart/form-data" }))
+                htmlAttributes: new { enctype = "multipart/form-data"}))
 {
 
     @Html.AntiForgeryToken()
@@ -32,7 +32,6 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Path, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @*@Html.EditorFor(model => model.Path, new { htmlAttributes = new { @class = "form-control" } }) TEXTBOX?*@
                     <input type="file" name="fileToBeUploaded" id="fileToBeUploaded" /> @*file 'name' has to be the same as in the controller parameter for the httpPostedFile*@ 
                     @Html.ValidationMessageFor(model => model.Path, "", new { @class = "text-danger" })
                 </div>
@@ -50,7 +49,7 @@
             @* SUBMITS THE FORM *@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Upload" id="upload" class="btn btn-default" />
                 </div>
             </div>
         </div>

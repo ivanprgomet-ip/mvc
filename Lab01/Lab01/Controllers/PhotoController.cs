@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Lab01.Controllers
 {
-    public class PhotoController:Controller
+    public class PhotoController : Controller
     {
         public static List<Photo> ImagesDB = new List<Photo>();
 
@@ -60,14 +60,20 @@ namespace Lab01.Controllers
         /// <param name="fileToBeUploaded"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Create(Photo photo, HttpPostedFile fileToBeUploaded)
+        public ActionResult Create(Photo photo, HttpPostedFileBase fileToBeUploaded)//the path you get when adding image is wrong
         {
-            //TODO: photo and httppostedfile are null at the time we come in here..
-            fileToBeUploaded.SaveAs(Path.Combine(Server.MapPath("~Content/images/"), fileToBeUploaded.FileName));
+            try
+            {
+                fileToBeUploaded.SaveAs(Path.Combine(Server.MapPath("~/Content/images"), fileToBeUploaded.FileName));
 
-            ImagesDB.Add(new Photo{Description = photo.Description,Id = Guid.NewGuid(),Path = string.Format("~/Content/images/" + fileToBeUploaded.FileName)});
+                ImagesDB.Add(new Photo{Id = Guid.NewGuid(), Path= $"~/Content/images/{fileToBeUploaded.FileName}" });
 
-            return RedirectToAction("Index");//returns to gallery when image is added
+                return RedirectToAction("Index","Photo");//returns to photo index page after image is added
+            }
+            catch(Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         /// <summary>
