@@ -1,0 +1,57 @@
+﻿@model Lab01.Models.Photo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+
+<div>
+    <h4>Photo</h4>
+    <hr />
+    @Html.ActionLink("Back to Gallery", "Index", "Photo")
+    <br />
+    <img src="~/Content/images/@Path.GetFileName(Model.ImagePath)" width="920" />
+    <dl class="dl-horizontal">
+        @*
+            DisplayFor() - This returns the markup for each of the properties within the model.
+            DisplayNameFor() - This returns the display name for the specified model.
+        *@
+        <dt>
+            @*@Html.DisplayNameFor(model => model.ImageId)*@
+            ImageId:
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.ImageId)*@
+            @Model.ImageId
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.ImagePath)*@
+            ImagePath:
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.ImagePath)*@
+            @Model.ImagePath
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Description)*@
+            Description:
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Description)*@
+            @Model.Description
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

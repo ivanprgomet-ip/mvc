@@ -7,10 +7,9 @@ using System;
 
 namespace Lab01.Controllers
 {
-    //Controller & Actions för ditt bildgalleri – Visa Galleri, Visa Bild, Ladda Upp, Ta Bort 
     public class GalleryController : Controller
     {
-        public static List<Image> allImages {get;set;}//for retrieval in the ImageController
+        public static List<Photo> allImages {get;set;}//for retrieval in the ImageController
 
         public ActionResult ShowGallery()
         {
@@ -23,7 +22,7 @@ namespace Lab01.Controllers
             foreach (var imgPath in ImagePaths)
             {
                 model.Images.Add(
-                    new Image()
+                    new Photo()
                     {
                         ImageId = Guid.NewGuid(),
                         ImagePath = string.Format("~/Content/images/" + @Path.GetFileName(imgPath))

@@ -5,13 +5,10 @@ using System.Web;
 
 namespace Lab01.Models
 {
-    public class Image
+    public class Photo
     {
         public Guid ImageId { get; set; }
         public string ImagePath { get; set; }
-        //public Image()
-        //{
-        //    ImageId = new Guid();
-        //}
+        public string Description { get; set; }
     }
 }
