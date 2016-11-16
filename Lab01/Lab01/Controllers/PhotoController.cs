@@ -42,7 +42,6 @@ namespace Lab01.Controllers
         /// <returns></returns>
         public ActionResult Details(Guid id)
         {
-            //showcase specific image using id and passing into DetailsView
             var photo = ImagesDB.Where(i => i.ImageId == id).FirstOrDefault();
             return View(photo);
         }
@@ -53,6 +52,7 @@ namespace Lab01.Controllers
         /// <returns></returns>
         public ActionResult Create()
         {
+
             return View();
         }
 
@@ -60,9 +60,10 @@ namespace Lab01.Controllers
         /// delete an existing image
         /// </summary>
         /// <returns></returns>
-        public ActionResult Delete()
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            var photo = ImagesDB.Where(i => i.ImageId == id).FirstOrDefault();
+            return View(photo);
         }
 
     }
