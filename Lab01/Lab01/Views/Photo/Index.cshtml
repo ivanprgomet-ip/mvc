@@ -43,11 +43,16 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
+                @*
+                    the id gets sent back (for preview and delete actionlinks) into the controller with the arguments
+                    specified going through the actioncontroller parameters
+                *@
+
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Preview Photo", "Details", "Photo", new { @id = item.ImageId }, null) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Preview", "Details", "Photo", new { @id = item.ImageId }, null) |
+                @Html.ActionLink("Delete", "Delete", "Photo", new { @id = item.ImageId }, null)
             </td>
         </tr>
-                    }
+    }
 
 </table>

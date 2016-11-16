@@ -10,6 +10,9 @@
 <div>
     <h4>Photo</h4>
     <hr />
+    @* small showcase of the photo that's about to be deleted *@
+    <img src="~/Content/images/@Path.GetFileName(Model.ImagePath)" width="120"/>
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.ImageId)

@@ -65,6 +65,5 @@ namespace Lab01.Controllers
             var photo = ImagesDB.Where(i => i.ImageId == id).FirstOrDefault();
             return View(photo);
         }
-
     }
 }
