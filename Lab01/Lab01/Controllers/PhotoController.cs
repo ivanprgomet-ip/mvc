@@ -9,7 +9,7 @@ namespace Lab01.Controllers
 {
     public class PhotoController:Controller
     {
-        public static List<Photo> ImagesDB = new List<Photo>();//for retrieval in the ImageController
+        public static List<Photo> ImagesDB = new List<Photo>();
 
         /// <summary>
         /// list all images using static instance of list<photo> for fake db
@@ -17,6 +17,8 @@ namespace Lab01.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            //TODO: this content reloads every time the index page runs, so we get duplicates!
+
             string imagesPath = Server.MapPath("~/Content/images/");//return absolute path to folder containing images
             List<string> ImagePaths = Directory.GetFiles(imagesPath).ToList();//return list of absolute imagepaths of all images
 
@@ -52,7 +54,6 @@ namespace Lab01.Controllers
         /// <returns></returns>
         public ActionResult Create()
         {
-
             return View();
         }
 
@@ -63,6 +64,7 @@ namespace Lab01.Controllers
         public ActionResult Delete(Guid id)
         {
             var photo = ImagesDB.Where(i => i.ImageId == id).FirstOrDefault();
+            ImagesDB.Remove(photo);//todo: remove the image from the static list
             return View(photo);
         }
     }
