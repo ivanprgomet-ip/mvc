@@ -13,7 +13,7 @@
     <hr />
     @Html.ActionLink("Back to Gallery", "Index", "Photo")
     <br />
-    <img src="~/Content/images/@Path.GetFileName(Model.ImagePath)" width="920" />
+    <img src="~/Content/images/@Path.GetFileName(Model.Path)" width="920" />
     <dl class="dl-horizontal">
         @*
             DisplayFor() - This returns the markup for each of the properties within the model.
@@ -26,7 +26,7 @@
 
         <dd>
             @*@Html.DisplayFor(model => model.ImageId)*@
-            @Model.ImageId
+            @Model.Id
         </dd>
 
         <dt>
@@ -36,7 +36,7 @@
 
         <dd>
             @*@Html.DisplayFor(model => model.ImagePath)*@
-            @Model.ImagePath
+            @Model.Path
         </dd>
 
         <dt>

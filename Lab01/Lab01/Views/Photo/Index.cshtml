@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ImageId)
+            @Html.DisplayNameFor(model => model.Id)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ImagePath)
+            @Html.DisplayNameFor(model => model.Path)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
@@ -28,16 +28,16 @@
         <tr>
             <td>
                 @{
-                    string imgUrl = @Path.GetFileName(item.ImagePath);
+                    string imgUrl = @Path.GetFileName(item.Path);
                     <img src="/Content/images/@imgUrl" alt="image" width="320" />
                 }
 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImageId)
+                @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImagePath)
+                @Html.DisplayFor(modelItem => item.Path)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
@@ -49,8 +49,8 @@
                 *@
 
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Preview", "Details", "Photo", new { @id = item.ImageId }, null) |
-                @Html.ActionLink("Delete", "Delete", "Photo", new { @id = item.ImageId }, null)
+                @Html.ActionLink("Preview", "Details", "Photo", new { @id = item.Id }, null) |
+                @Html.ActionLink("Delete", "Delete", "Photo", new { @id = item.Id }, null)
             </td>
         </tr>
     }

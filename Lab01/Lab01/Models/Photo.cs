@@ -7,8 +7,8 @@ namespace Lab01.Models
 {
     public class Photo
     {
-        public Guid ImageId { get; set; }
-        public string ImagePath { get; set; }
+        public Guid Id { get; set; }
+        public string Path { get; set; }
         public string Description { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Lab01.Controllers
@@ -18,7 +19,6 @@ namespace Lab01.Controllers
         public ActionResult Index()
         {
             //TODO: this content reloads every time the index page runs, so we get duplicates!
-
             string imagesPath = Server.MapPath("~/Content/images/");//return absolute path to folder containing images
             List<string> ImagePaths = Directory.GetFiles(imagesPath).ToList();//return list of absolute imagepaths of all images
 
@@ -28,8 +28,8 @@ namespace Lab01.Controllers
                 ImagesDB.Add(
                     new Photo()
                     {
-                        ImageId = Guid.NewGuid(),
-                        ImagePath = string.Format("~/Content/images/" + @Path.GetFileName(imgPath))
+                        Id = Guid.NewGuid(),
+                        Path = string.Format("~/Content/images/" + @Path.GetFileName(imgPath))
                     });
             };
             #endregion
@@ -44,17 +44,30 @@ namespace Lab01.Controllers
         /// <returns></returns>
         public ActionResult Details(Guid id)
         {
-            var photo = ImagesDB.Where(i => i.ImageId == id).FirstOrDefault();
+            var photo = ImagesDB.Where(i => i.Id == id).FirstOrDefault();
             return View(photo);
         }
 
-        /// <summary>
-        /// upload an image
-        /// </summary>
-        /// <returns></returns>
         public ActionResult Create()
         {
             return View();
+        }
+
+        /// <summary>
+        /// uploads an image
+        /// </summary>
+        /// <param name="photo"></param>
+        /// <param name="fileToBeUploaded"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Create(Photo photo, HttpPostedFile fileToBeUploaded)
+        {
+            //TODO: photo and httppostedfile are null at the time we come in here..
+            fileToBeUploaded.SaveAs(Path.Combine(Server.MapPath("~Content/images/"), fileToBeUploaded.FileName));
+
+            ImagesDB.Add(new Photo{Description = photo.Description,Id = Guid.NewGuid(),Path = string.Format("~/Content/images/" + fileToBeUploaded.FileName)});
+
+            return RedirectToAction("Index");//returns to gallery when image is added
         }
 
         /// <summary>
@@ -63,7 +76,7 @@ namespace Lab01.Controllers
         /// <returns></returns>
         public ActionResult Delete(Guid id)
         {
-            var photo = ImagesDB.Where(i => i.ImageId == id).FirstOrDefault();
+            var photo = ImagesDB.Where(i => i.Id == id).FirstOrDefault();
             ImagesDB.Remove(photo);//todo: remove the image from the static list
             return View(photo);
         }
