@@ -34,7 +34,16 @@ namespace Lab01.Controllers
         }
 
         /// <summary>
-        /// uploads an image
+        /// this runs the first time the Create is clicked on from the index view. 
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// this action runs the second time (when the create form is submitted)
         /// </summary>
         /// <param name="photo"></param>
         /// <param name="fileToBeUploaded"></param>
@@ -75,9 +84,21 @@ namespace Lab01.Controllers
             //return View(photo);
         }
 
+        /// <summary>
+        /// runs the FIRST time immediately when i press edit inside details view. at this point the photo is null. 
+        /// 
+        /// runs the SECOND time when i press save inside the edit view, but this time the photo properties 
+        /// are set by user, and passed into the arguments of the action Edit. 
+        /// </summary>
+        /// <param name="photo"></param>
+        /// <returns></returns>
         public ActionResult Edit(Photo photo)
         {
-            return View(photo);
+            var photoToBeUpdated = PhotoController.ImagesDB.Where(p => p.Id == photo.Id).FirstOrDefault();
+
+            photoToBeUpdated.Description = photo.Description;
+
+            return View(photoToBeUpdated);
         }
     }
 }

@@ -11,28 +11,39 @@ namespace Lab01
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        /// <summary>
+        /// runs first
+        /// </summary>
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             PhotosInitializer();
         }
+
         protected void Application_End()
         {
 
         }
+
+        /// <summary>
+        /// runs directly after application_start
+        /// </summary>
         protected void Session_Start()
         {
 
         }
+
         protected void Session_End()
         {
 
         }
+
         protected void Application_Error()
         {
 
         }
+
         private void PhotosInitializer()
         {
             string imagesPath = Server.MapPath("~/Content/images/");
