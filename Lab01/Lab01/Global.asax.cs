@@ -18,7 +18,9 @@ namespace Lab01
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
             PhotosInitializer();
+            UsersInitializer();
         }
 
         protected void Application_End()
@@ -59,6 +61,34 @@ namespace Lab01
                         Path = string.Format("~/Content/images/" + @Path.GetFileName(imgPath))
                     });
             };
+        }
+        private void UsersInitializer()
+        {
+            User u1 = new User()
+            {
+                Id = Guid.NewGuid(),
+                Firstname = "Alan",
+                Lastname = "Walker",
+                Country = "Spain",
+                City = "Barcelona",
+                Username = "alanwalker",
+                Password = "alan123",
+                DateRegistered = DateTime.Now,
+            };
+
+            User u2 = new User()
+            {
+                Id = Guid.NewGuid(),
+                Firstname = "Lea",
+                Lastname = "Winchester",
+                Country = "Great Britain",
+                City = "London",
+                Username = "leawinchester",
+                Password = "lealea",
+                DateRegistered = DateTime.Now,
+            };
+
+            AuthorizationController._usersDB.AddRange(new List<User> { u1, u2 });
         }
     }
 }

@@ -84,6 +84,7 @@ namespace Lab01.Controllers
             return RedirectToAction("Index", "Photo");
         }
 
+
         /// <summary>
         /// runs the FIRST time immediately when i press edit inside details view. at this point the photo is null. 
         /// 
