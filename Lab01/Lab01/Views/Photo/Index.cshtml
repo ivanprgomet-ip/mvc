@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            Image
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Id)
         </th>
         <th>
@@ -48,8 +51,8 @@
                     specified going through the actioncontroller parameters
                 *@
 
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Preview", "Details", "Photo", new { @id = item.Id }, null) |
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                @Html.ActionLink("Details", "Details", "Photo", new { @id = item.Id }, null) |
                 @Html.ActionLink("Delete", "Delete", "Photo", new { @id = item.Id }, null)
             </td>
         </tr>

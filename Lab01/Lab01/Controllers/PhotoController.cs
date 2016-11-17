@@ -18,22 +18,6 @@ namespace Lab01.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            //TODO: this content reloads every time the index page runs, so we get duplicates!
-            string imagesPath = Server.MapPath("~/Content/images/");//return absolute path to folder containing images
-            List<string> ImagePaths = Directory.GetFiles(imagesPath).ToList();//return list of absolute imagepaths of all images
-
-            #region adding unique Guid Id and imagepath property to every image in the gallery
-            foreach (var imgPath in ImagePaths)
-            {
-                ImagesDB.Add(
-                    new Photo()
-                    {
-                        Id = Guid.NewGuid(),
-                        Path = string.Format("~/Content/images/" + @Path.GetFileName(imgPath))
-                    });
-            };
-            #endregion
-
             return View(ImagesDB);
         }
 
@@ -44,13 +28,9 @@ namespace Lab01.Controllers
         /// <returns></returns>
         public ActionResult Details(Guid id)
         {
+            //be able to update iamge
             var photo = ImagesDB.Where(i => i.Id == id).FirstOrDefault();
             return View(photo);
-        }
-
-        public ActionResult Create()
-        {
-            return View();
         }
 
         /// <summary>
@@ -64,13 +44,20 @@ namespace Lab01.Controllers
         {
             try
             {
-                fileToBeUploaded.SaveAs(Path.Combine(Server.MapPath("~/Content/images"), fileToBeUploaded.FileName));
+                fileToBeUploaded.SaveAs(
+                    Path.Combine(
+                        Server.MapPath("~/Content/images"),
+                        fileToBeUploaded.FileName));
 
-                ImagesDB.Add(new Photo{Id = Guid.NewGuid(), Path= $"~/Content/images/{fileToBeUploaded.FileName}" });
+                ImagesDB.Add(new Photo
+                {
+                    Id = Guid.NewGuid(),
+                    Path = $"~/Content/images/{fileToBeUploaded.FileName}"
+                });
 
-                return RedirectToAction("Index","Photo");//returns to photo index page after image is added
+                return RedirectToAction("Index", "Photo");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return Content(e.Message);
             }
@@ -84,6 +71,12 @@ namespace Lab01.Controllers
         {
             var photo = ImagesDB.Where(i => i.Id == id).FirstOrDefault();
             ImagesDB.Remove(photo);//todo: remove the image from the static list
+            return RedirectToAction("Index", "Photo");
+            //return View(photo);
+        }
+
+        public ActionResult Edit(Photo photo)
+        {
             return View(photo);
         }
     }
