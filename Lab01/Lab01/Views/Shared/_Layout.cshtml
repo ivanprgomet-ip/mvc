@@ -1,4 +1,8 @@
 ﻿<!DOCTYPE html>
+@* the layout view can call 2 special methods that are plugs for other views: 
+    *RENDERBODY:when a layout view calls renderbody, then the contentview will render and display its html in the layout where the renderbody is called.
+    renderbody must be called somewhere inside a layout view. its required. 
+    *RENDERSECTION: this call is optional. you can have one or more sections. *@
 <html>
 <head>
     @* this is like the asp.net webforms master page *@
@@ -18,7 +22,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("information", "Information", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Gallery", "Index", "Photo", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Signin", "Index", "Authorization", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Signup", "Create", "Authorization", new { area = "" }, new { @class = "navbar-brand" })
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

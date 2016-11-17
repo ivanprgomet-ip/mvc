@@ -124,6 +124,7 @@
     <Content Include="Content\images\code3.jpg" />
     <Content Include="Content\images\code4.png" />
     <Content Include="Content\images\code5.jpg" />
+    <Content Include="Content\flexplorer.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -176,7 +177,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Default\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

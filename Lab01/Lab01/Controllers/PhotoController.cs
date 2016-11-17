@@ -51,6 +51,7 @@ namespace Lab01.Controllers
         [HttpPost]
         public ActionResult Create(Photo photo, HttpPostedFileBase fileToBeUploaded)//the path you get when adding image is wrong
         {
+            //todo: when uploading a new image, the description is not getting saved..
             try
             {
                 fileToBeUploaded.SaveAs(
@@ -79,9 +80,8 @@ namespace Lab01.Controllers
         public ActionResult Delete(Guid id)
         {
             var photo = ImagesDB.Where(i => i.Id == id).FirstOrDefault();
-            ImagesDB.Remove(photo);//todo: remove the image from the static list
+            ImagesDB.Remove(photo);
             return RedirectToAction("Index", "Photo");
-            //return View(photo);
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Lab01.Controllers
         /// <returns></returns>
         public ActionResult Edit(Photo photo)
         {
-            var photoToBeUpdated = PhotoController.ImagesDB.Where(p => p.Id == photo.Id).FirstOrDefault();
+            var photoToBeUpdated = ImagesDB.Where(p => p.Id == photo.Id).FirstOrDefault();
 
             photoToBeUpdated.Description = photo.Description;
 

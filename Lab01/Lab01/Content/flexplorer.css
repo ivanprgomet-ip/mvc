@@ -1,0 +1,15 @@
+﻿body {
+
+}
+
+.MasonryContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /*align-items:center;*/
+}
+
+.MasonryItem {
+    max-height: 220px;
+    margin: 5px 2px 5px 2px;
+}
