@@ -1,0 +1,46 @@
+﻿@model Lab01.Models.User
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+@using (Html.BeginForm("Login", "Authorization", FormMethod.Post))
+{
+    @Html.AntiForgeryToken();//protect against attacks
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(u => u.Username)
+
+            </td>
+            <td>
+                @Html.TextBoxFor(u => u.Username)
+
+            </td>
+            <td>
+                @Html.ValidationMessageFor(u=>u.Username) @*todo: not working?*@
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.LabelFor(u => u.Password)
+
+
+            </td>
+            <td>
+                @Html.PasswordFor(u => u.Password)
+            </td>
+            <td>
+                @Html.ValidationMessageFor(u => u.Password) @*todo: not working?*@
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Login" />
+            </td>
+        </tr>
+    </table>
+
+
+}

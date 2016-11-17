@@ -172,6 +172,7 @@
     <Content Include="Views\Photo\Create.cshtml" />
     <Content Include="Views\Photo\Edit.cshtml" />
     <Content Include="Views\Home\Information.cshtml" />
+    <Content Include="Views\Authorization\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -181,7 +182,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Authorization\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <PropertyGroup>
