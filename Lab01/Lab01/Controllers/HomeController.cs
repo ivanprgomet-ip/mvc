@@ -17,6 +17,5 @@ namespace Lab01.Controllers
         {
             return View();
         }
-        
     }
 }

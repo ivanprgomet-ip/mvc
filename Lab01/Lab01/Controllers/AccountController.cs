@@ -7,11 +7,9 @@ using System.Web.Mvc;
 
 namespace Lab01.Controllers
 {
-    public class AuthorizationController : Controller
+    public class AccountController : Controller
     {
         public static List<User> _usersDB = new List<User>();
-
-        
 
         /// <summary>
         /// provides the username with a login screen
@@ -29,29 +27,32 @@ namespace Lab01.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Login(User user)//could also pass in user object, mvc smart enough to place username and password into object
+        public ActionResult Login(User userToBeLoggedIn)//could also pass in user object, mvc smart enough to place username and password into object
         {
-            //retrieve the user if he exists
-            if (UserExists(user))
+            //immediately checks if the entered credentials match a user 
+            bool userExists = new Func<bool>(() =>
+            {
+                var user = _usersDB
+               .Where(u => u.Username == userToBeLoggedIn.Username && u.Password == userToBeLoggedIn.Password)
+               .FirstOrDefault();
+
+                if (user == null)
+                    return false;
+                else
+                    return true;
+            })();
+
+
+            if (userExists)
                 return Content("Successfull Login");
             else
                 return Content("Login failed");
-        }
 
+        }
 
         public ActionResult Logout()
         {
             return View();
-        }
-
-        private bool UserExists(User userToBeLoggedIn)
-        {
-            foreach (var existingUser in _usersDB)
-            {
-                if (existingUser.Username == userToBeLoggedIn.Username && existingUser.Password == userToBeLoggedIn.Password)
-                    return true;
-            }
-            return false;
         }
     }
 }

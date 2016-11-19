@@ -88,7 +88,7 @@ namespace Lab01
                 DateRegistered = DateTime.Now,
             };
 
-            AuthorizationController._usersDB.AddRange(new List<User> { u1, u2 });
+            AccountController._usersDB.AddRange(new List<User> { u1, u2 });
         }
     }
 }
