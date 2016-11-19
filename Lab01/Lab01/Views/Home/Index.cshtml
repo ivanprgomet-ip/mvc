@@ -9,22 +9,13 @@
 
 
 <div class="jumbotron">
-    <h1>Code is Love</h1>
-    <p class="lead">Photos of code, you doing code, someone doing code, code doing code etc. Just code in a nutshell</p>
+    <h1>Codelicious</h1>
+    <p class="lead">Photos of code related codestuff in a nutshell</p>
 </div>
 
 <div>
-    <h2>Index</h2>
-    <p>For the coding enthusiasts!</p>
+    <h2>Welcome</h2>
 
-    <article class="MasonryContainer">
-
-        @* todo: put this piece of code in a partial view  *@
-    @{
-        foreach (var i in PhotoController.ImagesDB)
-        {
-            <img src="~/Content/images/@Path.GetFileName(i.Path)" alt="@i.Description" class="MasonryItem" />
-        }
-    }
-    </article>
+    @* passing model into partial view becuase need it to retrieve images  *@
+    @Html.Partial("_MasonryPartial")
 </div>

@@ -1,0 +1,10 @@
+﻿@using Lab01.Controllers;
+
+<article class="MasonryContainer">
+    @{
+        foreach (var i in PhotoController.ImagesDB)
+        {
+            <img src="~/Content/images/@Path.GetFileName(i.Path)" alt="@i.Description" class="MasonryItem" />
+        }
+    }
+</article>
