@@ -28,7 +28,6 @@ namespace Lab01.Controllers
         /// <returns></returns>
         public ActionResult Details(Guid id)
         {
-            //be able to update iamge
             var photo = ImagesDB.Where(i => i.Id == id).FirstOrDefault();
             return View(photo);
         }
