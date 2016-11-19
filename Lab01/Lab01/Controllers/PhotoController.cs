@@ -8,7 +8,6 @@ using System.Web.Mvc;
 
 namespace Lab01.Controllers
 {
-    [Authorize]
     public class PhotoController : Controller
     {
         public static List<Photo> ImagesDB = new List<Photo>();
