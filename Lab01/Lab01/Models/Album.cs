@@ -5,12 +5,10 @@ using System.Web;
 
 namespace Lab01.Models
 {
-    public class Photo
+    public class Album
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public string Path { get; set; }
-        public string Description { get; set; }
-        public Album Album { get; set; } //the photo album that its part of, can be null
+        public ICollection<Photo> Photos { get; set; }
     }
 }
