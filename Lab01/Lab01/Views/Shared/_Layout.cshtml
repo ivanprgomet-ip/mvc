@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
-@* the layout view can call 2 special methods that are plugs for other views: 
+@* the layout view can call 2 special methods that are plugs for other views:
     *RENDERBODY:when a layout view calls renderbody, then the contentview will render and display its html in the layout where the renderbody is called.
-    renderbody must be called somewhere inside a layout view. its required. 
+    renderbody must be called somewhere inside a layout view. its required.
     *RENDERSECTION: this call is optional. you can have one or more sections. *@
 <html>
 <head>
@@ -23,13 +23,16 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("information", "Information", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Gallery", "Index", "Photo", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Login", "Login", "Authorization", new { area = "" }, new { @class = "navbar-brand" })
-
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("information", "Information", "Home")</li>
+                    <li>@Html.ActionLink("Gallery", "Index", "Photo")</li>
+                    <li>@Html.ActionLink("Contact","Contact","Home")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                    <li>@Html.ActionLink("Login", "Login", "Account")</li>
                 </ul>
             </div>
         </div>
@@ -41,8 +44,8 @@
         <hr />
         @RenderPage("Footer.cshtml")
         @*<footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>*@
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>*@
     </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
