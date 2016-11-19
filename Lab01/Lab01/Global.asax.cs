@@ -57,6 +57,7 @@ namespace Lab01
                     new Photo()
                     {
                         Id = Guid.NewGuid(),
+                        Name = Path.GetFileNameWithoutExtension(imgPath),
                         Description = "[no description set]",
                         Path = string.Format("~/Content/images/" + @Path.GetFileName(imgPath))
                     });
