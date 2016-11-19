@@ -10,7 +10,7 @@ namespace Lab01.Controllers
 {
     public class PhotoController : Controller
     {
-        public static List<Photo> ImagesDB = new List<Photo>();
+        public static List<Photo> _photos = new List<Photo>();
 
         /// <summary>
         /// list all images using static instance of list<photo> for fake db
@@ -18,7 +18,7 @@ namespace Lab01.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            return View(ImagesDB);
+            return View(_photos);
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Lab01.Controllers
         /// <returns></returns>
         public ActionResult Details(Guid id)
         {
-            var photo = ImagesDB.Where(i => i.Id == id).FirstOrDefault();
+            var photo = _photos.Where(i => i.Id == id).FirstOrDefault();
             return View(photo);
         }
 
@@ -58,7 +58,7 @@ namespace Lab01.Controllers
                         Server.MapPath("~/Content/images"),
                         fileToBeUploaded.FileName));
 
-                ImagesDB.Add(new Photo
+                _photos.Add(new Photo
                 {
                     Id = Guid.NewGuid(),
                     Path = $"~/Content/images/{fileToBeUploaded.FileName}"
@@ -78,8 +78,8 @@ namespace Lab01.Controllers
         /// <returns></returns>
         public ActionResult Delete(Guid id)
         {
-            var photo = ImagesDB.Where(i => i.Id == id).FirstOrDefault();
-            ImagesDB.Remove(photo);
+            var photo = _photos.Where(i => i.Id == id).FirstOrDefault();
+            _photos.Remove(photo);
             return RedirectToAction("Index", "Photo");
         }
 
@@ -94,9 +94,11 @@ namespace Lab01.Controllers
         /// <returns></returns>
         public ActionResult Edit(Photo photo)
         {
-            var photoToBeUpdated = ImagesDB.Where(p => p.Id == photo.Id).FirstOrDefault();
+            var photoToBeUpdated = _photos.Where(p => p.Id == photo.Id).FirstOrDefault();
 
             photoToBeUpdated.Description = photo.Description;
+            photoToBeUpdated.Name = photo.Name;
+            
 
             return View(photoToBeUpdated);
         }

@@ -10,5 +10,13 @@ namespace Lab01.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public ICollection<Photo> Photos { get; set; }
+        public int PhotoCount
+        {
+            get
+            {
+                return Photos.Count;
+            }
+        }
+        public DateTime DateCreated { get; set; }
     }
 }

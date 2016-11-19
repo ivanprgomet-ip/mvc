@@ -19,8 +19,9 @@ namespace Lab01
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            PhotosInitializer();
-            UsersInitializer();
+            InitializePhotos();
+            InitializeUsers();
+            InitializeAlbums();
         }
 
         protected void Application_End()
@@ -46,24 +47,25 @@ namespace Lab01
 
         }
 
-        private void PhotosInitializer()
+        private void InitializePhotos()
         {
             string imagesPath = Server.MapPath("~/Content/images/");
             List<string> ImagePaths = Directory.GetFiles(imagesPath).ToList();
             //List<string> ImagePaths = Directory.GetFiles(imagesPath, "*.jpg").ToList();
             foreach (var imgPath in ImagePaths)
             {
-                PhotoController.ImagesDB.Add(
+                PhotoController._photos.Add(
                     new Photo()
                     {
                         Id = Guid.NewGuid(),
                         Name = Path.GetFileNameWithoutExtension(imgPath),
+                        DateUploaded = DateTime.Now,
                         Description = "[no description set]",
                         Path = string.Format("~/Content/images/" + @Path.GetFileName(imgPath))
                     });
             };
         }
-        private void UsersInitializer()
+        private void InitializeUsers()
         {
             User u1 = new User()
             {
@@ -90,6 +92,18 @@ namespace Lab01
             };
 
             AccountController._usersDB.AddRange(new List<User> { u1, u2 });
+        }
+        private void InitializeAlbums()
+        {
+            Album a1 = new Album()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Code Is Love",
+                DateCreated = DateTime.Now,
+                Photos = PhotoController._photos,//taking all the images from the Photocontroller
+            };
+
+            AlbumController._albums.Add(a1);
         }
     }
 }

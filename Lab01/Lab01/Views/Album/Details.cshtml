@@ -1,0 +1,22 @@
+﻿@model Lab01.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@* TODO: smoother solution for disposition of this stylesheet *@
+<link href="~/Content/flexplorer.css" type="text/css" rel="stylesheet" />
+
+
+<h2>AlbumDetails | @Model.Name</h2>
+<article class="MasonryContainer">
+    @{
+        foreach (var photo in Model.Photos)
+        {
+            <img src="~/Content/images/@Path.GetFileName(photo.Path)" class="MasonryItem" />
+        }
+    }
+    </article>
+
+
+

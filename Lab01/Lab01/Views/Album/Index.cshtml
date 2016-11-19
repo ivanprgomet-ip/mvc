@@ -1,1 +1,22 @@
-﻿
+﻿@model IEnumerable<Lab01.Models.Album>
+
+@* this view will display all the albums , when an album is clicked,
+    you get hyperlinked to the clicked ablums photos. *@
+
+
+
+<table>
+    @{
+        foreach (var album in Model)
+        {
+            <tr>
+                <td>
+                    Album:
+                </td>
+                <td>
+                    @Html.ActionLink(album.Name, "Details", "Album",new { id = album.Id }, null)
+                </td>
+            </tr>
+        }
+    }
+</table>

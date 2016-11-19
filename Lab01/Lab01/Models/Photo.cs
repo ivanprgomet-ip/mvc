@@ -12,5 +12,6 @@ namespace Lab01.Models
         public string Path { get; set; }
         public string Description { get; set; }
         public Album Album { get; set; } //the photo album that its part of, can be null
+        public DateTime DateUploaded { get; set; }
     }
 }

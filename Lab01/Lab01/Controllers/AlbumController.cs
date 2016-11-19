@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab01.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,26 @@ namespace Lab01.Controllers
 {
     public class AlbumController : Controller
     {
-        // Return all albums , and when an album is clicked, we get into that albums images
+        public static List<Album> _albums = new List<Album>();
+
+        /// <summary>
+        /// list all the albums
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
-            return View();
+            return View(_albums);
+        }
+
+        /// <summary>
+        /// preview the photos in an album
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Details(Guid id)
+        {
+            var album = _albums.Where(i => i.Id == id).FirstOrDefault();
+            return View(album);
         }
     }
 }

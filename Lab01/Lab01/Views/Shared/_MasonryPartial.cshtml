@@ -2,7 +2,7 @@
 
 <article class="MasonryContainer">
     @{
-        foreach (var i in PhotoController.ImagesDB)
+        foreach (var i in PhotoController._photos)
         {
             <img src="~/Content/images/@Path.GetFileName(i.Path)" alt="@i.Description" class="MasonryItem" />
         }
