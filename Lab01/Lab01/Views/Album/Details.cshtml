@@ -16,4 +16,15 @@
             <img src="~/Content/images/@Path.GetFileName(photo.Path)" class="MasonryItem" />
         }
     }
-    </article>
+</article>
+
+<article class="empty_album">
+    @{ 
+        if (Model.Photos.Count == 0)
+        {
+            <p>This album contains no photos yet!</p>
+        }
+    }
+</article>
+
+@Html.ActionLink("Back To Albums","Index","Album")

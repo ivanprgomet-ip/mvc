@@ -28,6 +28,7 @@ namespace Lab01.Controllers
         public ActionResult Details(Guid id)
         {
             var album = _albums.Where(i => i.Id == id).FirstOrDefault();
+
             return View(album);
         }
 
@@ -42,7 +43,8 @@ namespace Lab01.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                albumToBeCreated.Photos = new List<Photo>();//initialize the list
+                
                 albumToBeCreated.Id = Guid.NewGuid();
 
                 albumToBeCreated.DateCreated = DateTime.Now;
