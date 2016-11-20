@@ -77,6 +77,7 @@ namespace Lab01
                 Username = "alanwalker",
                 Password = "alan123",
                 DateRegistered = DateTime.Now,
+                Email = "alanwalker@gmail.com"
             };
 
             User u2 = new User()
@@ -89,9 +90,10 @@ namespace Lab01
                 Username = "leawinchester",
                 Password = "lealea",
                 DateRegistered = DateTime.Now,
+                Email = "leawinchester@gmail.com"
             };
 
-            AccountController._usersDB.AddRange(new List<User> { u1, u2 });
+            AccountController._users.AddRange(new List<User> { u1, u2 });
         }
         private void InitializeAlbums()
         {

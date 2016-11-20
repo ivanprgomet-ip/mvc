@@ -9,7 +9,7 @@ namespace Lab01.Controllers
 {
     public class AccountController : Controller
     {
-        public static List<User> _usersDB = new List<User>();
+        public static List<User> _users = new List<User>();
 
         /// <summary>
         /// provides the username with a login screen
@@ -32,7 +32,7 @@ namespace Lab01.Controllers
             //immediately checks if the entered credentials match a user 
             bool userExists = new Func<bool>(() =>
             {
-                var user = _usersDB
+                var user = _users
                .Where(u => u.Username == userToBeLoggedIn.Username && u.Password == userToBeLoggedIn.Password)
                .FirstOrDefault();
 
@@ -53,6 +53,34 @@ namespace Lab01.Controllers
         public ActionResult Logout()
         {
             return View();
+        }
+
+        //get the register page
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        //register a new user
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(User userToBeRegistered)
+        {
+            if (ModelState.IsValid)
+            {
+                if(userToBeRegistered!=null)
+                {
+                    userToBeRegistered.Id = Guid.NewGuid();
+                    userToBeRegistered.DateRegistered = DateTime.Now;
+
+                    _users.Add(userToBeRegistered);
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(userToBeRegistered);
         }
     }
 }
