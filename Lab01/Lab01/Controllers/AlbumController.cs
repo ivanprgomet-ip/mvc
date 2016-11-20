@@ -30,5 +30,28 @@ namespace Lab01.Controllers
             var album = _albums.Where(i => i.Id == id).FirstOrDefault();
             return View(album);
         }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Album albumToBeCreated)
+        {
+            if (ModelState.IsValid)
+            {
+
+                albumToBeCreated.Id = Guid.NewGuid();
+
+                albumToBeCreated.DateCreated = DateTime.Now;
+
+                _albums.Add(albumToBeCreated);
+
+                return RedirectToAction("Index", "Album");
+            }
+            return View(albumToBeCreated);
+        }
     }
 }

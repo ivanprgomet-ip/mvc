@@ -14,9 +14,14 @@ namespace Lab01.Models
         {
             get
             {
-                return Photos.Count;
+                if (Photos == null)
+                    return 0;
+                else
+                    return Photos.Count;
             }
         }
         public DateTime DateCreated { get; set; }
+
+        
     }
 }
