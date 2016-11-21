@@ -1,0 +1,16 @@
+﻿@model IEnumerable<MVCPhotoAlbums.Models.UserModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>User.Index</h2>
+
+@{
+    foreach (var user in Model)
+    {
+        <section>
+            <p>@user.Firstname @user.Lastname (@user.Username)</p>
+            <p>Date Registered: @user.DateRegistered</p>
+        </section>
+    }
+}

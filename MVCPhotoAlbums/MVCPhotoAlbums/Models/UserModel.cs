@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MVCPhotoAlbums.Models
 {
-    public class User
+    public class UserModel
     {
         public Guid Id { get; set; }
         [Required(ErrorMessage = "Please enter your firstname", AllowEmptyStrings = false)]
@@ -18,7 +18,8 @@ namespace MVCPhotoAlbums.Models
         public string Street { get; set; }
         [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
-        [EmailAddress(ErrorMessage = "Please enter a legitimate Email")]
+        [Required(ErrorMessage ="Please enter a legitimate Email")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required(ErrorMessage = "Please enter a username", AllowEmptyStrings = false)]
         public string Username { get; set; }
