@@ -11,6 +11,7 @@ namespace MVCPhotoAlbums.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
+        public string AlbumPath { get; set; }
         public ICollection<CommentModel> Comments { get; set; }
         public ICollection<PhotoModel> Photos { get; set; }
     }

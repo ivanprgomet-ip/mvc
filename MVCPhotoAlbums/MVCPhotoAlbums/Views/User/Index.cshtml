@@ -9,8 +9,10 @@
     foreach (var user in Model)
     {
         <section>
-            <p>@user.Firstname @user.Lastname (@user.Username)</p>
+            <h4>@user.Firstname @user.Lastname (@user.Username)</h4>
             <p>Date Registered: @user.DateRegistered</p>
+            @Html.ActionLink("Profile", "Details", "User", new { id = user.Id, email = user.Email, Type = "UserModel" }, null)
+            <hr />
         </section>
     }
 }

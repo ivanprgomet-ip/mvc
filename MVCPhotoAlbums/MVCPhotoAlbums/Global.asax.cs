@@ -83,6 +83,7 @@ namespace MVCPhotoAlbums
             };
             Directory.CreateDirectory(Server.MapPath("~/Content/Albums/" + u2.Username));
 
+            #region garbage for now
             //u2.Albums.Add(new AlbumModel()
             //{
             //    Id = Guid.NewGuid(),
@@ -138,7 +139,8 @@ namespace MVCPhotoAlbums
             //                Name = Path.GetFileNameWithoutExtension(@"C:\Users\Ivan\Desktop\code5.jpg"),
             //            }
             //        }
-            //});
+            //}); 
+            #endregion
 
             UserModel u3 = new UserModel()
             {
@@ -157,6 +159,10 @@ namespace MVCPhotoAlbums
                 Albums = new List<AlbumModel>(),
             };
             Directory.CreateDirectory(Server.MapPath("~/Content/Albums/" + u3.Username));
+
+            Repositories.UserRepository._users.Add(u1);
+            Repositories.UserRepository._users.Add(u2);
+            Repositories.UserRepository._users.Add(u3);
         }
     }
 }

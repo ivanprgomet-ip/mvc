@@ -10,12 +10,16 @@ namespace MVCPhotoAlbums.Repositories
     {
         public static List<UserModel> _users = new List<UserModel>();
 
-        public void Add(UserModel userToBeRegistered)
+        public void AddUser(UserModel userToBeRegistered)
         {
             userToBeRegistered.Id = Guid.NewGuid();
             userToBeRegistered.DateRegistered = DateTime.Now;
 
             _users.Add(userToBeRegistered);
+        }
+        public UserModel ReturnUser(Guid userId)
+        {
+            return _users.FirstOrDefault(u => u.Id == userId);
         }
     }
 }

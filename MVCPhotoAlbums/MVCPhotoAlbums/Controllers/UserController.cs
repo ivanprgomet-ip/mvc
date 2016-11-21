@@ -13,9 +13,13 @@ namespace MVCPhotoAlbums.Controllers
         }
 
         // GET: User/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(UserModel user)
         {
-            return View();
+            UserRepository repo = new UserRepository();
+
+            var userToShow = repo.ReturnUser(user.Id);
+
+            return View(userToShow);
         }
 
         // GET: User/Create

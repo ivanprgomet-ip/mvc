@@ -1,0 +1,52 @@
+﻿@model MVCPhotoAlbums.Models.UserModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>User.Details | @Model.Username</h2>
+
+<table class="table">
+    <tr>
+        <td>
+            Fullname: @Model.Firstname @Model.Lastname
+        </td>
+        <td>
+            Country: @Model.Country
+        </td>
+        <td>
+            City: @Model.City
+        </td>
+        <td>
+            Street: @Model.Street
+        </td>
+        <td>
+            Phone: @Model.Phone
+        </td>
+        <td>
+            Email: @Model.Email
+        </td>
+        <td>
+            Registered: @Model.DateRegistered
+        </td>
+    </tr>
+</table>
+<article>
+    @* displays the selected users albums (if any exists) *@
+        @{ 
+            if(Model.Albums.Count==0)
+            {
+                <p>@Model.Username doesnt have any albums yet...</p>
+            }
+            else
+            {
+                foreach (var album in Model.Albums)
+                {
+                    <h4>@album.Name</h4>
+                    string a = @Path.GetFileName(album.AlbumPath);
+                    <img src="/Content/Albums/@a" alt="image" width="320" />
+                }
+            }
+        }
+</article>
+
