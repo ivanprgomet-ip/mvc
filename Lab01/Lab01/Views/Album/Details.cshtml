@@ -18,6 +18,9 @@
     }
 </article>
 
+@*send this album to the create photo , so that the photo gets added to this specific album*@ 
+@Html.ActionLink("Upload Photo to album", "Create", "Photo") 
+
 <article class="empty_album">
     @{ 
         if (Model.Photos.Count == 0)

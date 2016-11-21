@@ -50,7 +50,6 @@ namespace Lab01.Controllers
         [HttpPost]
         public ActionResult Create(Photo photo, HttpPostedFileBase fileToBeUploaded)//the path you get when adding image is wrong
         {
-            //todo: when uploading a new image, the description is not getting saved..
             try
             {
                 fileToBeUploaded.SaveAs(

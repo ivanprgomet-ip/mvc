@@ -4,9 +4,9 @@
 }
 
 <h2>Login</h2>
-@using (Html.BeginForm("Login", "Authorization",FormMethod.Post))
+@using (Html.BeginForm("Login", "Account",FormMethod.Post))
 {
-    @Html.AntiForgeryToken();//protect against attacks
+    @Html.AntiForgeryToken();
     <table>
         <tr>
             <td>
@@ -37,7 +37,7 @@
         </tr>
         <tr>
             <td>
-                <input type="submit" value="Login" />
+                <input type="submit" value="Login" id="btnLogin" />
             </td>
         </tr>
     </table>
