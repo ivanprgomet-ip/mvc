@@ -14,9 +14,10 @@
 @foreach (var photo in Model) {
     <tr>
         <td>
+
             @* todo: display photo here *@
             @{ 
-                <img src="@photo.PhotoPath" />
+                <img src="@Path.GetFileName(photo.PhotoPath)" />
             }
         </td>
         <td>
@@ -37,3 +38,9 @@
 }
 
 </table>
+@*@{ 
+    foreach (var photo in Model.Photos)
+    {
+
+    }
+}*@
