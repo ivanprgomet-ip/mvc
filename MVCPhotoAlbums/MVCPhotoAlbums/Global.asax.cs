@@ -1,6 +1,7 @@
 ﻿using MVCPhotoAlbums.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -82,6 +83,7 @@ namespace MVCPhotoAlbums
                 Albums = new List<AlbumModel>(),
             };
             Directory.CreateDirectory(Server.MapPath("~/Content/Albums/" + u2.Username));
+            CreateAlbumFor(u2, "Lea Code Quotes Album");
 
             #region garbage for now
             //u2.Albums.Add(new AlbumModel()
@@ -163,6 +165,23 @@ namespace MVCPhotoAlbums
             Repositories.UserRepository._users.Add(u1);
             Repositories.UserRepository._users.Add(u2);
             Repositories.UserRepository._users.Add(u3);
+        }
+
+        private void CreateAlbumFor(UserModel user, string albumName)
+        {
+            //create a folder for the album in the users specific albums folder
+            Directory.CreateDirectory(Server.MapPath("~/Content/Albums/" + user.Username+"/"+albumName));
+
+            //add the album to the users album collection
+            user.Albums.Add(new AlbumModel()
+            {
+                Id = Guid.NewGuid(),
+                AlbumPath = Server.MapPath("~/Content/Albums/" + user.Username + "/" + albumName),
+                DateCreated = DateTime.Now,
+                Name = albumName,
+                Description = "no description yet",
+                Photos = new List<PhotoModel>(),
+            });
         }
     }
 }

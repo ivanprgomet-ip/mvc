@@ -17,6 +17,7 @@ namespace MVCPhotoAlbums.Repositories
 
             _users.Add(userToBeRegistered);
         }
+
         public UserModel ReturnUser(Guid userId)
         {
             return _users.FirstOrDefault(u => u.Id == userId);

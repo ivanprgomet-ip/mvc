@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MVCPhotoAlbums.Models.PhotoModel>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+
+@foreach (var photo in Model) {
+    <tr>
+        <td>
+            @* todo: display photo here *@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => photo.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => photo.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => photo.DateCreated)
+        </td>
+        <td>
+            @Html.ActionLink("Edit Photo", "Edit", new { id=photo.Id }) |
+            @Html.ActionLink("Details Photo", "Details", new { id=photo.Id }) |
+            @Html.ActionLink("Delete Photo", "Delete", new { id=photo.Id })
+        </td>
+    </tr>
+}
+
+</table>

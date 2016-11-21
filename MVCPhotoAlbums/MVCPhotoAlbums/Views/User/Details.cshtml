@@ -42,9 +42,9 @@
             {
                 foreach (var album in Model.Albums)
                 {
-                    <h4>@album.Name</h4>
-                    string a = @Path.GetFileName(album.AlbumPath);
-                    <img src="/Content/Albums/@a" alt="image" width="320" />
+                    @*<h4>@album.Name | <small>@album.DateCreated</small></h4>*@
+                    @Html.ActionLink(album.Name, "Details", "Album", new { id = album.Id, type = "AlbumModel" },null);
+                    <small>(@album.DateCreated)</small>
                 }
             }
         }
