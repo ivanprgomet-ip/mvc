@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Album.Details</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -15,6 +15,9 @@
     <tr>
         <td>
             @* todo: display photo here *@
+            @{ 
+                <img src="@photo.PhotoPath" />
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => photo.Name)

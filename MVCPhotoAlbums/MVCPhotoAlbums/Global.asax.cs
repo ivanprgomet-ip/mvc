@@ -85,65 +85,6 @@ namespace MVCPhotoAlbums
             Directory.CreateDirectory(Server.MapPath("~/Content/Albums/" + u2.Username));
             CreateAlbumFor(u2, "Lea Code Quotes Album");
 
-            #region garbage for now
-            //u2.Albums.Add(new AlbumModel()
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "LeaCodeQuotes",
-            //    Description = "A selection of my favourite code related quotes!",
-            //    DateCreated = DateTime.Now,
-            //    Comments = new List<CommentModel>(),
-            //    Photos = new List<PhotoModel>()
-            //        {
-            //            new PhotoModel()
-            //            {
-            //                Id=Guid.NewGuid(),
-            //                UploadedBy = u2.Username,
-            //                Description = "no description yet",
-            //                DateCreated = DateTime.Now,
-            //                FilePath = @"C:\Users\Ivan\Desktop\ytP7U362.png",
-            //                Name = Path.GetFileNameWithoutExtension(@"C:\Users\Ivan\Desktop\ytP7U362.png"),
-            //            },
-            //            new PhotoModel()
-            //            {
-            //                Id=Guid.NewGuid(),
-            //                UploadedBy = u2.Username,
-            //                Description = "no description yet",
-            //                DateCreated = DateTime.Now,
-            //                FilePath = @"C:\Users\Ivan\Desktop\ytP7U362.png",
-            //                Name = Path.GetFileNameWithoutExtension(@"C:\Users\Ivan\Desktop\livecode_sound.png"),
-            //            },
-            //            new PhotoModel()
-            //            {
-            //                Id=Guid.NewGuid(),
-            //                UploadedBy = u2.Username,
-            //                Description = "no description yet",
-            //                DateCreated = DateTime.Now,
-            //                FilePath = @"C:\Users\Ivan\Desktop\ytP7U362.png",
-            //                Name = Path.GetFileNameWithoutExtension(@"C:\Users\Ivan\Desktop\code4.png"),
-            //            },
-            //            new PhotoModel()
-            //            {
-            //                Id=Guid.NewGuid(),
-            //                UploadedBy = u2.Username,
-            //                Description = "no description yet",
-            //                DateCreated = DateTime.Now,
-            //                FilePath = @"C:\Users\Ivan\Desktop\ytP7U362.png",
-            //                Name = Path.GetFileNameWithoutExtension(@"C:\Users\Ivan\Desktop\code2.jpg"),
-            //            },
-            //            new PhotoModel()
-            //            {
-            //                Id=Guid.NewGuid(),
-            //                UploadedBy = u2.Username,
-            //                Description = "no description yet",
-            //                DateCreated = DateTime.Now,
-            //                FilePath = @"C:\Users\Ivan\Desktop\ytP7U362.png",
-            //                Name = Path.GetFileNameWithoutExtension(@"C:\Users\Ivan\Desktop\code5.jpg"),
-            //            }
-            //        }
-            //}); 
-            #endregion
-
             UserModel u3 = new UserModel()
             {
                 Id = Guid.NewGuid(),
@@ -172,8 +113,8 @@ namespace MVCPhotoAlbums
             //create a folder for the album in the users specific albums folder
             Directory.CreateDirectory(Server.MapPath("~/Content/Albums/" + user.Username+"/"+albumName));
 
-            //add the album to the users album collection
-            user.Albums.Add(new AlbumModel()
+            //create the album
+            AlbumModel newAlbum = new AlbumModel()
             {
                 Id = Guid.NewGuid(),
                 AlbumPath = Server.MapPath("~/Content/Albums/" + user.Username + "/" + albumName),
@@ -181,7 +122,29 @@ namespace MVCPhotoAlbums
                 Name = albumName,
                 Description = "no description yet",
                 Photos = new List<PhotoModel>(),
-            });
+            };
+
+            //TODO: CHECK IF THIS WORKS
+            //this code block is for demo purposes only.
+            //the images will be added through the mvc interface in the future.
+            var photosPath = Server.MapPath("~/Content/Albums/"+user.Username+"/"+albumName);
+
+            var demoPhotos = Directory.GetFiles(photosPath).ToList();
+
+            foreach (var photopath in demoPhotos)
+            {
+                newAlbum.Photos.Add(new PhotoModel()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = Path.GetFileNameWithoutExtension(photopath),
+                    DateCreated = DateTime.Now,
+                    Description = "[no description set]",
+                    PhotoPath = string.Format("~/Content/Albums/" + @Path.GetFileName(photopath))
+                });
+            };
+
+            //add the album to the users album collection
+            user.Albums.Add(newAlbum);
         }
     }
 }
