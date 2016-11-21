@@ -28,6 +28,6 @@ namespace MVCPhotoAlbums.Models
         public string Password { get; set; }
         public DateTime DateRegistered { get; set; }
 
-        ICollection<AlbumModel> Albums { get; set; }
+        public ICollection<AlbumModel> Albums { get; set; }
     }
 }

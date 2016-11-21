@@ -8,7 +8,7 @@ namespace MVCPhotoAlbums.Models
     public class PhotoModel
     {
         public Guid Id { get; set; }
-        public string Path { get; set; }
+        public string FilePath { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
