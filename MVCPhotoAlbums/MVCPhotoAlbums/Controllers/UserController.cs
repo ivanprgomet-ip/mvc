@@ -18,7 +18,7 @@ namespace MVCPhotoAlbums.Controllers
         {
             UserRepository repo = new UserRepository();
 
-            var userToShow = repo.ReturnUser(user.Id);
+            var userToShow = repo.ReturnUserById(user.Id);
 
             return View(userToShow);
         }
@@ -109,23 +109,18 @@ namespace MVCPhotoAlbums.Controllers
         [HttpPost]
         public ActionResult Login(UserModel userToBeLoggedIn)
         {
-
             UserRepository repo = new UserRepository();
+            var authenticatedUser = repo.ReturnUserLogin(userToBeLoggedIn.Username, userToBeLoggedIn.Password);
 
-            bool userExists = new Func<bool>(() =>
+            if (authenticatedUser != null)
             {
-                var user = repo.ReturnUser(userToBeLoggedIn.Id);
-
-                if (user == null)
-                    return false;
-                else
-                    return true;
-            })();
-
-            if (userExists)
                 return Content("Successfull Login");
+            }
             else
+            {
                 return Content("Login failed");
+            }
+
         }
 
         //get the register page
