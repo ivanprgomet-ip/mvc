@@ -2,6 +2,7 @@
 using MVCPhotoAlbums.Repositories;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -21,6 +22,7 @@ namespace MVCPhotoAlbums.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Create(PhotoModel photo, HttpPostedFileBase[] filesToBeUploaded)
         {
@@ -29,13 +31,20 @@ namespace MVCPhotoAlbums.Controllers
             Guid albumId = photo.Id; //why is the photo id and album id is the same?
             var album = albumRepo.ReturnAlbum(albumId);
 
-            //create the photo
-            PhotoRepository repo = new PhotoRepository();
-            repo.CreatePhoto(photo);
-
+            //adding paths here because the server mappath method isnt accessible in repository class
             foreach (var file in filesToBeUploaded)
             {
-                file.SaveAs(Server.MapPath("~/Content/Albums/"+ album.User.Username + "/"+album.Name+"/"+file.FileName));
+                PhotoModel currentPhoto = new PhotoModel()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = file.FileName,
+                    DateCreated = DateTime.Now,
+                    Description = "[no description set]",
+                    PhotoPath = string.Format("~/Content/Albums/" + album.Name + "/" + file.FileName),
+                    UploadedBy = album.User.Username,
+                };
+                file.SaveAs(Server.MapPath("~/Content/Albums/" + album.User.Username + "/" + album.Name + "/" + file.FileName));//physically saves copie(s) of the photos to the path specified
+                album.Photos.Add(currentPhoto);//saves the photo object to the album object
             };
 
             return RedirectToAction("Index", "Home");

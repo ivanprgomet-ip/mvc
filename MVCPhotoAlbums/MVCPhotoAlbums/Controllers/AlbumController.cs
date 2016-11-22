@@ -17,10 +17,11 @@ namespace MVCPhotoAlbums.Controllers
         // GET: Album/Details/5 
         public ActionResult Details(AlbumModel album)
         {
-            //display all the photos for the choosen album
             AlbumRepository repo = new AlbumRepository();
 
             var albumToShow = repo.ReturnAlbum(album.Id);
+
+            albumToShow.AlbumPath = Server.MapPath("~/Content/Albums/" + albumToShow.User.Username+ "/" + albumToShow.Name);//setting albumpath here because server is not available in repository class...
 
             return View(albumToShow);
         }
