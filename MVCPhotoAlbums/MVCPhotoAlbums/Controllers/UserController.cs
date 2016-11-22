@@ -1,5 +1,6 @@
 ﻿using MVCPhotoAlbums.Models;
 using MVCPhotoAlbums.Repositories;
+using System;
 using System.Web.Mvc;
 
 namespace MVCPhotoAlbums.Controllers
@@ -92,6 +93,67 @@ namespace MVCPhotoAlbums.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View("Login");
+        }
+
+        /// <summary>
+        /// recieves the username and password back after
+        /// user submits the form
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Login(UserModel userToBeLoggedIn)
+        {
+
+            UserRepository repo = new UserRepository();
+
+            bool userExists = new Func<bool>(() =>
+            {
+                var user = repo.ReturnUser(userToBeLoggedIn.Id);
+
+                if (user == null)
+                    return false;
+                else
+                    return true;
+            })();
+
+            if (userExists)
+                return Content("Successfull Login");
+            else
+                return Content("Login failed");
+        }
+
+        //get the register page
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        //register a new user
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(UserModel userToBeRegistered)
+        {
+            UserRepository repo = new UserRepository();
+
+            if (ModelState.IsValid)
+            {
+                if (userToBeRegistered != null)
+                {
+                    //todo: create growl when user gets registered
+                    repo.AddUser(userToBeRegistered);
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(userToBeRegistered);
         }
     }
 }
