@@ -122,6 +122,7 @@ namespace MVCPhotoAlbums
                 Name = albumName,
                 Description = "no description yet",
                 Photos = new List<PhotoModel>(),
+                User = user, // the owner of the album
             };
 
             //TODO: CHECK IF THIS WORKS

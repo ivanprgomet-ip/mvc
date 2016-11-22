@@ -14,5 +14,7 @@ namespace MVCPhotoAlbums.Models
         public string AlbumPath { get; set; }
         public ICollection<CommentModel> Comments { get; set; }
         public ICollection<PhotoModel> Photos { get; set; }
+
+        public UserModel User { get; set; }
     }
 }

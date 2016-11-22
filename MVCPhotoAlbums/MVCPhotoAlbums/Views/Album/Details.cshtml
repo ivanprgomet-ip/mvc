@@ -1,46 +1,25 @@
-﻿@model IEnumerable<MVCPhotoAlbums.Models.PhotoModel>
+﻿@model MVCPhotoAlbums.Models.AlbumModel
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Album.Details</h2>
+<h2>Album.Details | @Model.Name</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<div>
+    @{
 
-@foreach (var photo in Model) {
-    <tr>
-        <td>
+        //todo: maek this output the images
+        string albumDirName = new DirectoryInfo(Model.AlbumPath).Name;
 
-            @* todo: display photo here *@
-            @{ 
-                <img src="@Path.GetFileName(photo.PhotoPath)" />
-            }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => photo.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => photo.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => photo.DateCreated)
-        </td>
-        <td>
-            @Html.ActionLink("Edit Photo", "Edit", new { id=photo.Id }) |
-            @Html.ActionLink("Details Photo", "Details", new { id=photo.Id }) |
-            @Html.ActionLink("Delete Photo", "Delete", new { id=photo.Id })
-        </td>
-    </tr>
-}
+        foreach (var photo in Model.Photos)
+        {
 
-</table>
-@*@{ 
-    foreach (var photo in Model.Photos)
-    {
+            string photoName = Path.GetFileName(photo.PhotoPath);
 
+            <img src="~/Content/Albums/@Model.User.Username/@albumDirName/@photoName" alt="@photo.Name" width="220" />
+
+            @*<img src="@Url.Content($"~/Content/Albums/{@albumDirName}/{@photoName}")" alt="@photo.Name" />*@
+        }
     }
-}*@
+</div>

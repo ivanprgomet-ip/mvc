@@ -30,36 +30,36 @@ namespace Lab01.Controllers
         public ActionResult Login(User userToBeLoggedIn)//could also pass in user object, mvc smart enough to place username and password into object
         {
             //todo: the usertobeloggedin is null
-            if (ModelState.IsValid)
-            {
-                var user = _users
-               .Where(u => u.Username == userToBeLoggedIn.Username && u.Password == userToBeLoggedIn.Password)
-               .FirstOrDefault();
-
-                if (user == null)
-                    return Content("Login Failed");
-                else
-                    return Content("Login succeeded");
-            }
-            return View();//validation fails
-
-            //immediately checks if the entered credentials match a user 
-            //bool userExists = new Func<bool>(() =>
+            //if (ModelState.IsValid)
             //{
             //    var user = _users
             //   .Where(u => u.Username == userToBeLoggedIn.Username && u.Password == userToBeLoggedIn.Password)
             //   .FirstOrDefault();
 
             //    if (user == null)
-            //        return false;
+            //        return Content("Login Failed");
             //    else
-            //        return true;
-            //})();
+            //        return Content("Login succeeded");
+            //}
+            //return View();//validation fails
 
-            //if (userExists)
-            //    return Content("Successfull Login");
-            //else
-            //    return Content("Login failed");
+            //immediately checks if the entered credentials match a user 
+            bool userExists = new Func<bool>(() =>
+            {
+                var user = _users
+               .Where(u => u.Username == userToBeLoggedIn.Username && u.Password == userToBeLoggedIn.Password)
+               .FirstOrDefault();
+
+                if (user == null)
+                    return false;
+                else
+                    return true;
+            })();
+
+            if (userExists)
+                return Content("Successfull Login");
+            else
+                return Content("Login failed");
 
         }
 

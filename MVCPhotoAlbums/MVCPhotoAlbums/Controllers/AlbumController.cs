@@ -21,7 +21,7 @@ namespace MVCPhotoAlbums.Controllers
 
             var albumToShow = repo.ReturnAlbum(album.Id);
 
-            return View(albumToShow.Photos);
+            return View(albumToShow);
         }
 
         // GET: Album/Create
