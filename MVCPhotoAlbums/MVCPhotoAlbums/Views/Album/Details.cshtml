@@ -18,8 +18,9 @@
             string photoName = Path.GetFileName(photo.PhotoPath);
 
             <img src="~/Content/Albums/@Model.User.Username/@albumDirName/@photoName" alt="@photo.Name" width="220" />
-
-            @*<img src="@Url.Content($"~/Content/Albums/{@albumDirName}/{@photoName}")" alt="@photo.Name" />*@
         }
     }
 </div>
+
+@* pass album id to create of photo, so that the photo gets uploaded to correct album... *@
+@Html.ActionLink("Upload Photo", "Create", "Photo", new { id = Model.Id }, null)
