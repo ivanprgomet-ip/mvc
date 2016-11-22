@@ -42,7 +42,8 @@ namespace MVCPhotoAlbums
 
         protected void Application_Error()
         {
-
+            //redirect to custom error page when encountering error..
+            Response.Redirect("/Home/Error");
         }
 
         private void InitUsers()

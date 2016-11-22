@@ -24,5 +24,10 @@ namespace MVCPhotoAlbums.Controllers
             return View("Contact");
         }
 
+        public ActionResult Error()
+        {
+            return View();
+        }
+
     }
 }

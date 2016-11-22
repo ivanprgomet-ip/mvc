@@ -37,7 +37,7 @@ namespace MVCPhotoAlbums.Controllers
         {
             try
             {
-                Guid userId = albumToBeCreated.Id;//the album id is the users id?
+                Guid userId = albumToBeCreated.Id;//todo: why are the userid and the album id the same?
 
                 AlbumRepository repo = new AlbumRepository();
 
