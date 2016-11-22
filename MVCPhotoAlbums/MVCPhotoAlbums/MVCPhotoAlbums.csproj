@@ -173,6 +173,7 @@
     <Content Include="Views\Album\Create.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Photo\Create.cshtml" />
+    <Content Include="Views\Photo\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

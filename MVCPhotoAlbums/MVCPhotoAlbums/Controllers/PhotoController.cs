@@ -49,5 +49,34 @@ namespace MVCPhotoAlbums.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// removes a photo from an album. the photo should also be removed 
+        /// from the users folder also. mvc auto maps the id's that get sent 
+        /// when clicking the small delete button for the photo
+        /// </summary>
+        /// <param name="photo"></param>
+        /// <returns></returns>
+        public ActionResult Delete(Guid photoid, Guid albumid)
+        {
+            //remove photo object from the album list of photos
+            AlbumRepository albumRepo = new AlbumRepository();
+
+            var album = albumRepo.ReturnAlbum(albumid);
+
+            album.Photos
+                .Remove(album.Photos
+                    .FirstOrDefault(p => p.Id == photoid));
+
+            //remove the file from the folder where it lays
+
+            return RedirectToAction("Index", "User");
+        }
     }
 }

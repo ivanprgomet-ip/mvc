@@ -13,5 +13,12 @@ namespace MVCPhotoAlbums.Repositories
             photo.DateCreated = DateTime.Now;
             photo.Id = Guid.NewGuid();
         }
+
+        internal void DeletePhoto(PhotoModel photo)
+        {
+            AlbumRepository repo = new AlbumRepository();
+            var album = repo.ReturnAlbum(photo.Id);//retrieve the album containing the photo
+            album.Photos.Remove(photo);//remove the photo from the album
+        }
     }
 }

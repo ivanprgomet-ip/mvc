@@ -18,6 +18,8 @@
             string photoName = Path.GetFileName(photo.PhotoPath);
 
             <img src="~/Content/Albums/@Model.User.Username/@albumDirName/@photoName" alt="@photo.Name" width="220" />
+
+            <small> @Html.ActionLink("Delete", "Delete", "Photo", new { photoid = photo.Id, albumid = Model.Id}, null)</small>//send both photoid and albumid to remove the specific photo in specific album
         }
     }
 </div>
