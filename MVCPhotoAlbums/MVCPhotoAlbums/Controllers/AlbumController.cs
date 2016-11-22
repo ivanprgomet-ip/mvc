@@ -1,5 +1,6 @@
 ﻿using MVCPhotoAlbums.Models;
 using MVCPhotoAlbums.Repositories;
+using System;
 using System.IO;
 using System.Web.Mvc;
 
@@ -27,18 +28,26 @@ namespace MVCPhotoAlbums.Controllers
         // GET: Album/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Create");
         }
 
         // POST: Album/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(AlbumModel albumToBeCreated)
         {
             try
             {
-                // TODO: Add insert logic here
+                Guid userId = albumToBeCreated.Id;//the album id is the users id?
 
-                return RedirectToAction("Index");
+                AlbumRepository repo = new AlbumRepository();
+
+                AlbumModel createdAlbum = repo.CreateAlbum(albumToBeCreated,userId);
+
+                //create a folder for the album in the users specific albums folder
+                Directory.CreateDirectory(Server.MapPath("~/Content/Albums/"
+                    + createdAlbum.User.Username + "/" + createdAlbum.Name));
+
+                return RedirectToAction("Index", "Home");
             }
             catch
             {

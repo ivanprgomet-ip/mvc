@@ -125,7 +125,7 @@ namespace MVCPhotoAlbums
                 User = user, // the owner of the album
             };
 
-            //TODO: CHECK IF THIS WORKS
+            //ADD THE EXISTENT PHOTOS TO THE ALUBM
             //this code block is for demo purposes only.
             //the images will be added through the mvc interface in the future.
             var photosPath = Server.MapPath("~/Content/Albums/"+user.Username+"/"+albumName);
