@@ -12,7 +12,9 @@
         {
             <tr>
                 <td>
-                    <img src="~/Content/Albums/@photo.User.Username/@photo.Album.Name/@Path.GetFileName(photo.PhotoPath)" width="220" />
+                    <a href="@Url.Action(actionName:"Details", controllerName:"Photo",routeValues:new { id = photo.Id })">
+                        <img src="~/Content/Albums/@photo.User.Username/@photo.Album.Name/@Path.GetFileName(photo.PhotoPath)" width="220" />
+                    </a>
                 </td>
             </tr>
             <tr>

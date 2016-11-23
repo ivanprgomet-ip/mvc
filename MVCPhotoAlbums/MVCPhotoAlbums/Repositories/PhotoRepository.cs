@@ -47,5 +47,26 @@ namespace MVCPhotoAlbums.Repositories
             }
             return photos;
         }
+
+        /// <summary>
+        /// return the correct photo when we find it
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        internal PhotoModel ReturnPhoto(Guid id)
+        {
+            foreach (var user in UserRepository._users)
+            {
+                foreach (var album in user.Albums)
+                {
+                    foreach (var photo in album.Photos)
+                    {
+                        if (photo.Id == id)
+                            return photo;
+                    }
+                }
+            }
+            return null;
+        }
     }
 }

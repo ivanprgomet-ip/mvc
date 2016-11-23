@@ -1,0 +1,11 @@
+﻿@model MVCPhotoAlbums.Models.PhotoModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<img src="~/Content/Albums/@Model.User.Username/@Model.Album.Name/@Path.GetFileName(Model.PhotoPath)" width="620" />
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -78,5 +78,13 @@ namespace MVCPhotoAlbums.Controllers
 
             return RedirectToAction("Index", "User");
         }
+
+        [HttpGet]
+        public ActionResult Details(PhotoModel photo)
+        {
+            PhotoRepository repo = new PhotoRepository();
+            var photoToDisplay = repo.ReturnPhoto(photo.Id);
+            return View(photoToDisplay);
+        }
     }
 }
