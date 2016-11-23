@@ -141,7 +141,8 @@ namespace MVCPhotoAlbums
                     Name = Path.GetFileNameWithoutExtension(photopath),
                     DateCreated = DateTime.Now,
                     Description = "[no description set]",
-                    PhotoPath = string.Format("~/Content/Albums/" + @Path.GetFileName(photopath))
+                    PhotoPath = string.Format("~/Content/Albums/" + @Path.GetFileName(photopath)),
+                    Comments = new List<CommentModel>(),
                 });
             };
 

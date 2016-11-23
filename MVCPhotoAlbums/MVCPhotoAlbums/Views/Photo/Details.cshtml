@@ -5,7 +5,47 @@
 }
 
 <h2>Details</h2>
-<img src="~/Content/Albums/@Model.User.Username/@Model.Album.Name/@Path.GetFileName(Model.PhotoPath)" width="620" />
+<table>
+    <tr>
+        <td>
+            <img src="~/Content/Albums/@Model.User.Username/@Model.Album.Name/@Path.GetFileName(Model.PhotoPath)" width="620" />
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @* submit a comment here *@
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <textarea name="comment"></textarea>
+                <input type="submit" name="submit" class="btn-default" />
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @{
+                //displays all the comments for this photo:
+                if (Model.Comments.Count != 0)
+                {
+                    foreach (var c in Model.Comments)
+                    {
+                        <div class="table-bordered">
+                            <p>@c.Comment</p>
+                            <small>@c.DateCreated</small>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <small>be the first to comment..</small>
+                }
+            }
+        </td>
+    </tr>
+</table>
+
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>

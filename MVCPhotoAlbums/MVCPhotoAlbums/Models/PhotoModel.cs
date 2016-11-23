@@ -14,6 +14,7 @@ namespace MVCPhotoAlbums.Models
         public DateTime DateCreated { get; set; }
         public DateTime DateChanged { get; set; }
         public string UploadedBy { get; set; }
+        public List<CommentModel> Comments { get; set; }
 
         public UserModel User { get; set; }
         public AlbumModel Album { get; set; }
