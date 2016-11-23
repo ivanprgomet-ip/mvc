@@ -33,21 +33,22 @@
 </table>
 <article>
     @* displays the selected users albums (if any exists) *@
-        @{ 
-            if(Model.Albums.Count==0)
+    @{
+        if (Model.Albums.Count == 0)
+        {
+            <p>@Model.Username doesnt have any albums yet...</p>
+        }
+        else
+        {
+            foreach (var album in Model.Albums)
             {
-                <p>@Model.Username doesnt have any albums yet...</p>
-            }
-            else
-            {
-                foreach (var album in Model.Albums)
-                {
-                    @*<h4>@album.Name | <small>@album.DateCreated</small></h4>*@
-                    @Html.ActionLink(album.Name, "Details", "Album", new { id = album.Id, type = "AlbumModel" },null);
+                <div class="table-bordered" style="padding:15px">
+                    @Html.ActionLink(album.Name, "Details", "Album", new { id = album.Id, type = "AlbumModel" }, null);
                     <small>(@album.DateCreated)</small>
-                }
+                </div>
             }
         }
+    }
 </article>
 
-@Html.ActionLink("Create Album", "Create", "Album",new { id = Model.Id },null)
+@Html.ActionLink("Create Album", "Create", "Album", new { id = Model.Id }, null)

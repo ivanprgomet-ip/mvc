@@ -14,7 +14,7 @@ namespace MVCPhotoAlbums.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return View(PhotoRepository.GetAllPhotos());
         }
 
         [HttpGet]

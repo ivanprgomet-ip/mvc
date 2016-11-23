@@ -99,5 +99,16 @@ namespace MVCPhotoAlbums.Controllers
                 return View();
             }
         }
+
+        //[HttpGet]
+        //public ActionResult Comment()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult Comment(AlbumModel album, CommentModel comment)
+        //{
+        //    return View();
+        //}
     }
 }

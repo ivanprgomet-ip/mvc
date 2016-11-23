@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MVCPhotoAlbums.Models.PhotoModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+    @{
+        foreach (var photo in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/Content/Albums/@photo.User.Username/@photo.Album.Name/@Path.GetFileName(photo.PhotoPath)" width="220" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <small>uploaded by @Html.ActionLink(@photo.User.Username, "Details", "User", new { id = photo.User.Id }, null)</small>
+                </td>
+            </tr>
+        }
+    }
+</table>
