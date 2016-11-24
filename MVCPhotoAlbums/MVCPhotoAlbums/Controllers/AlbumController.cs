@@ -62,8 +62,6 @@ namespace MVCPhotoAlbums.Controllers
             return View(albumToShow);
         }
 
-
-
         // GET: Album/Create
         public ActionResult Create()
         {

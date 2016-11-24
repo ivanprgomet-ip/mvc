@@ -153,6 +153,9 @@ namespace MVCPhotoAlbums
             user.Albums.Add(newAlbum);
         }
 
+        /// <summary>
+        /// initialize albums at startup
+        /// </summary>
         private void InitAlbums()
         {
             foreach (var user in UserRepository._users)
