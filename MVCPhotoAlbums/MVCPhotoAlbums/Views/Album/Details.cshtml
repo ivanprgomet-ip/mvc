@@ -6,23 +6,22 @@
 
 <h2>Album.Details | @Model.Name</h2>
 
-<div>
-    @{
+@{
 
-        //todo: maek this output the images
-        string albumDirName = new DirectoryInfo(Model.AlbumPath).Name;
+    //todo: maek this output the images
+    string albumDirName = new DirectoryInfo(Model.AlbumPath).Name;
 
-        foreach (var photo in Model.Photos)
-        {
+    foreach (var photo in Model.Photos)
+    {
 
-            string photoName = Path.GetFileName(photo.PhotoPath);
+        string photoName = Path.GetFileName(photo.PhotoPath);
 
-            <img src="~/Content/Albums/@Model.User.Username/@albumDirName/@photoName" alt="@photo.Name" width="220" />
+        <img src="~/Content/Albums/@Model.User.Username/@albumDirName/@photoName" alt="@photo.Name" width="220" />
 
-            <small> @Html.ActionLink("Delete", "Delete", "Photo", new { photoid = photo.Id, albumid = Model.Id}, null)</small>//send both photoid and albumid to remove the specific photo in specific album
-        }
+        <small> @Html.ActionLink("Delete", "Delete", "Photo", new { photoid = photo.Id, albumid = Model.Id }, null)</small>//send both photoid and albumid to remove the specific photo in specific album
     }
-</div>
+
+}
 
 @* pass album id to create of photo, so that the photo gets uploaded to correct album... *@
 @Html.ActionLink("Upload Photo", "Create", "Photo", new { id = Model.Id }, null)

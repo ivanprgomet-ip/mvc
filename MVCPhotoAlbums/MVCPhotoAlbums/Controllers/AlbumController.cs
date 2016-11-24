@@ -1,6 +1,7 @@
 ﻿using MVCPhotoAlbums.Models;
 using MVCPhotoAlbums.Repositories;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web.Mvc;
 
@@ -8,23 +9,64 @@ namespace MVCPhotoAlbums.Controllers
 {
     public class AlbumController : Controller
     {
-        // GET: Album
+        /// <summary>
+        /// most recent albums
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return View(AlbumRepository.GetAllAlbums());
         }
 
-        // GET: Album/Details/5 
+        /// <summary>
+        /// when a post happens on the album index page, which means
+        /// someone has submittet a comment on an album.
+        /// </summary>
+        /// <param name="album"></param>
+        /// <param name="albumComment"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Index(AlbumModel album, string albumComment)
+        {
+            //todo: fix commenting on albums
+            CommentModel newAlbumComment = new CommentModel()
+            {
+                Comment = albumComment,
+                DateCreated = DateTime.Now,
+                Album = album,
+            };
+
+            AlbumRepository repo = new AlbumRepository();
+
+            AlbumModel albumToCommentOn = repo.ReturnAlbum(album.Id);
+
+            albumToCommentOn.Comments.Add(newAlbumComment);
+
+            List<AlbumModel> albums = new List<AlbumModel>() { albumToCommentOn };
+
+            return View(albums);
+        }
+
+
+        /// <summary>
+        /// when the album details page is requested. only get.
+        /// </summary>
+        /// <param name="album"></param>
+        /// <returns></returns>
+        [HttpGet]
         public ActionResult Details(AlbumModel album)
         {
             AlbumRepository repo = new AlbumRepository();
 
             var albumToShow = repo.ReturnAlbum(album.Id);
 
-            albumToShow.AlbumPath = Server.MapPath("~/Content/Albums/" + albumToShow.User.Username+ "/" + albumToShow.Name);//setting albumpath here because server is not available in repository class...
+            albumToShow.AlbumPath = Server.MapPath("~/Content/Albums/" + albumToShow.User.Username + "/" + albumToShow.Name);//setting albumpath here because server is not available in repository class...
 
             return View(albumToShow);
         }
+
+
 
         // GET: Album/Create
         public ActionResult Create()
@@ -42,7 +84,7 @@ namespace MVCPhotoAlbums.Controllers
 
                 AlbumRepository repo = new AlbumRepository();
 
-                AlbumModel createdAlbum = repo.CreateAlbum(albumToBeCreated,userId);
+                AlbumModel createdAlbum = repo.CreateAlbum(albumToBeCreated, userId);
 
                 //create a folder for the album in the users specific albums folder
                 Directory.CreateDirectory(Server.MapPath("~/Content/Albums/"
@@ -99,16 +141,5 @@ namespace MVCPhotoAlbums.Controllers
                 return View();
             }
         }
-
-        //[HttpGet]
-        //public ActionResult Comment()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public ActionResult Comment(AlbumModel album, CommentModel comment)
-        //{
-        //    return View();
-        //}
     }
 }

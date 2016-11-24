@@ -11,6 +11,10 @@ namespace MVCPhotoAlbums.Controllers
 {
     public class PhotoController : Controller
     {
+        /// <summary>
+        /// most recent photos
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Index()
         {

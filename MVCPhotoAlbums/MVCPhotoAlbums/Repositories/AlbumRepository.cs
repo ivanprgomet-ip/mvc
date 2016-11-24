@@ -24,6 +24,21 @@ namespace MVCPhotoAlbums.Repositories
             return null;
         }
 
+        internal static List<AlbumModel> GetAllAlbums()
+        {
+            List<AlbumModel> allAlbums = new List<AlbumModel>();
+
+            foreach (var user in UserRepository._users)
+            {
+                foreach (var album in user.Albums)
+                {
+                    album.Comments = new List<CommentModel>();
+                    allAlbums.Add(album);
+                }
+            }
+            return allAlbums;
+        }
+
         internal AlbumModel CreateAlbum(AlbumModel albumToBeCreated, Guid userId)
         {
             //retrieve user that the album is getting created for
