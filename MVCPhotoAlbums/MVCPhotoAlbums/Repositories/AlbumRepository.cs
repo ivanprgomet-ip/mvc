@@ -10,6 +10,8 @@ namespace MVCPhotoAlbums.Repositories
     public class AlbumRepository
     {
 
+        public static List<AlbumModel> _albums = new List<AlbumModel>();
+
         public AlbumModel ReturnAlbum(Guid albumId)
         {
             foreach (var user in UserRepository._users)
@@ -27,17 +29,7 @@ namespace MVCPhotoAlbums.Repositories
 
         internal static List<AlbumModel> GetAllAlbums()
         {
-            List<AlbumModel> albums = new List<AlbumModel>();//todo: this is initializeing the comments to be emtpy everytime we reload view
-
-            foreach (var user in UserRepository._users)
-            {
-                foreach (var album in user.Albums)
-                {
-                    album.Comments = new List<CommentModel>();
-                    albums.Add(album);
-                }
-            }
-            return albums;
+            return _albums;
         }
 
         internal AlbumModel CreateAlbum(AlbumModel albumToBeCreated, Guid userId)
@@ -56,5 +48,16 @@ namespace MVCPhotoAlbums.Repositories
             return albumToBeCreated;
         }
 
+        internal static void AddCommentToAlbum(Guid albumid, CommentModel newAlbumComment)
+        {
+            foreach (var a in _albums)
+            {
+                if (a.Id == albumid)
+                {
+                    a.Comments.Add(newAlbumComment);
+                    break;
+                }
+            }
+        }
     }
 }

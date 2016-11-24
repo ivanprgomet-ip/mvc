@@ -1,4 +1,6 @@
-﻿using MVCPhotoAlbums.Models;
+﻿using MVCPhotoAlbums.Controllers;
+using MVCPhotoAlbums.Models;
+using MVCPhotoAlbums.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -21,6 +23,7 @@ namespace MVCPhotoAlbums
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             InitUsers();
+            InitAlbums();
         }
         protected void Application_End()
         {
@@ -148,6 +151,18 @@ namespace MVCPhotoAlbums
 
             //add the album to the users album collection
             user.Albums.Add(newAlbum);
+        }
+
+        private void InitAlbums()
+        {
+            foreach (var user in UserRepository._users)
+            {
+                foreach (var userAlbum in user.Albums)
+                {
+                    userAlbum.Comments = new List<CommentModel>();
+                    AlbumRepository._albums.Add(userAlbum);
+                }
+            }
         }
     }
 }

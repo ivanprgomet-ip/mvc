@@ -9,6 +9,8 @@ namespace MVCPhotoAlbums.Controllers
 {
     public class AlbumController : Controller
     {
+        
+
         /// <summary>
         /// most recent albums
         /// </summary>
@@ -16,7 +18,7 @@ namespace MVCPhotoAlbums.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(AlbumRepository.GetAllAlbums());
+            return View(AlbumRepository._albums);
         }
 
         /// <summary>
@@ -37,15 +39,9 @@ namespace MVCPhotoAlbums.Controllers
                 Album = album,
             };
 
-            AlbumRepository repo = new AlbumRepository();
+            AlbumRepository.AddCommentToAlbum(album.Id, newAlbumComment);
 
-            AlbumModel albumToCommentOn = repo.ReturnAlbum(album.Id);
-
-            albumToCommentOn.Comments.Add(newAlbumComment);
-
-            List<AlbumModel> albums = new List<AlbumModel>() { albumToCommentOn };
-
-            return View(albums);
+            return View(AlbumRepository._albums);
         }
 
 
