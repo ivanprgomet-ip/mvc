@@ -1,0 +1,54 @@
+﻿@model MvcLab.Data.Models.UserModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>User.Details | @Model.Username</h2>
+
+<table class="table">
+    <tr>
+        <td>
+            Fullname: @Model.Firstname @Model.Lastname
+        </td>
+        <td>
+            Country: @Model.Country
+        </td>
+        <td>
+            City: @Model.City
+        </td>
+        <td>
+            Street: @Model.Street
+        </td>
+        <td>
+            Phone: @Model.Phone
+        </td>
+        <td>
+            Email: @Model.Email
+        </td>
+        <td>
+            Registered: @Model.DateRegistered
+        </td>
+    </tr>
+</table>
+<article>
+    @* displays the selected users albums (if any exists) *@
+    @{
+        if (Model.Albums.Count == 0)
+        {
+            <p>@Model.Username doesnt have any albums yet...</p>
+        }
+        else
+        {
+            foreach (var album in Model.Albums)
+            {
+                <div class="table-bordered" style="padding:15px">
+                    @Html.ActionLink(album.Name, "Details", "Album", new { id = album.Id, type = "AlbumModel" }, null);
+                    <small>(@album.DateCreated)</small>
+                </div>
+            }
+        }
+    }
+</article>
+
+@Html.ActionLink("Create Album", "Create", "Album", new { id = Model.Id }, null)

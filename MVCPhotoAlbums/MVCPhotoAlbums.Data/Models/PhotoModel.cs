@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MVCPhotoAlbums.Models
+namespace MVCPhotoAlbums.Data.Models
 {
-    public class AlbumModel
+    public class PhotoModel
     {
         public Guid Id { get; set; }
+        public string PhotoPath { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
-        public string AlbumPath { get; set; }
-        public ICollection<CommentModel> Comments { get; set; }
-        public ICollection<PhotoModel> Photos { get; set; }
+        public DateTime DateChanged { get; set; }
+        public string UploadedBy { get; set; }
+        public List<CommentModel> Comments { get; set; }
 
         public UserModel User { get; set; }
-
+        public AlbumModel Album { get; set; }
     }
 }

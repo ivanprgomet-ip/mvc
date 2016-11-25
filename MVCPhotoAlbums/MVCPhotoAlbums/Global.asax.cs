@@ -51,7 +51,6 @@ namespace MVCPhotoAlbums
 
         private void InitUsers()
         {
-            //when a new user is registered, a folder for the users future albums is also created on the server
             UserModel u1 = new UserModel()
             {
                 Id = Guid.NewGuid(),

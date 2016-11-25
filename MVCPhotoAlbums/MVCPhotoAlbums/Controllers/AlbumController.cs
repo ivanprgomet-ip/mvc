@@ -54,7 +54,7 @@ namespace MVCPhotoAlbums.Controllers
         public ActionResult Details(AlbumModel album)
         {
             AlbumRepository repo = new AlbumRepository();
-
+            
             var albumToShow = repo.ReturnAlbum(album.Id);
 
             albumToShow.AlbumPath = Server.MapPath("~/Content/Albums/" + albumToShow.User.Username + "/" + albumToShow.Name);//setting albumpath here because server is not available in repository class...

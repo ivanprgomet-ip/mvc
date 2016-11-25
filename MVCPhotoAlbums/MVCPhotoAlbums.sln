@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCPhotoAlbums", "MVCPhotoA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCPhotoAlbums.Tests", "MVCPhotoAlbums.Tests\MVCPhotoAlbums.Tests.csproj", "{1D834908-71B5-460A-A458-B5FEAD133483}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCPhotoAlbums.Data", "MVCPhotoAlbums.Data\MVCPhotoAlbums.Data.csproj", "{7087F27F-CEB6-4118-B39B-64F1DB5D3711}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1D834908-71B5-460A-A458-B5FEAD133483}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D834908-71B5-460A-A458-B5FEAD133483}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D834908-71B5-460A-A458-B5FEAD133483}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7087F27F-CEB6-4118-B39B-64F1DB5D3711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7087F27F-CEB6-4118-B39B-64F1DB5D3711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7087F27F-CEB6-4118-B39B-64F1DB5D3711}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7087F27F-CEB6-4118-B39B-64F1DB5D3711}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
