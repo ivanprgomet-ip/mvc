@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MvcLab.Data.Models.AlbumModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table style="border:1px solid #cbcbcb;">
+    @{
+        foreach (var album in Model)
+        {
+            <tr>
+                <td>
+                    <h4>@album.Name</h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="@Url.Action(actionName:"Details", controllerName:"Album",routeValues:new { id = album.Id })">
+                        <img src="~/Content/Icons/Folder-icon.png" width="120" />
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <small>uploaded by @Html.ActionLink(@album.User.Username, "Details", "User", new { id = album.User.Id }, null)</small>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @{
+                        if (album.Comments.Count == 0)
+                        {
+                            <small>be the first to comment..</small>
+                        }
+                        else
+                        {
+                            foreach (var c in album.Comments)
+                            {
+                                <p>@c.Comment</p>
+                                <small>@c.DateCreated</small>
+                            }
+                        }
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @* comment on album here *@
+                    @using (Html.BeginForm(routeValues: new { id = album.Id }))//passa album id into controller
+                    {
+                        @Html.AntiForgeryToken()
+                        <textarea name="albumComment"></textarea>
+                        <input type="submit" name="submit" class="btn-default" />
+                    }
+                </td>
+            </tr>
+                        }
+    }
+</table>

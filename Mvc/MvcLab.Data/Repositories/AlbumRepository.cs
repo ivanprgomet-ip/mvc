@@ -1,13 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using MvcLab.Data.Models;
+using System.Linq;
 
 namespace MvcLab.Data.Repositories
 {
     public class AlbumRepository
     {
+        public static List<AlbumModel> Albums { get; private set; } = new List<AlbumModel>();
 
-        public static List<AlbumModel> _albums = new List<AlbumModel>();
+        public AlbumRepository()
+        {
+            //if the albums list is empty, initalize it based on existing user albums
+            if (!Albums.Any())
+            {
+                //set the albums list here based on the existent users
+                UserRepository UserRepository = new UserRepository();
+                foreach (var user in UserRepository.Users)
+                {
+                    foreach (var album in user.Albums)
+                    {
+                        Albums.Add(album);
+                    }
+                }
+
+            }
+        }
 
         public AlbumModel ReturnAlbum(Guid albumId)
         {
@@ -24,9 +42,9 @@ namespace MvcLab.Data.Repositories
             return null;
         }
 
-        internal static List<AlbumModel> GetAllAlbums()
+        public List<AlbumModel> GetAllAlbums()
         {
-            return _albums;
+            return Albums;
         }
 
         public AlbumModel CreateAlbum(AlbumModel albumToBeCreated, Guid userId)
@@ -48,7 +66,7 @@ namespace MvcLab.Data.Repositories
 
         internal static void AddCommentToAlbum(Guid albumid, CommentModel newAlbumComment)
         {
-            foreach (var a in _albums)
+            foreach (var a in Albums)
             {
                 if (a.Id == albumid)
                 {

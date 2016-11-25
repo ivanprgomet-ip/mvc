@@ -18,6 +18,16 @@ namespace MvcLab.Web.Controllers
         }
 
         /// <summary>
+        /// most recent albums
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Index()
+        {
+            return View(AlbumRepository.Albums);
+        }
+
+        /// <summary>
         /// when the album details page is requested
         /// </summary>
         /// <param name="album"></param>
@@ -25,6 +35,7 @@ namespace MvcLab.Web.Controllers
         [HttpGet]
         public ActionResult Details(AlbumModel album)
         {
+            //retrieve the album we want to see details on:
             var albumDetails = AlbumRepository.ReturnAlbum(album.Id);
 
             return View(albumDetails);
