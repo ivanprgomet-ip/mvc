@@ -83,7 +83,7 @@ namespace MvcLab.Data.Repositories
             return albumToBeCreated;
         }
 
-        internal static void AddCommentToAlbum(Guid albumid, CommentModel newAlbumComment)
+        public static void AddCommentToAlbum(Guid albumid, CommentModel newAlbumComment)
         {
             foreach (var a in Albums)
             {

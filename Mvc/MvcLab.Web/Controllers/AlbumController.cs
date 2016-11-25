@@ -28,6 +28,28 @@ namespace MvcLab.Web.Controllers
         }
 
         /// <summary>
+        /// when a post happens on the album index page, which means
+        /// someone has submittet a comment on an album.
+        /// </summary>
+        /// <param name="album"></param>
+        /// <param name="albumComment"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Index(AlbumModel album, string albumComment)
+        {
+            CommentModel newAlbumComment = new CommentModel()
+            {
+                Comment = albumComment,
+                DateCreated = DateTime.Now,
+                Album = album,
+            };
+
+            AlbumRepository.AddCommentToAlbum(album.Id, newAlbumComment);
+
+            return View(AlbumRepository.GetAllAlbums());
+        }
+
+        /// <summary>
         /// when the album details page is requested
         /// </summary>
         /// <param name="album"></param>
