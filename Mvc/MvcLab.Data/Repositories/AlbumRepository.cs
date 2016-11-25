@@ -29,12 +29,13 @@ namespace MvcLab.Data.Repositories
             return _albums;
         }
 
-        internal AlbumModel CreateAlbum(AlbumModel albumToBeCreated, Guid userId)
+        public AlbumModel CreateAlbum(AlbumModel albumToBeCreated, Guid userId)
         {
-            //retrieve user that the album is getting created for
+            //get the user
             UserRepository repo = new UserRepository();
             var albumOwner = repo.Return(userId);
 
+            //set the important album properties
             albumToBeCreated.Id = Guid.NewGuid();
             albumToBeCreated.DateCreated = DateTime.Now;
             albumToBeCreated.Photos = new List<PhotoModel>();
