@@ -75,17 +75,45 @@ namespace MvcLab.Data.Repositories
 
                 Albums = new List<AlbumModel>(),
             };
-            #region creating album for Lea
+            #region creating album for Lea (files added in album folder before startup, later files get added thru mvc UI input type file)
             u2.Albums.Add(new AlbumModel()
             {
                 Id = Guid.NewGuid(),
                 DateCreated = DateTime.Now,
                 Name = "Lea Coding Album",
                 Description = "No Album Description",
-                Photos = new List<PhotoModel>(),
+                Photos = new List<PhotoModel>() {
+                    new PhotoModel()
+                            {
+                                Id = Guid.NewGuid(),
+                                Name = "coffe is love",
+                                FileName = "code2.jpg",
+                                DateCreated = DateTime.Now,
+                                Description = "No Photo Description",
+                                Comments = new List<CommentModel>(),
+                            },
+                    new PhotoModel()
+                            {
+                                Id = Guid.NewGuid(),
+                                Name = "think before you code",
+                                FileName = "code4.jpg",
+                                DateCreated = DateTime.Now,
+                                Description = "No Photo Description",
+                                Comments = new List<CommentModel>(),
+                            },
+                    new PhotoModel()
+                            {
+                                Id = Guid.NewGuid(),
+                                Name = "no place like home",
+                                FileName = "code5.jpg",
+                                DateCreated = DateTime.Now,
+                                Description = "No Photo Description",
+                                Comments = new List<CommentModel>(),
+                            },
+                },
                 Comments = new List<CommentModel>(),
                 User = u2,
-            }); 
+            });
             #endregion
 
 
@@ -140,6 +168,8 @@ namespace MvcLab.Data.Repositories
                 {
                     string IndividualUserAlbumDir = Path.Combine(individualUserDir, album.Name);
                     Directory.CreateDirectory(IndividualUserAlbumDir);
+
+                    //photos get saved from the user interface using input type file
                 }
             }
         }
@@ -167,7 +197,7 @@ namespace MvcLab.Data.Repositories
 
         public UserModel ReturnUserLogin(string username, string password)
         {
-            return Users.FirstOrDefault(u => u.Username== username && u.Password==password);
+            return Users.FirstOrDefault(u => u.Username == username && u.Password == password);
         }
     }
 }
