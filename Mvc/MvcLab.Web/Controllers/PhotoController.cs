@@ -49,5 +49,25 @@ namespace MvcLab.Web.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        public ActionResult Delete(Guid photoid, Guid albumid)
+        {
+            //the album containing the photo we want to delete
+            var album = AlbumRepository.ReturnAlbum(albumid);
+
+            album.Photos
+                .Remove(album.Photos
+                    .FirstOrDefault(p => p.Id == photoid));
+
+            //todo: remove the file from the folder where it lays
+
+            return RedirectToAction("Index", "User");
+        }
     }
 }
