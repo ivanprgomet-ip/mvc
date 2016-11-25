@@ -96,9 +96,9 @@ namespace MvcLab.Data.Repositories
                             {
                                 Id = Guid.NewGuid(),
                                 Name = "think before you code",
-                                FileName = "code4.jpg",
+                                FileName = "code4.png",
                                 DateCreated = DateTime.Now,
-                                Description = "No Photo Description",
+                                Description = "you should never mix code with alcohol",
                                 Comments = new List<CommentModel>(),
                             },
                     new PhotoModel()
