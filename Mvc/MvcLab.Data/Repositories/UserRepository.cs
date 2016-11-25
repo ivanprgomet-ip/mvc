@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MvcLab.Data.Models;
+using System.IO;
 
 namespace MvcLab.Data.Repositories
 {
@@ -19,9 +20,13 @@ namespace MvcLab.Data.Repositories
             if (!Users.Any())
             {
                 SetupTemporaryData();
+                SetupInitialUserFolders();
             }
         }
 
+        /// <summary>
+        /// create some default users for the application
+        /// </summary>
         private void SetupTemporaryData()
         {
             //create some default users
@@ -41,6 +46,18 @@ namespace MvcLab.Data.Repositories
 
                 Albums = new List<AlbumModel>(),
             };
+            #region creating album for Ivan
+            u1.Albums.Add(new AlbumModel()
+            {
+                Id = Guid.NewGuid(),
+                DateCreated = DateTime.Now,
+                Name = "Coding Events",
+                Description = "Photos from some coding events that I have attended",
+                Photos = new List<PhotoModel>(),
+                Comments = new List<CommentModel>(),
+                User = u1,
+            });
+            #endregion
 
             UserModel u2 = new UserModel()
             {
@@ -58,6 +75,19 @@ namespace MvcLab.Data.Repositories
 
                 Albums = new List<AlbumModel>(),
             };
+            #region creating album for Lea
+            u2.Albums.Add(new AlbumModel()
+            {
+                Id = Guid.NewGuid(),
+                DateCreated = DateTime.Now,
+                Name = "Lea Coding Album",
+                Description = "No Album Description",
+                Photos = new List<PhotoModel>(),
+                Comments = new List<CommentModel>(),
+                User = u2,
+            }); 
+            #endregion
+
 
             UserModel u3 = new UserModel()
             {
@@ -80,12 +110,38 @@ namespace MvcLab.Data.Repositories
             Users.Add(u1);
             Users.Add(u2);
             Users.Add(u3);
+        }
 
-            //add folders for all these users
+        /// <summary>
+        /// Create folders based on existing users
+        /// </summary>
+        private void SetupInitialUserFolders()
+        {
+            //where all data files will be for the users of the application
+            //string destination = Server.MapPath("~/UsersData/");
 
-            //add some default albums for the users 
+            //server mappath doesnt work here, using alternative to get basedir
+            string baseDir = System.AppDomain.CurrentDomain.BaseDirectory;
+            string destination = string.Format($"{baseDir}/UsersData/");
 
-            //populate the albums with some default photos
+
+            //create the destination folder if it doesnt exist
+            if (!Directory.Exists(destination))
+            {
+                Directory.CreateDirectory(destination);
+            }
+
+            foreach (var user in UserRepository.Users)
+            {
+                string individualUserDir = Path.Combine(destination, user.Username);
+                Directory.CreateDirectory(individualUserDir);
+
+                foreach (var album in user.Albums)
+                {
+                    string IndividualUserAlbumDir = Path.Combine(individualUserDir, album.Name);
+                    Directory.CreateDirectory(IndividualUserAlbumDir);
+                }
+            }
         }
 
         public void Add(UserModel userToBeRegistered)

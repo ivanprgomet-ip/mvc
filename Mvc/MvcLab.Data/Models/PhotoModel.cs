@@ -8,7 +8,6 @@ namespace MvcLab.Data.Models
     public class PhotoModel
     {
         public Guid Id { get; set; }
-        public string PhotoPath { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
