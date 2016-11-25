@@ -44,7 +44,7 @@
             {
                 <div class="table-bordered" style="padding:15px">
                     @Html.ActionLink(album.Name, "Details", "Album", new { id = album.Id, type = "AlbumModel" }, null);
-                    <small>(@album.DateCreated)</small>
+                    <small>(@album.DateCreated) - @album.Photos.Count photos</small>
                 </div>
             }
         }
