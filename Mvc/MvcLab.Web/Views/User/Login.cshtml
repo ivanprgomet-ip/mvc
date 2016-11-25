@@ -1,0 +1,37 @@
+﻿@model MvcLab.Data.Models.UserModel
+@{
+    ViewBag.Title = "Login";
+}
+<h2>Login</h2>
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
+{
+    @Html.AntiForgeryToken();
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(u => u.Username)
+
+            </td>
+            <td>
+                @Html.TextBoxFor(u => u.Username)
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.LabelFor(u => u.Password)
+            </td>
+            <td>
+                @Html.PasswordFor(u => u.Password)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Login" id="btnLogin" />
+            </td>
+        </tr>
+    </table>
+
+
+}

@@ -47,5 +47,61 @@ namespace MvcLab.Web.Controllers
 
             return View(userToShow);
         }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View("Login");
+        }
+
+        /// <summary>
+        /// recieves the username and password back after
+        /// user submits the form
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Login(UserModel userToBeLoggedIn)
+        {
+            UserRepository repo = new UserRepository();
+            var authenticatedUser = repo.ReturnUserLogin(userToBeLoggedIn.Username, userToBeLoggedIn.Password);
+
+            if (authenticatedUser != null)
+            {
+                return Content("Successfull Login");
+            }
+            else
+            {
+                return Content("Login failed");
+            }
+
+        }
+
+        //get the register page
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        //register a new user
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(UserModel userToBeRegistered)
+        {
+            UserRepository repo = new UserRepository();
+
+            if (ModelState.IsValid)
+            {
+                if (userToBeRegistered != null)
+                {
+                    //todo: create growl when user gets registered
+                    UserRepository.Add(userToBeRegistered);
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(userToBeRegistered);
+        }
     }
 }
