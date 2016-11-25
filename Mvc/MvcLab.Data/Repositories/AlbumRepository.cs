@@ -9,6 +9,9 @@ namespace MvcLab.Data.Repositories
     {
         public static List<AlbumModel> Albums { get; private set; } = new List<AlbumModel>();
 
+        /// <summary>
+        /// the albumrepository constructor initializes the albums list
+        /// </summary>
         public AlbumRepository()
         {
             //if the albums list is empty, initalize it based on existing user albums
@@ -42,22 +45,38 @@ namespace MvcLab.Data.Repositories
             return null;
         }
 
+        /// <summary>
+        /// return list of all albums froma all users
+        /// </summary>
+        /// <returns></returns>
         public List<AlbumModel> GetAllAlbums()
         {
-            return Albums;
+            List<AlbumModel> albums = new List<AlbumModel>();
+
+            foreach (var user in UserRepository.Users)
+            {
+                foreach (var album in user.Albums)
+                {
+                    AlbumModel currentAlbum = new AlbumModel();
+                    currentAlbum = album;
+                    albums.Add(album);
+                }
+            }
+            return albums;
         }
 
         public AlbumModel CreateAlbum(AlbumModel albumToBeCreated, Guid userId)
         {
             //get the user
-            UserRepository repo = new UserRepository();
-            var albumOwner = repo.Return(userId);
+            UserRepository userRepo = new UserRepository();
+            var albumOwner = userRepo.Return(userId);
 
             //set the important album properties
             albumToBeCreated.Id = Guid.NewGuid();
             albumToBeCreated.DateCreated = DateTime.Now;
             albumToBeCreated.Photos = new List<PhotoModel>();
             albumToBeCreated.User = albumOwner;
+            albumToBeCreated.Comments = new List<CommentModel>();
 
             albumOwner.Albums.Add(albumToBeCreated);
 

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<MvcLab.Data.Models.PhotoModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Index</h2>
+
+<table>
+    @{
+        foreach (var photo in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action(actionName:"Details", controllerName:"Photo",routeValues:new { id = photo.Id })">
+                        <img src="~/UsersData/@photo.User.Username/@photo.Album.Name/@photo.FileName" width="220" />
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <small>uploaded by @Html.ActionLink(@photo.User.Username, "Details", "User", new { id = photo.User.Id }, null)</small>
+                </td>
+            </tr>
+        }
+    }
+</table>

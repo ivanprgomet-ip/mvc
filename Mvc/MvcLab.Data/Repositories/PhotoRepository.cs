@@ -23,7 +23,7 @@ namespace MvcLab.Data.Repositories
         /// return list of all photos from all users
         /// </summary>
         /// <returns></returns>
-        internal static List<PhotoModel> GetAllPhotos()
+        public static List<PhotoModel> GetAllPhotos()
         {
             List<PhotoModel> photos = new List<PhotoModel>();
 

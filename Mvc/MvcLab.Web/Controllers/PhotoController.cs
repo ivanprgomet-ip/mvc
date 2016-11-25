@@ -16,6 +16,16 @@ namespace MvcLab.Web.Controllers
             AlbumRepository = new AlbumRepository();
         }
 
+        /// <summary>
+        /// most recent photos
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Index()
+        {
+            return View(PhotoRepository.GetAllPhotos());
+        }
+
         [HttpGet]
         public ActionResult Create()
         {

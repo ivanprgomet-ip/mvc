@@ -24,7 +24,7 @@ namespace MvcLab.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(AlbumRepository.Albums);
+            return View(AlbumRepository.GetAllAlbums());
         }
 
         /// <summary>
