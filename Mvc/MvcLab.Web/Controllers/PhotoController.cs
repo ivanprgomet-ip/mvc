@@ -79,5 +79,41 @@ namespace MvcLab.Web.Controllers
 
             return RedirectToAction("Index", "User");
         }
+
+        /// <summary>
+        /// when we are accessing the Details page for a specific photo
+        /// </summary>
+        /// <param name="photo"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Details(PhotoModel photo)
+        {
+            PhotoRepository repo = new PhotoRepository();
+            PhotoModel photoToDisplay = repo.ReturnPhoto(photo.Id);
+            return View(photoToDisplay);
+        }
+
+        /// <summary>
+        /// when we make a post (comment) on a specific
+        /// photos details page.
+        /// </summary>
+        /// <param name="photo"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Details(PhotoModel photo, string comment)
+        {
+            PhotoRepository repo = new PhotoRepository();
+            PhotoModel photoToDisplay = repo.ReturnPhoto(photo.Id);
+
+            CommentModel newComment = new CommentModel()
+            {
+                Comment = comment,
+                DateCreated = DateTime.Now,
+                Photo = photo
+            };
+            photoToDisplay.Comments.Add(newComment);
+
+            return View(photoToDisplay);
+        }
     }
 }

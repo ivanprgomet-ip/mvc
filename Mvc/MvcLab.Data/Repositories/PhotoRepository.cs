@@ -51,7 +51,7 @@ namespace MvcLab.Data.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        internal PhotoModel ReturnPhoto(Guid id)
+        public PhotoModel ReturnPhoto(Guid id)
         {
             foreach (var user in UserRepository.Users)
             {
