@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <td>
-                    <small>album: <a href="/">@photo.Album.Name</a> </small>
+                    <small>album: <a href="@Url.Action(actionName:"Details", controllerName:"Album",routeValues:new { id = photo.Album.Id })">@photo.Album.Name</a> </small>
                 </td>
             </tr>
         }
