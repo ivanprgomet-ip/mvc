@@ -23,5 +23,11 @@ namespace MvcLab.Web.Controllers
         {
             return View("Contact");
         }
+
+        [HttpGet]
+        public ActionResult Error()
+        {
+            return View("Error");
+        }
     }
 }

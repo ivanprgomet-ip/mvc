@@ -38,7 +38,8 @@ namespace MvcLab.Web
         protected void Application_Error()
         {
             //redirect to custom error page when encountering error..
-            //Response.Redirect("/Shared/_Error");
+            //tip: think about specifying the URL as arguments, not the path..
+            Response.Redirect("/Home/Error");
         }
     }
 }
