@@ -6,27 +6,18 @@
 
 <h2>Index</h2>
 
-<table>
+<div class="container">
     @{
         foreach (var photo in Model)
         {
-            <tr>
-                <td>
+            <article class="col-md-3 img-thumbnail" style="padding:10px;">
                     <a href="@Url.Action(actionName:"Details", controllerName:"Photo",routeValues:new { id = photo.Id })">
-                        <img src="~/UsersData/@photo.User.Username/@photo.Album.Name/@photo.FileName" width="220" />
+                        <img class="img-responsive" src="~/UsersData/@photo.User.Username/@photo.Album.Name/@photo.FileName" width="220" />
                     </a>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <small>uploaded by @Html.ActionLink(@photo.User.Username, "Details", "User", new { id = photo.User.Id }, null)</small>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                <br />
                     <small>album: <a href="@Url.Action(actionName:"Details", controllerName:"Album",routeValues:new { id = photo.Album.Id })">@photo.Album.Name</a> </small>
-                </td>
-            </tr>
+            </article>
         }
     }
-</table>
+</div>
