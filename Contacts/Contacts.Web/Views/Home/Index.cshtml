@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Contacts.Data.ContactViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@{ 
+    var ajaxOptions = new AjaxOptions()
+    {
+        Confirm = "are you sure?",
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "result",
+    };
+}
+
+@using (Ajax.BeginForm(actionName:"Create", controllerName:"Home", ajaxOptions:ajaxOptions))
+{
+    @:firstname:
+    @Html.TextBox("firstname")
+
+    <br />
+    @:lastname:
+    @Html.TextBox("lastname")
+
+    <br />
+    <input type="submit" value="Lägg till användare" />
+}
+<div id="result">
+    @Html.Partial("List", Model);
+</div>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Contacts.Data.ContactViewModel>
+
+@foreach (var contact in Model)
+{
+    <div>
+        <h3>@contact.Firstname @contact.Lastname</h3>
+        @*<p>
+            @Html.DisplayFor(modelItem => contact.Firstname)
+        </p>
+        <p>
+            @Html.DisplayFor(modelItem => contact.Lastname)
+        </p>*@
+        <p>
+            @Html.DisplayFor(modelItem => contact.Phone)
+        </p>
+        @*<p>
+            @Html.DisplayFor(modelItem => contact.Address)
+        </p>*@
+        @*<p>
+            @Html.DisplayFor(modelItem => contact.Added)
+        </p>
+        <p>
+            @Html.DisplayFor(modelItem => contact.Changed)
+        </p>*@
+
+        <div>
+            @Ajax.ActionLink("Remove contact", "Delete", new { id = contact.Id },
+                new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    UpdateTargetId = "result",
+                    Confirm = $"are you sure you want to remove {contact.Firstname}?"
+                })
+        </div>
+    </div>
+}
