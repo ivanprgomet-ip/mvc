@@ -174,12 +174,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Views\Photo\ListPhotos.cshtml" />
     <Content Include="Views\Album\ListAlbums.cshtml" />
     <Content Include="scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Album\ListAlbumPhotos.cshtml" />
     <Content Include="Views\Shared\_Photo.cshtml" />
+    <Content Include="Views\Shared\_Album.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
