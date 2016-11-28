@@ -33,19 +33,18 @@ namespace Contacts.Web.Controllers
         }
 
         /// <summary>
-        /// returns a partial view only to a page, not a complete view
+        /// returns a partial view only to a page, not a complete view.
+        /// now you dont need a corresponding view!
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         public ActionResult List()
         {
-            if (!Request.IsAjaxRequest())
-            {
-                return View(Contacts);
-            }
+            //if (!Request.IsAjaxRequest())
+            //{
+            //    return View(Contacts);
+            //}
             return PartialView(Contacts);
-
-            //return PartialView("List", Contacts); samma som ovan?
         }
 
         [HttpPost]

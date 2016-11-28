@@ -5,30 +5,30 @@
     <div>
         <h3>@contact.Firstname @contact.Lastname</h3>
         @*<p>
-            @Html.DisplayFor(modelItem => contact.Firstname)
-        </p>
-        <p>
-            @Html.DisplayFor(modelItem => contact.Lastname)
-        </p>*@
+                @Html.DisplayFor(modelItem => contact.Firstname)
+            </p>
+            <p>
+                @Html.DisplayFor(modelItem => contact.Lastname)
+            </p>*@
         <p>
             @Html.DisplayFor(modelItem => contact.Phone)
         </p>
         @*<p>
-            @Html.DisplayFor(modelItem => contact.Address)
-        </p>*@
+                @Html.DisplayFor(modelItem => contact.Address)
+            </p>*@
         @*<p>
-            @Html.DisplayFor(modelItem => contact.Added)
-        </p>
-        <p>
-            @Html.DisplayFor(modelItem => contact.Changed)
-        </p>*@
-
+                @Html.DisplayFor(modelItem => contact.Added)
+            </p>
+            <p>
+                @Html.DisplayFor(modelItem => contact.Changed)
+            </p>*@
+        @* REMOVE A CONTACT *@
         <div>
             @Ajax.ActionLink("Remove contact", "Delete", new { id = contact.Id },
                 new AjaxOptions
                 {
                     HttpMethod = "POST",
-                    UpdateTargetId = "result",
+                    UpdateTargetId = "result", //mvc understands that this div is outside of the view
                     Confirm = $"are you sure you want to remove {contact.Firstname}?"
                 })
         </div>
