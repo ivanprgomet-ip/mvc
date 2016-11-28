@@ -5,7 +5,11 @@
 
 <h2>Register</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(
+    null,
+    null,
+    FormMethod.Post,
+    htmlAttributes: new { id = "registerform" }))
 {
     @Html.AntiForgeryToken()
 

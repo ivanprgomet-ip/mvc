@@ -9,7 +9,7 @@
     actionName: "Create",
     controllerName: "Photo",
     method: FormMethod.Post,
-    htmlAttributes: new { enctype = "multipart/form-data" }))
+    htmlAttributes: new { enctype = "multipart/form-data", id="form_photo_create" }))
 {
     @Html.AntiForgeryToken()
 
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", id = "photo_create_description" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
