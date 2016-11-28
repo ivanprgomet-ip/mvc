@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MvcLab.Data.Models.AlbumModel>
+
+@{
+    foreach (var album in Model)
+    {
+
+        <article class="col-md-3 img-thumbnail">
+            <h3>@album.Name</h3>
+            <a href="@Url.Action(actionName:"Details", controllerName:"Album",routeValues:new { id = album.Id })">
+                <img src="~/icons/folder.png" width="120" />
+            </a>
+            <br />
+            <small>uploaded by @Html.ActionLink(@album.User.Username, "Details", "User", new { id = album.User.Id }, null)</small>
+            <br />
+
+            @{
+                if (album.Comments.Count == 0)
+                {
+                    <small>be the first to comment..</small>
+                }
+                else
+                {
+                    foreach (var c in album.Comments)
+                    {
+                        <p>@c.Comment</p>
+                        <small>@c.DateCreated</small>
+                    }
+                }
+            }
+
+            <br />
+            <small>
+                @* comment on album here *@
+                @using (Html.BeginForm(routeValues: new { id = album.Id }))//passa album id into controller
+                {
+                    @Html.AntiForgeryToken()
+                    <textarea name="albumComment"></textarea>
+                            <input type="submit" name="submit" class="btn-default" />
+                }
+            </small>
+        </article>
+                }
+}

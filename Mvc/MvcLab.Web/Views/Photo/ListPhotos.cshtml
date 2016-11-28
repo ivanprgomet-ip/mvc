@@ -1,0 +1,16 @@
+﻿@model IEnumerable<MvcLab.Data.Models.PhotoModel>
+
+@* LISTS ALL PHOTOS *@
+@{
+    foreach (var photo in Model)
+    {
+        <article class="col-md-3 img-thumbnail" style="padding:10px;">
+            <a href="@Url.Action(actionName:"Details", controllerName:"Photo",routeValues:new { id = photo.Id })">
+                <img class="img-responsive" src="~/UsersData/@photo.User.Username/@photo.Album.Name/@photo.FileName" width="220" />
+            </a>
+            <small>uploaded by @Html.ActionLink(@photo.User.Username, "Details", "User", new { id = photo.User.Id }, null)</small>
+            <br />
+            <small>album: <a href="@Url.Action(actionName:"Details", controllerName:"Album",routeValues:new { id = photo.Album.Id })">@photo.Album.Name</a> </small>
+        </article>
+    }
+}

@@ -5,6 +5,50 @@
 }
 
 <h2>Album.Details | @Model.Name</h2>
+
+
+@* ajax form for adding more photos to this album *@
+@*@using (Html.BeginForm(
+                actionName: "Create",
+                controllerName: "Photo",
+                method: FormMethod.Post,
+                htmlAttributes: new { enctype = "multipart/form-data", id = "form_photo_create" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>PhotoModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+
+        @* CHOOSE FILES TO UPLOAD *@
+        @*<div class="form-group">
+            <div class="col-md-10">
+                <input type="file" name="filesToBeUploaded" multiple />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", id = "photo_create_description" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div id="result">
+
+</div>*@
+
+
 @* pass album id to create of photo, so that the photo gets uploaded to correct album... *@
 @Html.ActionLink("Upload Photo", "Create", "Photo", new { id = Model.Id }, null)
 <table>
@@ -12,7 +56,6 @@
         <td>
             @foreach (var photo in Model.Photos)
             {
-
                 <img src="~/UsersData/@Model.User.Username/@Model.Name/@photo.FileName" alt="@photo.Name" width="220" />
 
                 //send both photoid and albumid to remove the specific photo in specific album
@@ -22,3 +65,4 @@
         </td>
     </tr>
 </table>
+
