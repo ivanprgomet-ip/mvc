@@ -1,0 +1,12 @@
+﻿@model MvcLab.Data.Models.PhotoModel
+
+@* displays one photo, but exists within a foreach loop wherever its running *@
+
+<article class="col-md-3 img-thumbnail" style="padding:10px;">
+    <a href="@Url.Action(actionName:"Details", controllerName:"Photo",routeValues:new { id = Model.Id})">
+        <img class="img-responsive" src="~/UsersData/@Model.User.Username/@Model.Album.Name/@Model.FileName" width="220" />
+    </a>
+    <small>uploaded by @Html.ActionLink(@Model.User.Username, "Details", "User", new { id = Model.User.Id }, null)</small>
+    <br />
+    <small>album: <a href="@Url.Action(actionName:"Details", controllerName:"Album",routeValues:new { id = Model.Album.Id })">@Model.Album.Name</a> </small>
+</article>
