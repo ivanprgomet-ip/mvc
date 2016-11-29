@@ -10,20 +10,17 @@ namespace MvcLab.Web.Controllers
 {
     public class PhotoController : Controller
     {
-        public AlbumRepository AlbumRepository { get; set; }
+        public UserRepository UserRepo { get; set; }
+
         public PhotoController()
         {
-            AlbumRepository = new AlbumRepository();
+            UserRepo = new UserRepository();
         }
 
-        /// <summary>
-        /// most recent photos
-        /// </summary>
-        /// <returns></returns>
         [HttpGet]
         public ActionResult Index()
         {
-            return View(PhotoRepository.GetAllPhotos());
+            return View(UserRepository.GetAllPhotos());
         }
 
         [HttpGet]
@@ -35,14 +32,14 @@ namespace MvcLab.Web.Controllers
         [HttpPost]
         public ActionResult Create(PhotoModel photo, HttpPostedFileBase[] filesToBeUploaded)
         {
-            //retrieving the album id through the photo id, and then the username through album property 'user'
-            AlbumRepository albumRepo = new AlbumRepository();
-            Guid albumId = photo.Id; //why is the photo id and album id is the same?
-            var photosAlbum = albumRepo.ReturnAlbum(albumId);
+            //why is the photo id and album id same?
+            Guid albumId = photo.Id; 
 
-            //set important properties of every photo and save to album directory
+            AlbumModel album = UserRepo.GetAlbum(albumId);
+
             foreach (var file in filesToBeUploaded)
             {
+                //set important properties of the new photo object
                 PhotoModel currentPhoto = new PhotoModel()
                 {
                     Id = Guid.NewGuid(),
@@ -50,15 +47,19 @@ namespace MvcLab.Web.Controllers
                     FileName = file.FileName,
                     DateCreated = DateTime.Now,
                     Description = "[no description set]",
-                    UploadedBy = photosAlbum.User.Username,
+                    UploadedBy = album.User.Username,
                     Comments = new List<CommentModel>(),
                 };
-                file.SaveAs(Server.MapPath("~/UsersData/" + photosAlbum.User.Username + "/" + photosAlbum.Name + "/" + file.FileName));//physically saves copie(s) of the photos to the path specified
-                photosAlbum.Photos.Add(currentPhoto);//saves the photo object to the album object
-            };
 
-            //return PartialView("_Photos",/*allphotos*/);
+                //physically saves copie(s) of the photos to the path specified
+                file.SaveAs(Server.MapPath("~/UsersData/" + album.User.Username + "/" + album.Name + "/" + file.FileName));
+
+                //saves the photo object to the album object
+                //todo: should not this be saved to the static list of a users album photos immediately?
+                album.Photos.Add(currentPhoto);
+            };
             return RedirectToAction("Index", "Home");
+            //return PartialView("_Photos",/*allphotos*/);
         }
 
         [HttpGet]
@@ -67,30 +68,19 @@ namespace MvcLab.Web.Controllers
             return View();
         }
 
-        public ActionResult Delete(Guid photoid, Guid albumid)
+        public ActionResult Delete(Guid photoid /*Guid albumid*/)
         {
-            //the album containing the photo we want to delete
-            var album = AlbumRepository.ReturnAlbum(albumid);
+            UserRepo.DeletePhoto(UserRepo.GetPhoto(photoid));
 
-            album.Photos
-                .Remove(album.Photos
-                    .FirstOrDefault(p => p.Id == photoid));
-
-            //todo: remove the file from the folder where it lays
+            //TODO: remove the file from the folder where it lays
 
             return RedirectToAction("Index", "User");
         }
 
-        /// <summary>
-        /// when we are accessing the Details page for a specific photo
-        /// </summary>
-        /// <param name="photo"></param>
-        /// <returns></returns>
         [HttpGet]
         public ActionResult Details(PhotoModel photo)
         {
-            PhotoRepository repo = new PhotoRepository();
-            PhotoModel photoToDisplay = repo.ReturnPhoto(photo.Id);
+            PhotoModel photoToDisplay = UserRepo.GetPhoto(photo.Id);
             return View(photoToDisplay);
         }
 
@@ -103,18 +93,19 @@ namespace MvcLab.Web.Controllers
         [HttpPost]
         public ActionResult Details(PhotoModel photo, string comment)
         {
-            PhotoRepository repo = new PhotoRepository();
-            PhotoModel photoToDisplay = repo.ReturnPhoto(photo.Id);
+            PhotoModel photoToCommentOn = UserRepo.GetPhoto(photo.Id);
 
             CommentModel newComment = new CommentModel()
             {
+                Id = Guid.NewGuid(),
                 Comment = comment,
                 DateCreated = DateTime.Now,
-                Photo = photo
+                //Photo = photo,
             };
-            photoToDisplay.Comments.Add(newComment);
 
-            return View(photoToDisplay);
+            photoToCommentOn.Comments.Add(newComment);
+
+            return View(photoToCommentOn);
         }
     }
 }

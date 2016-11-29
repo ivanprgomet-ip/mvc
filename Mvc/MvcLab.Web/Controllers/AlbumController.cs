@@ -11,10 +11,12 @@ namespace MvcLab.Web.Controllers
 {
     public class AlbumController : Controller
     {
-        public AlbumRepository AlbumRepository { get; set; }
+        
+        public UserRepository UserRepo { get; set; }
+
         public AlbumController()
         {
-            AlbumRepository = new AlbumRepository();
+            UserRepo = new UserRepository();
         }
 
         /// <summary>
@@ -24,7 +26,7 @@ namespace MvcLab.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(AlbumRepository.GetAllAlbums());
+            return View(UserRepo.GetAllAlbums());
         }
 
         /// <summary>
@@ -43,22 +45,15 @@ namespace MvcLab.Web.Controllers
                 DateCreated = DateTime.Now,
                 Album = album,
             };
+            UserRepository.CreateAlbumComment(album.Id, newAlbumComment);
 
-            AlbumRepository.AddCommentToAlbum(album.Id, newAlbumComment);
-
-            return View(AlbumRepository.GetAllAlbums());
+            return View(UserRepo.GetAllAlbums());
         }
 
-        /// <summary>
-        /// when the album details page is requested
-        /// </summary>
-        /// <param name="album"></param>
-        /// <returns></returns>
         [HttpGet]
         public ActionResult Details(AlbumModel album)
         {
-            //retrieve the album we want to see details on:
-            var albumDetails = AlbumRepository.ReturnAlbum(album.Id);
+            var albumDetails = UserRepo.GetAlbum(album.Id);
 
             return View(albumDetails);
         }
@@ -70,20 +65,17 @@ namespace MvcLab.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(AlbumModel albumToBeCreated)
+        public ActionResult Create(AlbumModel album)
         {
-            //TODO: how does it create an id for the album automagically?
             try
             {
-                Guid userId = albumToBeCreated.Id;//TODO: userid and albumid the same? why?
+                Guid userId = album.Id;//TODO: userid and albumid the same? why?
 
-                AlbumModel newAlbum = AlbumRepository.CreateAlbum(albumToBeCreated, userId);
+                AlbumModel newAlbum = UserRepo.CreateAlbum(album, userId);//add new album to repo so that we can comment on it!
 
-                //create directory for net album
+                //create directory for new albums photos
                 string newAlbumPath = Server.MapPath("~/UsersData/" + newAlbum.User.Username + "/" + newAlbum.Name);
                 Directory.CreateDirectory(newAlbumPath);
-
-                AlbumRepository.Albums.Add(newAlbum);//add new album to repo so that we can comment on it!
 
                 return RedirectToAction("Index", "User");
             }

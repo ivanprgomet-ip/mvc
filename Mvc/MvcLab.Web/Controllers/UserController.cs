@@ -43,7 +43,7 @@ namespace MvcLab.Web.Controllers
         /// <returns></returns>
         public ActionResult Details(UserModel user)
         {
-            var userToShow = UserRepository.Return(user.Id);
+            var userToShow = UserRepository.GetUser(user.Id);
 
             return View(userToShow);
         }
@@ -63,7 +63,7 @@ namespace MvcLab.Web.Controllers
         public ActionResult Login(UserModel userToBeLoggedIn)
         {
             UserRepository repo = new UserRepository();
-            var authenticatedUser = repo.ReturnUserLogin(userToBeLoggedIn.Username, userToBeLoggedIn.Password);
+            var authenticatedUser = repo.GetLoggedInUser(userToBeLoggedIn.Username, userToBeLoggedIn.Password);
 
             if (authenticatedUser != null)
             {
@@ -95,7 +95,7 @@ namespace MvcLab.Web.Controllers
                 if (userToBeRegistered != null)
                 {
                     //todo: create growl when user gets registered
-                    UserRepository.Add(userToBeRegistered);
+                    UserRepository.CreateUser(userToBeRegistered);
                     return RedirectToAction("Index", "Home");
                 }
             }

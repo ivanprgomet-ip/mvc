@@ -6,6 +6,10 @@ using System.IO;
 
 namespace MvcLab.Data.Repositories
 {
+    /// <summary>
+    /// all data retrieval goes through the user to avoid nullref exceptions, 
+    /// because users have albums, and albums have photos and comments
+    /// </summary>
     public class UserRepository
     {
         //save in memory until we move to a database
@@ -25,7 +29,7 @@ namespace MvcLab.Data.Repositories
         }
 
         /// <summary>
-        /// create some default users for the application
+        /// Initializer method
         /// </summary>
         private void SetupTemporaryData()
         {
@@ -141,25 +145,20 @@ namespace MvcLab.Data.Repositories
         }
 
         /// <summary>
-        /// Create folders based on existing users
+        /// Initializer method
         /// </summary>
         private void SetupInitialUserFolders()
         {
-            //where all data files will be for the users of the application
-            //string destination = Server.MapPath("~/UsersData/");
-
-            //server mappath doesnt work here, using alternative to get basedir
+            //server mappath doesnt work here, using alternative to get basedir (instead of ~)
             string baseDir = System.AppDomain.CurrentDomain.BaseDirectory;
             string destination = string.Format($"{baseDir}/UsersData/");
 
-
-            //create the destination folder if it doesnt exist
             if (!Directory.Exists(destination))
             {
                 Directory.CreateDirectory(destination);
             }
 
-            foreach (var user in UserRepository.Users)
+            foreach (var user in Users)
             {
                 string individualUserDir = Path.Combine(destination, user.Username);
                 Directory.CreateDirectory(individualUserDir);
@@ -169,12 +168,12 @@ namespace MvcLab.Data.Repositories
                     string IndividualUserAlbumDir = Path.Combine(individualUserDir, album.Name);
                     Directory.CreateDirectory(IndividualUserAlbumDir);
 
-                    //photos get saved from the user interface using input type file
+                    //in the future, photos get saved from the user interface using input type file
                 }
             }
         }
 
-        public void Add(UserModel userToBeRegistered)
+        public void CreateUser(UserModel userToBeRegistered)
         {
             userToBeRegistered.Id = Guid.NewGuid();
 
@@ -190,14 +189,158 @@ namespace MvcLab.Data.Repositories
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public UserModel Return(Guid userId)
+        public UserModel GetUser(Guid userId)
         {
             return Users.FirstOrDefault(u => u.Id == userId);
         }
 
-        public UserModel ReturnUserLogin(string username, string password)
+        public UserModel GetLoggedInUser(string username, string password)
         {
             return Users.FirstOrDefault(u => u.Username == username && u.Password == password);
+        }
+
+        //------------------------------------PHOTOS------------------------------------
+        public void CreatePhoto(PhotoModel photo)
+        {
+            //todo: what is the point of this method??
+            photo.DateCreated = DateTime.Now;
+            photo.Id = Guid.NewGuid();
+        }
+
+        public void DeletePhoto(PhotoModel photo)
+        {
+            foreach (var user in Users)
+            {
+                foreach (var album in user.Albums)
+                {
+                    foreach (var p in album.Photos)
+                    {
+                        if(p.Id == photo.Id)
+                        {
+                            album.Photos.Remove(photo); //remove the photo from the album
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// return list of all photos from all users
+        /// </summary>
+        /// <returns></returns>
+        public static List<PhotoModel> GetAllPhotos()
+        {
+            List<PhotoModel> photos = new List<PhotoModel>();
+
+            foreach (var user in Users)
+            {
+                foreach (var album in user.Albums)
+                {
+                    foreach (var photo in album.Photos)
+                    {
+                        PhotoModel current = new PhotoModel();
+                        current = photo;
+                        current.Album = album;
+                        current.User = user;
+
+                        photos.Add(photo);
+                    }
+                }
+            }
+            return photos;
+        }
+
+        /// <summary>
+        /// return the correct photo when we find it
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public PhotoModel GetPhoto(Guid id)
+        {
+            foreach (var user in Users)
+            {
+                foreach (var album in user.Albums)
+                {
+                    foreach (var photo in album.Photos)
+                    {
+                        if (photo.Id == id)
+                            return photo;
+                    }
+                }
+            }
+            return null;
+        }
+
+        //------------------------------------ALBUMS------------------------------------
+        public AlbumModel GetAlbum(Guid albumId)
+        {
+            foreach (var user in Users)
+            {
+                foreach (var album in user.Albums)
+                {
+                    if (album.Id == albumId)
+                    {
+                        return album;
+                    }
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// return list of all albums from all users
+        /// </summary>
+        /// <returns></returns>
+        public List<AlbumModel> GetAllAlbums()
+        {
+            List<AlbumModel> albums = new List<AlbumModel>();
+
+            foreach (var user in Users)
+            {
+                foreach (var album in user.Albums)
+                {
+                    //AlbumModel currentAlbum = new AlbumModel();
+                    //currentAlbum = album;
+                    albums.Add(album);
+                }
+            }
+            return albums;
+        }
+
+        public AlbumModel CreateAlbum(AlbumModel newAlbum, Guid userId)
+        {
+            //get the owner of the album
+            var albumUser = Users.Where(u => u.Id == userId).FirstOrDefault();
+
+            //set some properties of the new album
+            newAlbum.Id = Guid.NewGuid();
+            newAlbum.DateCreated = DateTime.Now;
+            newAlbum.Photos = new List<PhotoModel>();
+            newAlbum.User = albumUser;
+            newAlbum.Comments = new List<CommentModel>();
+
+            //add the album to the users albums
+            albumUser.Albums.Add(newAlbum);
+
+            return newAlbum;
+        }
+
+        public static void CreateAlbumComment(Guid albumid, CommentModel newAlbumComment)
+        {
+            foreach (var user in Users)
+            {
+                foreach (var album in user.Albums)
+                {
+                    if (album.Id == albumid)
+                    {
+                        album.Comments.Add(newAlbumComment);
+                        break;
+                    }
+                }
+                
+            }
+
         }
     }
 }
