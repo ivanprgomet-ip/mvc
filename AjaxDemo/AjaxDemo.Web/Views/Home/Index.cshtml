@@ -1,0 +1,34 @@
+﻿@model IEnumerable<AjaxDemo.Web.Models.ImageViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Main Page</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken();
+
+    <input type="file" name="fileupload" id="fileupload" multiple />
+    @Html.Label("Name");
+    @Html.TextBox("name");
+    <input type="submit" value="upload" />
+}
+
+
+<div id="result">
+
+
+    <div class="container">
+        @*keeps the footer in place*@
+
+        @{
+            foreach (var image in Model)
+            {
+                @Html.Partial("_Image", image);
+            }
+        }
+    </div>
+</div>

@@ -57,6 +57,7 @@ namespace MvcLab.Web.Controllers
                 photosAlbum.Photos.Add(currentPhoto);//saves the photo object to the album object
             };
 
+            //return PartialView("_Photos",/*allphotos*/);
             return RedirectToAction("Index", "Home");
         }
 

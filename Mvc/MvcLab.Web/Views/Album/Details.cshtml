@@ -6,27 +6,40 @@
 
 <h2>@Model.Name details</h2>
 
-@* add photos using ajax *@
+@* ........................... *@
+@* AJAX *@
+@*@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
+    <input type="file" name="filesToBeUploaded" />
 
+    @:photo description
+    @Html.TextBox("Description")
 
+    <input type="submit" name="submit" />
+}
+<div id="result">
+
+</div>*@
+@* ........................... *@
 
 
 
 @* pass album id to create of photo, so that the photo gets uploaded to correct album... *@
 @Html.ActionLink("Upload Photo", "Create", "Photo", new { id = Model.Id }, null)
-<table>
-    <tr>
-        <td>
-            @foreach (var photo in Model.Photos)
-            {
-                <img src="~/UsersData/@Model.User.Username/@Model.Name/@photo.FileName" alt="@photo.Name" width="220" />
+    <table>
+        <tr>
+            <td>
+                @foreach (var photo in Model.Photos)
+                {
+                    <img src="~/UsersData/@Model.User.Username/@Model.Name/@photo.FileName" alt="@photo.Name" width="220" />
 
-                //send both photoid and albumid to remove the specific photo in specific album
-                <small> @Html.ActionLink("Delete", "Delete", "Photo", new { photoid = photo.Id, albumid = Model.Id }, null)</small>
-                    <small> @Html.ActionLink("Edit", "Edit", "Photo", new { photoid = photo.Id, albumid = Model.Id }, null)</small>
-            }
-        </td>
-    </tr>
-</table>
+                    //send both photoid and albumid to remove the specific photo in specific album
+                    <small> @Html.ActionLink("Delete", "Delete", "Photo", new { photoid = photo.Id, albumid = Model.Id }, null)</small>
+                        <small> @Html.ActionLink("Edit", "Edit", "Photo", new { photoid = photo.Id, albumid = Model.Id }, null)</small>
+                }
+            </td>
+        </tr>
+    </table>
 
