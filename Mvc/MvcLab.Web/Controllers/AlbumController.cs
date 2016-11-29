@@ -72,6 +72,7 @@ namespace MvcLab.Web.Controllers
         [HttpPost]
         public ActionResult Create(AlbumModel albumToBeCreated)
         {
+            //TODO: how does it create an id for the album automagically?
             try
             {
                 Guid userId = albumToBeCreated.Id;//TODO: userid and albumid the same? why?
@@ -81,6 +82,8 @@ namespace MvcLab.Web.Controllers
                 //create directory for net album
                 string newAlbumPath = Server.MapPath("~/UsersData/" + newAlbum.User.Username + "/" + newAlbum.Name);
                 Directory.CreateDirectory(newAlbumPath);
+
+                AlbumRepository.Albums.Add(newAlbum);//add new album to repo so that we can comment on it!
 
                 return RedirectToAction("Index", "User");
             }
