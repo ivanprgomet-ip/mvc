@@ -20,7 +20,7 @@ namespace MvcLab.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(UserRepository.GetAllPhotos());
+            return View(UserRepo.GetAllPhotos());
         }
 
         [HttpGet]

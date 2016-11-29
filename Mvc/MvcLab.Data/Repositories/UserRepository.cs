@@ -229,7 +229,7 @@ namespace MvcLab.Data.Repositories
         /// return list of all photos from all users
         /// </summary>
         /// <returns></returns>
-        public static List<PhotoModel> GetAllPhotos()
+        public List<PhotoModel> GetAllPhotos()
         {
             List<PhotoModel> photos = new List<PhotoModel>();
 
@@ -326,7 +326,7 @@ namespace MvcLab.Data.Repositories
             return newAlbum;
         }
 
-        public static void CreateAlbumComment(Guid albumid, CommentModel newAlbumComment)
+        public void CreateAlbumComment(Guid albumid, CommentModel newAlbumComment)
         {
             foreach (var user in Users)
             {

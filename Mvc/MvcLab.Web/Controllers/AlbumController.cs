@@ -45,7 +45,7 @@ namespace MvcLab.Web.Controllers
                 DateCreated = DateTime.Now,
                 Album = album,
             };
-            UserRepository.CreateAlbumComment(album.Id, newAlbumComment);
+            UserRepo.CreateAlbumComment(album.Id, newAlbumComment);
 
             return View(UserRepo.GetAllAlbums());
         }
