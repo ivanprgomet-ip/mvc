@@ -8,6 +8,10 @@ using MvcLab.Data.Models;
 
 namespace MvcLab.Web.Controllers
 {
+    /// <summary>
+    /// the controllers are communicating with the Data repositories to get data
+    /// from the database. at the same time, they use the viewmodel classes and then to make the viewmodel classes entitymodel classes (they are pretty much the same class objects with the same properties) we use mappings of the values.
+    /// </summary>
     public class UserController : Controller
     {
         /// <summary>
@@ -41,7 +45,7 @@ namespace MvcLab.Web.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public ActionResult Details(UserModel user)
+        public ActionResult Details(UserEntity user)
         {
             var userToShow = UserRepository.GetUser(user.Id);
 
@@ -60,7 +64,7 @@ namespace MvcLab.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Login(UserModel userToBeLoggedIn)
+        public ActionResult Login(UserEntity userToBeLoggedIn)
         {
             UserRepository repo = new UserRepository();
             var authenticatedUser = repo.GetLoggedInUser(userToBeLoggedIn.Username, userToBeLoggedIn.Password);
@@ -86,7 +90,7 @@ namespace MvcLab.Web.Controllers
         //register a new user
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(UserModel userToBeRegistered)
+        public ActionResult Register(UserEntity userToBeRegistered)
         {
             UserRepository repo = new UserRepository();
 

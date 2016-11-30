@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MvcLab.Data.Models
+namespace MvcLab.Web.Models
 {
     public class UserModel
     {

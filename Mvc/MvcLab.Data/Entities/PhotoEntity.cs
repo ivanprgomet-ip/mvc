@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MvcLab.Data.Models
 {
-    public class PhotoModel
+    public class PhotoEntity
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -14,9 +14,9 @@ namespace MvcLab.Data.Models
         public DateTime DateCreated { get; set; }
         public DateTime DateChanged { get; set; }
         public string UploadedBy { get; set; }
-        public List<CommentModel> Comments { get; set; }
+        public List<CommentEntity> Comments { get; set; }
 
-        public UserModel User { get; set; }
-        public AlbumModel Album { get; set; }
+        public UserEntity User { get; set; }
+        public AlbumEntity Album { get; set; }
     }
 }

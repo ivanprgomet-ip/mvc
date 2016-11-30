@@ -30,17 +30,17 @@ namespace MvcLab.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(PhotoModel photo, HttpPostedFileBase[] filesToBeUploaded)
+        public ActionResult Create(PhotoEntity photo, HttpPostedFileBase[] filesToBeUploaded)
         {
             //why is the photo id and album id same?
             Guid albumId = photo.Id; 
 
-            AlbumModel album = UserRepo.GetAlbum(albumId);
+            AlbumEntity album = UserRepo.GetAlbum(albumId);
 
             foreach (var file in filesToBeUploaded)
             {
                 //set important properties of the new photo object
-                PhotoModel currentPhoto = new PhotoModel()
+                PhotoEntity currentPhoto = new PhotoEntity()
                 {
                     Id = Guid.NewGuid(),
                     Name = photo.Name,
@@ -48,7 +48,7 @@ namespace MvcLab.Web.Controllers
                     DateCreated = DateTime.Now,
                     Description = "[no description set]",
                     UploadedBy = album.User.Username,
-                    Comments = new List<CommentModel>(),
+                    Comments = new List<CommentEntity>(),
                 };
 
                 //physically saves copie(s) of the photos to the path specified
@@ -79,9 +79,9 @@ namespace MvcLab.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details(PhotoModel photo)
+        public ActionResult Details(PhotoEntity photo)
         {
-            PhotoModel photoToDisplay = UserRepo.GetPhoto(photo.Id);
+            PhotoEntity photoToDisplay = UserRepo.GetPhoto(photo.Id);
             return View(photoToDisplay);
         }
 
@@ -92,11 +92,11 @@ namespace MvcLab.Web.Controllers
         /// <param name="photo"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Details(PhotoModel photo, string comment)
+        public ActionResult Details(PhotoEntity photo, string comment)
         {
-            PhotoModel photoToCommentOn = UserRepo.GetPhoto(photo.Id);
+            PhotoEntity photoToCommentOn = UserRepo.GetPhoto(photo.Id);
 
-            CommentModel newComment = new CommentModel()
+            CommentEntity newComment = new CommentEntity()
             {
                 Id = Guid.NewGuid(),
                 Comment = comment,

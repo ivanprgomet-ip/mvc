@@ -37,9 +37,9 @@ namespace MvcLab.Web.Controllers
         /// <param name="albumComment"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Index(AlbumModel album, string albumComment)
+        public ActionResult Index(AlbumEntity album, string albumComment)
         {
-            CommentModel newAlbumComment = new CommentModel()
+            CommentEntity newAlbumComment = new CommentEntity()
             {
                 Comment = albumComment,
                 DateCreated = DateTime.Now,
@@ -51,7 +51,7 @@ namespace MvcLab.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details(AlbumModel album)
+        public ActionResult Details(AlbumEntity album)
         {
             var albumDetails = UserRepo.GetAlbum(album.Id);
 
@@ -65,13 +65,13 @@ namespace MvcLab.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(AlbumModel album)
+        public ActionResult Create(AlbumEntity album)
         {
             try
             {
                 Guid userId = album.Id;//TODO: userid and albumid the same? why?
 
-                AlbumModel newAlbum = UserRepo.CreateAlbum(album, userId);//add new album to repo so that we can comment on it!
+                AlbumEntity newAlbum = UserRepo.CreateAlbum(album, userId);//add new album to repo so that we can comment on it!
 
                 //create directory for new albums photos
                 string newAlbumPath = Server.MapPath("~/UsersData/" + newAlbum.User.Username + "/" + newAlbum.Name);

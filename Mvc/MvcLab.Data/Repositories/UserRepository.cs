@@ -7,13 +7,17 @@ using System.IO;
 namespace MvcLab.Data.Repositories
 {
     /// <summary>
-    /// all data retrieval goes through the user to avoid nullref exceptions, 
-    /// because users have albums, and albums have photos and comments
+    /// the repository classes only hade direct contact with the 
+    /// entity models of the database, and not the viewmodels that 
+    /// the controllers have their main comunication with.
+    /// 
+    /// The repositories do logical crud operations against the database
+    /// context.
     /// </summary>
     public class UserRepository
     {
         //save in memory until we move to a database
-        public static IList<UserModel> Users { get; private set; } = new List<UserModel>();
+        public static IList<UserEntity> Users { get; private set; } = new List<UserEntity>();
 
         /// <summary>
         /// if there are NO users in the temporary memory,
@@ -34,7 +38,7 @@ namespace MvcLab.Data.Repositories
         private void SetupTemporaryData()
         {
             //create some default users
-            UserModel u1 = new UserModel()
+            UserEntity u1 = new UserEntity()
             {
                 Id = Guid.NewGuid(),
                 Firstname = "Ivan",
@@ -48,22 +52,22 @@ namespace MvcLab.Data.Repositories
                 Password = "ivan123",
                 DateRegistered = DateTime.Now,
 
-                Albums = new List<AlbumModel>(),
+                Albums = new List<AlbumEntity>(),
             };
             #region creating album for Ivan
-            u1.Albums.Add(new AlbumModel()
+            u1.Albums.Add(new AlbumEntity()
             {
                 Id = Guid.NewGuid(),
                 DateCreated = DateTime.Now,
                 Name = "Coding Events",
                 Description = "Photos from some coding events that I have attended",
-                Photos = new List<PhotoModel>(),
-                Comments = new List<CommentModel>(),
+                Photos = new List<PhotoEntity>(),
+                Comments = new List<CommentEntity>(),
                 User = u1,
             });
             #endregion
 
-            UserModel u2 = new UserModel()
+            UserEntity u2 = new UserEntity()
             {
                 Id = Guid.NewGuid(),
                 Firstname = "Lea",
@@ -77,51 +81,51 @@ namespace MvcLab.Data.Repositories
                 Password = "lealea",
                 DateRegistered = DateTime.Now,
 
-                Albums = new List<AlbumModel>(),
+                Albums = new List<AlbumEntity>(),
             };
             #region creating album for Lea (files added in album folder before startup, later files get added thru mvc UI input type file)
-            u2.Albums.Add(new AlbumModel()
+            u2.Albums.Add(new AlbumEntity()
             {
                 Id = Guid.NewGuid(),
                 DateCreated = DateTime.Now,
                 Name = "Lea Coding Album",
                 Description = "No Album Description",
-                Photos = new List<PhotoModel>() {
-                    new PhotoModel()
+                Photos = new List<PhotoEntity>() {
+                    new PhotoEntity()
                             {
                                 Id = Guid.NewGuid(),
                                 Name = "coffe is love",
                                 FileName = "code2.jpg",
                                 DateCreated = DateTime.Now,
                                 Description = "No Photo Description",
-                                Comments = new List<CommentModel>(),
+                                Comments = new List<CommentEntity>(),
                             },
-                    new PhotoModel()
+                    new PhotoEntity()
                             {
                                 Id = Guid.NewGuid(),
                                 Name = "think before you code",
                                 FileName = "code4.png",
                                 DateCreated = DateTime.Now,
                                 Description = "you should never mix code with alcohol",
-                                Comments = new List<CommentModel>(),
+                                Comments = new List<CommentEntity>(),
                             },
-                    new PhotoModel()
+                    new PhotoEntity()
                             {
                                 Id = Guid.NewGuid(),
                                 Name = "no place like home",
                                 FileName = "code5.jpg",
                                 DateCreated = DateTime.Now,
                                 Description = "No Photo Description",
-                                Comments = new List<CommentModel>(),
+                                Comments = new List<CommentEntity>(),
                             },
                 },
-                Comments = new List<CommentModel>(),
+                Comments = new List<CommentEntity>(),
                 User = u2,
             });
             #endregion
 
 
-            UserModel u3 = new UserModel()
+            UserEntity u3 = new UserEntity()
             {
                 Id = Guid.NewGuid(),
                 Firstname = "Scott",
@@ -135,7 +139,7 @@ namespace MvcLab.Data.Repositories
                 Password = "scott123",
                 DateRegistered = DateTime.Now,
 
-                Albums = new List<AlbumModel>(),
+                Albums = new List<AlbumEntity>(),
             };
 
             //add the users to the temp memory
@@ -173,13 +177,13 @@ namespace MvcLab.Data.Repositories
             }
         }
 
-        public void CreateUser(UserModel userToBeRegistered)
+        public void CreateUser(UserEntity userToBeRegistered)
         {
             userToBeRegistered.Id = Guid.NewGuid();
 
             userToBeRegistered.DateRegistered = DateTime.Now;
 
-            userToBeRegistered.Albums = new List<AlbumModel>();
+            userToBeRegistered.Albums = new List<AlbumEntity>();
 
             Users.Add(userToBeRegistered);
         }
@@ -189,25 +193,25 @@ namespace MvcLab.Data.Repositories
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public UserModel GetUser(Guid userId)
+        public UserEntity GetUser(Guid userId)
         {
             return Users.FirstOrDefault(u => u.Id == userId);
         }
 
-        public UserModel GetLoggedInUser(string username, string password)
+        public UserEntity GetLoggedInUser(string username, string password)
         {
             return Users.FirstOrDefault(u => u.Username == username && u.Password == password);
         }
 
         //------------------------------------PHOTOS------------------------------------
-        public void CreatePhoto(PhotoModel photo)
+        public void CreatePhoto(PhotoEntity photo)
         {
             //todo: what is the point of this method??
             photo.DateCreated = DateTime.Now;
             photo.Id = Guid.NewGuid();
         }
 
-        public void DeletePhoto(PhotoModel photo)
+        public void DeletePhoto(PhotoEntity photo)
         {
             foreach (var user in Users)
             {
@@ -215,7 +219,7 @@ namespace MvcLab.Data.Repositories
                 {
                     foreach (var p in album.Photos)
                     {
-                        if(p.Id == photo.Id)
+                        if (p.Id == photo.Id)
                         {
                             album.Photos.Remove(photo); //remove the photo from the album
                             break;
@@ -229,9 +233,9 @@ namespace MvcLab.Data.Repositories
         /// return list of all photos from all users
         /// </summary>
         /// <returns></returns>
-        public List<PhotoModel> GetAllPhotos()
+        public List<PhotoEntity> GetAllPhotos()
         {
-            List<PhotoModel> photos = new List<PhotoModel>();
+            List<PhotoEntity> photos = new List<PhotoEntity>();
 
             foreach (var user in Users)
             {
@@ -239,7 +243,7 @@ namespace MvcLab.Data.Repositories
                 {
                     foreach (var photo in album.Photos)
                     {
-                        PhotoModel current = new PhotoModel();
+                        PhotoEntity current = new PhotoEntity();
                         current = photo;
                         current.Album = album;
                         current.User = user;
@@ -256,7 +260,7 @@ namespace MvcLab.Data.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public PhotoModel GetPhoto(Guid id)
+        public PhotoEntity GetPhoto(Guid id)
         {
             foreach (var user in Users)
             {
@@ -273,7 +277,7 @@ namespace MvcLab.Data.Repositories
         }
 
         //------------------------------------ALBUMS------------------------------------
-        public AlbumModel GetAlbum(Guid albumId)
+        public AlbumEntity GetAlbum(Guid albumId)
         {
             foreach (var user in Users)
             {
@@ -292,9 +296,9 @@ namespace MvcLab.Data.Repositories
         /// return list of all albums from all users
         /// </summary>
         /// <returns></returns>
-        public List<AlbumModel> GetAllAlbums()
+        public List<AlbumEntity> GetAllAlbums()
         {
-            List<AlbumModel> albums = new List<AlbumModel>();
+            List<AlbumEntity> albums = new List<AlbumEntity>();
 
             foreach (var user in Users)
             {
@@ -308,7 +312,7 @@ namespace MvcLab.Data.Repositories
             return albums;
         }
 
-        public AlbumModel CreateAlbum(AlbumModel newAlbum, Guid userId)
+        public AlbumEntity CreateAlbum(AlbumEntity newAlbum, Guid userId)
         {
             //get the owner of the album
             var albumUser = Users.Where(u => u.Id == userId).FirstOrDefault();
@@ -316,9 +320,9 @@ namespace MvcLab.Data.Repositories
             //set some properties of the new album
             newAlbum.Id = Guid.NewGuid();
             newAlbum.DateCreated = DateTime.Now;
-            newAlbum.Photos = new List<PhotoModel>();
+            newAlbum.Photos = new List<PhotoEntity>();
             newAlbum.User = albumUser;
-            newAlbum.Comments = new List<CommentModel>();
+            newAlbum.Comments = new List<CommentEntity>();
 
             //add the album to the users albums
             albumUser.Albums.Add(newAlbum);
@@ -326,7 +330,7 @@ namespace MvcLab.Data.Repositories
             return newAlbum;
         }
 
-        public void CreateAlbumComment(Guid albumid, CommentModel newAlbumComment)
+        public void CreateAlbumComment(Guid albumid, CommentEntity newAlbumComment)
         {
             foreach (var user in Users)
             {
@@ -338,7 +342,7 @@ namespace MvcLab.Data.Repositories
                         break;
                     }
                 }
-                
+
             }
 
         }

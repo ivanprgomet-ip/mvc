@@ -13,7 +13,7 @@ namespace MvcLab.Tests
         {
             //arrange
             UserRepository userRepo = new UserRepository();
-            UserModel user = new UserModel()
+            UserEntity user = new UserEntity()
             {
                 Id = Guid.NewGuid(),
                 Firstname = "ivan",
@@ -41,7 +41,7 @@ namespace MvcLab.Tests
         {
             //arrange
             UserRepository userRepo = new UserRepository();
-            UserModel user = new UserModel()
+            UserEntity user = new UserEntity()
             {
                 Id = Guid.NewGuid(),
                 Firstname = "ivan",
