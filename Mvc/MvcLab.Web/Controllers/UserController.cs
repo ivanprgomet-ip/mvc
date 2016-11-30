@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using MvcLab.Data.Repositories;
 using MvcLab.Data.Models;
+using MvcLab.Web.Mapper;
+using System.Collections.Generic;
+using MvcLab.Web.Models;
 
 namespace MvcLab.Web.Controllers
 {
@@ -37,6 +36,15 @@ namespace MvcLab.Web.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            List<UserEntity> userEntities = UserRepository.GetAllUsers();
+
+            List<UserModel> userModels = new List<UserModel>();
+
+            foreach (var userEntity in userEntities)
+            {
+                userModels.Add(EntityModelMapper.EntityToModel(userEntity));
+            }
+
             return View(UserRepository.Users);
         }
 
@@ -45,9 +53,9 @@ namespace MvcLab.Web.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public ActionResult Details(UserEntity user)
+        public ActionResult Details(UserModel user)
         {
-            var userToShow = UserRepository.GetUser(user.Id);
+            UserModel userToShow = EntityModelMapper.EntityToModel(UserRepository.GetUser(user.Id));
 
             return View(userToShow);
         }
@@ -64,10 +72,11 @@ namespace MvcLab.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Login(UserEntity userToBeLoggedIn)
+        public ActionResult Login(UserModel userModel)
         {
-            UserRepository repo = new UserRepository();
-            var authenticatedUser = repo.GetLoggedInUser(userToBeLoggedIn.Username, userToBeLoggedIn.Password);
+            UserModel authenticatedUser = EntityModelMapper.EntityToModel(
+                UserRepository.GetLoggedInUser(
+                    userModel.Username, userModel.Password));
 
             if (authenticatedUser != null)
             {
@@ -80,32 +89,30 @@ namespace MvcLab.Web.Controllers
 
         }
 
-        //get the register page
         [HttpGet]
         public ActionResult Register()
         {
             return View();
         }
 
-        //register a new user
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(UserEntity userToBeRegistered)
+        public ActionResult Register(UserModel userModel)
         {
-            UserRepository repo = new UserRepository();
-
             if (ModelState.IsValid)
             {
-                if (userToBeRegistered != null)
+                if (userModel != null)
                 {
                     //todo: create growl when user gets registered
-                    UserRepository.CreateUser(userToBeRegistered);
+
+                    UserRepository.Add(EntityModelMapper.ModelToEntity(userModel));
+
                     return RedirectToAction("Index", "Home");
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return View(userToBeRegistered);
+            return View(userModel);
         }
     }
 }

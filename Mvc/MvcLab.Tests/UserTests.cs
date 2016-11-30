@@ -57,7 +57,7 @@ namespace MvcLab.Tests
             };
 
             //Act
-            userRepo.CreateUser(user);
+            userRepo.Add(user);
 
             //Assert
             if (UserRepository.Users.Contains(user))

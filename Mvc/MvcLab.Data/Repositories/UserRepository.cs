@@ -177,7 +177,11 @@ namespace MvcLab.Data.Repositories
             }
         }
 
-        public void CreateUser(UserEntity userToBeRegistered)
+        /// <summary>
+        /// register a new user. successfully adds user to the database.
+        /// </summary>
+        /// <param name="userToBeRegistered"></param>
+        public void Add(UserEntity userToBeRegistered)
         {
             userToBeRegistered.Id = Guid.NewGuid();
 
@@ -201,6 +205,17 @@ namespace MvcLab.Data.Repositories
         public UserEntity GetLoggedInUser(string username, string password)
         {
             return Users.FirstOrDefault(u => u.Username == username && u.Password == password);
+        }
+
+        public List<UserEntity> GetAllUsers()
+        {
+            List<UserEntity> users = new List<UserEntity>();
+
+            foreach (var user in Users)
+            {
+                users.Add(user); //todo: also include related data
+            }
+            return users;
         }
 
         //------------------------------------PHOTOS------------------------------------

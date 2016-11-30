@@ -1,8 +1,8 @@
-﻿using MvcLab.Data.Models;
-using MvcLab.Data.Repositories;
+﻿using MvcLab.Data.Repositories;
+using MvcLab.Web.Mapper;
+using MvcLab.Web.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -30,17 +30,17 @@ namespace MvcLab.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(PhotoEntity photo, HttpPostedFileBase[] filesToBeUploaded)
+        public ActionResult Create(PhotoModel photo, HttpPostedFileBase[] filesToBeUploaded)
         {
             //why is the photo id and album id same?
             Guid albumId = photo.Id; 
 
-            AlbumEntity album = UserRepo.GetAlbum(albumId);
+            AlbumModel album = EntityModelMapper.EntityToModel(UserRepo.GetAlbum(albumId));
 
             foreach (var file in filesToBeUploaded)
             {
                 //set important properties of the new photo object
-                PhotoEntity currentPhoto = new PhotoEntity()
+                PhotoModel currentPhoto = new PhotoModel()
                 {
                     Id = Guid.NewGuid(),
                     Name = photo.Name,
@@ -48,7 +48,7 @@ namespace MvcLab.Web.Controllers
                     DateCreated = DateTime.Now,
                     Description = "[no description set]",
                     UploadedBy = album.User.Username,
-                    Comments = new List<CommentEntity>(),
+                    Comments = new List<CommentModel>(),
                 };
 
                 //physically saves copie(s) of the photos to the path specified
@@ -79,9 +79,9 @@ namespace MvcLab.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details(PhotoEntity photo)
+        public ActionResult Details(PhotoModel photo)
         {
-            PhotoEntity photoToDisplay = UserRepo.GetPhoto(photo.Id);
+            PhotoModel photoToDisplay = EntityModelMapper.EntityToModel(UserRepo.GetPhoto(photo.Id));
             return View(photoToDisplay);
         }
 
@@ -92,11 +92,11 @@ namespace MvcLab.Web.Controllers
         /// <param name="photo"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Details(PhotoEntity photo, string comment)
+        public ActionResult Details(PhotoModel photo, string comment)
         {
-            PhotoEntity photoToCommentOn = UserRepo.GetPhoto(photo.Id);
+            PhotoModel photoToCommentOn = EntityModelMapper.EntityToModel(UserRepo.GetPhoto(photo.Id));
 
-            CommentEntity newComment = new CommentEntity()
+            CommentModel newComment = new CommentModel()
             {
                 Id = Guid.NewGuid(),
                 Comment = comment,
