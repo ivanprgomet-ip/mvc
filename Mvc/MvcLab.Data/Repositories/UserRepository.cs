@@ -312,7 +312,7 @@ namespace MvcLab.Data.Repositories
             return albums;
         }
 
-        public AlbumEntity CreateAlbum(AlbumEntity newAlbum, Guid userId)
+        public AlbumEntity Add(AlbumEntity newAlbum, Guid userId)
         {
             //get the owner of the album
             var albumUser = Users.Where(u => u.Id == userId).FirstOrDefault();

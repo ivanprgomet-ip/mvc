@@ -1,5 +1,7 @@
 ﻿using MvcLab.Data.Models;
 using MvcLab.Data.Repositories;
+using MvcLab.Web.Mapper;
+using MvcLab.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -37,21 +39,24 @@ namespace MvcLab.Web.Controllers
         /// <param name="albumComment"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Index(AlbumEntity album, string albumComment)
+        public ActionResult Index(AlbumModel album, string albumComment)
         {
-            CommentEntity newAlbumComment = new CommentEntity()
+            CommentModel commentModel = new CommentModel()
             {
                 Comment = albumComment,
                 DateCreated = DateTime.Now,
                 Album = album,
             };
-            UserRepo.CreateAlbumComment(album.Id, newAlbumComment);
+
+            var commentEntity = EntityModelMapper.ModelToEntity(commentModel);
+
+            UserRepo.CreateAlbumComment(album.Id, commentEntity);
 
             return View(UserRepo.GetAllAlbums());
         }
 
         [HttpGet]
-        public ActionResult Details(AlbumEntity album)
+        public ActionResult Details(AlbumModel album)
         {
             var albumDetails = UserRepo.GetAlbum(album.Id);
 
@@ -64,17 +69,30 @@ namespace MvcLab.Web.Controllers
             return View("Create");
         }
 
+        /// <summary>
+        /// todo: create album
+        /// 1. recieve an album model
+        /// 2. turn the album model into an album entity using mapper
+        /// 3. pass the album entity into the createalbum repository method (because it only acceppts entities)
+        /// </summary>
+        /// <param name="albumModel"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Create(AlbumEntity album)
+        public ActionResult Create(AlbumModel albumModel)
         {
             try
             {
-                Guid userId = album.Id;//TODO: userid and albumid the same? why?
+                Guid userId = albumModel.Id; //TODO: userid and albumid the same? why?
 
-                AlbumEntity newAlbum = UserRepo.CreateAlbum(album, userId);//add new album to repo so that we can comment on it!
+                var albumEntity = EntityModelMapper.ModelToEntity(albumModel);
+
+                //albumEntity.User = UserRepo.GetUser(userId);
+
+                UserRepo.Add(albumEntity, userId);//adds new album to dbset(database)
 
                 //create directory for new albums photos
-                string newAlbumPath = Server.MapPath("~/UsersData/" + newAlbum.User.Username + "/" + newAlbum.Name);
+                string newAlbumPath = Server.MapPath("~/UsersData/" + albumEntity.User.Username + "/" + albumEntity.Name);
+
                 Directory.CreateDirectory(newAlbumPath);
 
                 return RedirectToAction("Index", "User");
