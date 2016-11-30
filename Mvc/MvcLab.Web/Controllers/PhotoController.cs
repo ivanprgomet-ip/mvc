@@ -68,7 +68,8 @@ namespace MvcLab.Web.Controllers
             return View();
         }
 
-        public ActionResult Delete(Guid photoid /*Guid albumid*/)
+        [HttpPost]
+        public ActionResult Delete(Guid photoid)
         {
             UserRepo.DeletePhoto(UserRepo.GetPhoto(photoid));
 
