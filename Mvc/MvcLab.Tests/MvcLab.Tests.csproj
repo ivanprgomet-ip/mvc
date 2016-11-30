@@ -52,6 +52,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MvcLab.Data\MvcLab.Data.csproj">
+      <Project>{73688697-ce9a-40ab-9cb3-f3d44b61d7ba}</Project>
+      <Name>MvcLab.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MvcLab.Web\MvcLab.Web.csproj">
       <Project>{080C3B53-539D-4053-87EC-1476A5063AAD}</Project>
       <Name>MvcLab.Web</Name>
