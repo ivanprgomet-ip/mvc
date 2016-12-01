@@ -26,6 +26,5 @@ namespace MvcLab.Data.Repositories
             return photos;
         }
 
-
     }
 }
