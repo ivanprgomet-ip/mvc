@@ -204,7 +204,10 @@ namespace MvcLab.Data.Repositories
         /// <returns></returns>
         public UserEntity GetUser(Guid userId)
         {
-            return Users.FirstOrDefault(u => u.Id == userId);
+            MvcLabContext context = new MvcLabContext();
+
+            return context.Users
+                .FirstOrDefault(u => u.Id == userId);
         }
 
         public UserEntity GetLoggedInUser(string username, string password)
@@ -220,6 +223,10 @@ namespace MvcLab.Data.Repositories
 
             using (MvcLabContext context = new MvcLabContext())
             {
+                ///The model backing the 'MvcLabContext' context has 
+                ///changed since the database was created. 
+                ///Consider using Code First Migrations 
+                ///to update the database
                 foreach (var user in context.Users)
                 {
                     users.Add(user); //todo: also include related data

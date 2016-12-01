@@ -12,6 +12,7 @@ namespace MvcLab.Data
     {
         public MvcLabContext() : base("name=MvcLabConnectionString")
         {
+            Database.SetInitializer(new DropCreateDatabaseAlways<MvcLabContext>());
 
         }
 

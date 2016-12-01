@@ -1,3 +1,0 @@
-﻿[] fix the user views. change from MvcLab.Data to MvcLab.Web to reference correct models. 
-[x] make it possible to register new users and add them to the database
-[] make it possible to login as an user (that exists in the database)
