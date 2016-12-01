@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace MvcLab.Data.Repositories
 {
-    class AlbumRepository
+    public class AlbumRepository
     {
         private MvcLabContext _context;
 
@@ -54,16 +54,5 @@ namespace MvcLab.Data.Repositories
             return newAlbum;
         }
 
-        public void NewAlbumComment(Guid albumid, CommentEntity newAlbumComment)
-        {
-            using (_context = new MvcLabContext())
-            {
-                var albumEntity = _context.Albums.FirstOrDefault(a => a.Id == albumid);
-
-                albumEntity.Comments.Add(newAlbumComment);
-
-                _context.SaveChanges();
-            }
-        }
     }
 }

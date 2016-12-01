@@ -11,19 +11,19 @@ namespace MvcLab.Web.Controllers
 {
     public class PhotoController : Controller
     {
-        public UserRepository UserRepo { get; set; }
+        public PhotoRepository PhotoRepo { get; set; }
+        public AlbumRepository AlbumRepo { get; set; }
 
         public PhotoController()
         {
-            UserRepo = new UserRepository();
+            PhotoRepo = new PhotoRepository();
+            AlbumRepo = new AlbumRepository();
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            PhotoRepository photoRepo = new PhotoRepository();
-
-            List<PhotoEntity> photoEntities = photoRepo.RetrieveAll();
+            List<PhotoEntity> photoEntities = PhotoRepo.RetrieveAll();
 
             List<PhotoModel> photoModels = new List<PhotoModel>();
 
@@ -47,7 +47,7 @@ namespace MvcLab.Web.Controllers
             //why is the photo id and album id same?
             Guid albumId = photo.Id; 
 
-            AlbumModel album = EntityModelMapper.EntityToModel(UserRepo.GetAlbum(albumId));
+            AlbumModel album = EntityModelMapper.EntityToModel(AlbumRepo.Get(albumId));
 
             foreach (var file in filesToBeUploaded)
             {
@@ -83,7 +83,7 @@ namespace MvcLab.Web.Controllers
         [HttpPost]
         public ActionResult Delete(Guid photoid)
         {
-            UserRepo.DeletePhoto(UserRepo.GetPhoto(photoid));
+            PhotoRepo.DeletePhoto(PhotoRepo.GetPhoto(photoid));
 
             //TODO: remove the file from the folder where it lays
 
@@ -93,7 +93,7 @@ namespace MvcLab.Web.Controllers
         [HttpGet]
         public ActionResult Details(PhotoModel photo)
         {
-            PhotoModel photoToDisplay = EntityModelMapper.EntityToModel(UserRepo.GetPhoto(photo.Id));
+            PhotoModel photoToDisplay = EntityModelMapper.EntityToModel(PhotoRepo.GetPhoto(photo.Id));
             return View(photoToDisplay);
         }
 
@@ -106,7 +106,7 @@ namespace MvcLab.Web.Controllers
         [HttpPost]
         public ActionResult Details(PhotoModel photo, string comment)
         {
-            PhotoModel photoToCommentOn = EntityModelMapper.EntityToModel(UserRepo.GetPhoto(photo.Id));
+            PhotoModel photoToCommentOn = EntityModelMapper.EntityToModel(PhotoRepo.GetPhoto(photo.Id));
 
             CommentModel newComment = new CommentModel()
             {

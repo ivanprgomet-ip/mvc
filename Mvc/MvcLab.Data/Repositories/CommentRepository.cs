@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MvcLab.Data.Repositories
 {
-    class CommentRepository
+    public class CommentRepository
     {
         MvcLabContext _context;
         public void NewAlbumComment(Guid albumid, CommentEntity newAlbumComment)

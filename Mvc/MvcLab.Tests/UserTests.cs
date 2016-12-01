@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcLab.Data.Models;
 using MvcLab.Data.Repositories;
+using System.Collections.Generic;
 
 namespace MvcLab.Tests
 {
@@ -28,7 +29,7 @@ namespace MvcLab.Tests
                 DateRegistered = DateTime.Now,
             };
 
-            UserRepository.Users.Add(user);
+            userRepo.Add(user);
 
             //act
             var retrievedUser = userRepo.GetUser(user.Id);
@@ -59,8 +60,9 @@ namespace MvcLab.Tests
             //Act
             userRepo.Add(user);
 
+            List<UserEntity> users = userRepo.RetrieveAll();  
             //Assert
-            if (UserRepository.Users.Contains(user))
+            if (users.Contains(user))
                 Assert.IsTrue(true);
             else
                 Assert.IsTrue(false);

@@ -13,12 +13,13 @@ namespace MvcLab.Web.Controllers
 {
     public class AlbumController : Controller
     {
-        
-        public UserRepository UserRepo { get; set; }
+        public AlbumRepository AlbumRepo { get; set; }
+        public CommentRepository CommentRepo { get; set; }
 
         public AlbumController()
         {
-            UserRepo = new UserRepository();
+            AlbumRepo = new AlbumRepository();
+            CommentRepo = new CommentRepository();
         }
 
         /// <summary>
@@ -28,7 +29,9 @@ namespace MvcLab.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(UserRepo.GetAllAlbums());
+            AlbumRepo = new AlbumRepository();
+
+            return View(AlbumRepo.GetAll());
         }
 
         /// <summary>
@@ -50,15 +53,15 @@ namespace MvcLab.Web.Controllers
 
             var commentEntity = EntityModelMapper.ModelToEntity(commentModel);
 
-            UserRepo.CreateAlbumComment(album.Id, commentEntity);
+            CommentRepo.NewAlbumComment(album.Id, commentEntity);
 
-            return View(UserRepo.GetAllAlbums());
+            return View(AlbumRepo.GetAll());
         }
 
         [HttpGet]
         public ActionResult Details(AlbumModel album)
         {
-            var albumDetails = UserRepo.GetAlbum(album.Id);
+            var albumDetails = AlbumRepo.Get(album.Id);
 
             return View(albumDetails);
         }
@@ -88,7 +91,7 @@ namespace MvcLab.Web.Controllers
 
                 //albumEntity.User = UserRepo.GetUser(userId);
 
-                UserRepo.Add(albumEntity, userId);//adds new album to dbset(database)
+                AlbumRepo.Add(albumEntity, userId);//adds new album to dbset(database)
 
                 //create directory for new albums photos
                 string newAlbumPath = Server.MapPath("~/UsersData/" + albumEntity.User.Username + "/" + albumEntity.Name);
