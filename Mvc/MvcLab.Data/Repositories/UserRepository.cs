@@ -178,7 +178,7 @@ namespace MvcLab.Data.Repositories
         }
 
         /// <summary>
-        /// register a new user. successfully adds user to the database.
+        /// register a new user. Adds user to the database.
         /// </summary>
         /// <param name="userToBeRegistered"></param>
         public void Add(UserEntity userToBeRegistered)
@@ -189,7 +189,12 @@ namespace MvcLab.Data.Repositories
 
             userToBeRegistered.Albums = new List<AlbumEntity>();
 
-            Users.Add(userToBeRegistered);
+            using (MvcLabContext context = new MvcLabContext())
+            {
+                context.Users.Add(userToBeRegistered);
+
+                context.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -204,17 +209,23 @@ namespace MvcLab.Data.Repositories
 
         public UserEntity GetLoggedInUser(string username, string password)
         {
-            return Users.FirstOrDefault(u => u.Username == username && u.Password == password);
+            MvcLabContext context = new MvcLabContext();
+
+            return context.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
         }
 
-        public List<UserEntity> GetAllUsers()
+        public List<UserEntity> RetrieveAll()
         {
             List<UserEntity> users = new List<UserEntity>();
 
-            foreach (var user in Users)
+            using (MvcLabContext context = new MvcLabContext())
             {
-                users.Add(user); //todo: also include related data
+                foreach (var user in context.Users)
+                {
+                    users.Add(user); //todo: also include related data
+                }
             }
+
             return users;
         }
 

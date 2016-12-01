@@ -30,13 +30,14 @@ namespace MvcLab.Web.Controllers
         }
 
         /// <summary>
-        /// sending in all the temporary users into the view 
-        /// to show them in a list
+        /// gets all the users as entities, but due to this being an action,
+        /// we only want to work with models, so we use the mapper to make all the 
+        /// entities retreived models. which is principally the same thing. just decoupling.
         /// </summary>
         /// <returns></returns>
         public ActionResult Index()
         {
-            List<UserEntity> userEntities = UserRepository.GetAllUsers();
+            List<UserEntity> userEntities = UserRepository.RetrieveAll();
 
             List<UserModel> userModels = new List<UserModel>();
 
@@ -45,7 +46,7 @@ namespace MvcLab.Web.Controllers
                 userModels.Add(EntityModelMapper.EntityToModel(userEntity));
             }
 
-            return View(UserRepository.Users);
+            return View(userModels);
         }
 
         /// <summary>
@@ -95,6 +96,11 @@ namespace MvcLab.Web.Controllers
             return View();
         }
 
+        /// <summary>
+        /// register a new user for the web application
+        /// </summary>
+        /// <param name="userModel"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(UserModel userModel)

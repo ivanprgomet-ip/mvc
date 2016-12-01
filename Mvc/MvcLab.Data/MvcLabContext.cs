@@ -10,9 +10,14 @@ namespace MvcLab.Data
 {
     class MvcLabContext:DbContext
     {
-        DbSet<UserEntity> Users { get; set; }
-        DbSet<AlbumEntity> Albums { get; set; }
-        DbSet<PhotoEntity> Photos { get; set; }
-        DbSet<CommentEntity> Comments { get; set; }
+        public MvcLabContext() : base("name=MvcLabConnectionString")
+        {
+
+        }
+
+        public DbSet<UserEntity> Users { get; set; }
+        public DbSet<AlbumEntity> Albums { get; set; }
+        public DbSet<PhotoEntity> Photos { get; set; }
+        public DbSet<CommentEntity> Comments { get; set; }
     }
 }
