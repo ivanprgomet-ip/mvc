@@ -15,7 +15,7 @@ namespace MvcLab.Data.Repositories
         {
             List<PhotoEntity> photos = new List<PhotoEntity>();
 
-            using (_context= new MvcLabContext())
+            using (_context = new MvcLabContext())
             {
                 foreach (var photo in _context.Photos.ToList())
                 {
@@ -26,5 +26,31 @@ namespace MvcLab.Data.Repositories
             return photos;
         }
 
+        public void CreatePhoto(PhotoEntity photo)
+        {
+            //todo: point of this method?
+            photo.DateCreated = DateTime.Now;
+            photo.Id = Guid.NewGuid();
+        }
+
+        public void DeletePhoto(PhotoEntity photo)
+        {
+            using (_context = new MvcLabContext())
+            {
+                var photoToBeRemoved = _context.Photos.FirstOrDefault(p => p.Id == photo.Id);
+
+                _context.Photos.Remove(photoToBeRemoved);
+
+                _context.SaveChanges();
+            }
+        }
+
+        public PhotoEntity GetPhoto(Guid id)
+        {
+            using (_context = new MvcLabContext())
+            {
+                return _context.Photos.FirstOrDefault(p => p.Id == id);
+            }
+        }
     }
 }

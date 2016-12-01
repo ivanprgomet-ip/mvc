@@ -76,7 +76,7 @@ namespace MvcLab.Web.Controllers
         public ActionResult Login(UserModel userModel)
         {
             UserModel authenticatedUser = EntityModelMapper.EntityToModel(
-                UserRepository.GetLoggedInUser(
+                UserRepository.RetrieveLoggedInUser(
                     userModel.Username, userModel.Password));
 
             if (authenticatedUser != null)
