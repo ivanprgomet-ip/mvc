@@ -1,4 +1,5 @@
-﻿using MvcLab.Data.Repositories;
+﻿using MvcLab.Data.Models;
+using MvcLab.Data.Repositories;
 using MvcLab.Web.Mapper;
 using MvcLab.Web.Models;
 using System;
@@ -20,7 +21,18 @@ namespace MvcLab.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(UserRepo.GetAllPhotos());
+            PhotoRepository photoRepo = new PhotoRepository();
+
+            List<PhotoEntity> photoEntities = photoRepo.RetrieveAll();
+
+            List<PhotoModel> photoModels = new List<PhotoModel>();
+
+            foreach (var photoEntity in photoEntities)
+            {
+                photoModels.Add(EntityModelMapper.EntityToModel(photoEntity));
+            }
+
+            return View(photoModels);
         }
 
         [HttpGet]

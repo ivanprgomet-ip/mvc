@@ -259,32 +259,6 @@ namespace MvcLab.Data.Repositories
         }
 
         /// <summary>
-        /// return list of all photos from all users
-        /// </summary>
-        /// <returns></returns>
-        public List<PhotoEntity> GetAllPhotos()
-        {
-            List<PhotoEntity> photos = new List<PhotoEntity>();
-
-            foreach (var user in Users)
-            {
-                foreach (var album in user.Albums)
-                {
-                    foreach (var photo in album.Photos)
-                    {
-                        PhotoEntity current = new PhotoEntity();
-                        current = photo;
-                        current.Album = album;
-                        current.User = user;
-
-                        photos.Add(photo);
-                    }
-                }
-            }
-            return photos;
-        }
-
-        /// <summary>
         /// return the correct photo when we find it
         /// </summary>
         /// <param name="id"></param>
