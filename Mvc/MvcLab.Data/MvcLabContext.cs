@@ -12,8 +12,8 @@ namespace MvcLab.Data
     {
         public MvcLabContext() : base("name=MvcLabConnectionString")
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<MvcLabContext>());
-
+            //Database.SetInitializer(new DropCreateDatabaseAlways<MvcLabContext>());
+            //run Update-Database in package manager console whenever you make any changes
         }
 
         public DbSet<UserEntity> Users { get; set; }

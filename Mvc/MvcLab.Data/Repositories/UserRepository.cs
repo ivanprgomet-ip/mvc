@@ -223,13 +223,9 @@ namespace MvcLab.Data.Repositories
 
             using (MvcLabContext context = new MvcLabContext())
             {
-                ///The model backing the 'MvcLabContext' context has 
-                ///changed since the database was created. 
-                ///Consider using Code First Migrations 
-                ///to update the database
-                foreach (var user in context.Users)
+                foreach (var user in context.Users.ToList())
                 {
-                    users.Add(user); //todo: also include related data
+                    users.Add(user);
                 }
             }
 

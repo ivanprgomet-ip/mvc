@@ -20,5 +20,10 @@ namespace MvcLab.Data.Models
         public string Password { get; set; }
         public DateTime DateRegistered { get; set; }
         public virtual ICollection<AlbumEntity> Albums { get; set; }
+
+        public UserEntity()
+        {
+            Albums = new List<AlbumEntity>();
+        }
     }
 }

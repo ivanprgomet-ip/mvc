@@ -12,7 +12,7 @@ namespace MvcLab.Data.Models
         public DateTime DateCreated { get; set; }
         public DateTime DateChanged { get; set; }
 
-        public PhotoEntity Photo { get; set; }
-        public AlbumEntity Album { get; set; }
+        public virtual PhotoEntity Photo { get; set; }
+        public virtual AlbumEntity Album { get; set; }
     }
 }

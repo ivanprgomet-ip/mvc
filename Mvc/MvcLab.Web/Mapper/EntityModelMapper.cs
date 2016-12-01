@@ -44,6 +44,7 @@ namespace MvcLab.Web.Mapper
                 DateRegistered = entity.DateRegistered,
                 Username = entity.Username,
                 Password = entity.Password,
+                Albums = new List<AlbumModel>(), //todo: the correct way?
             };
 
             return model;
