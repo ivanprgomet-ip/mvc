@@ -1,0 +1,10 @@
+﻿@model IEnumerable<MvcLab.Web.Models.AlbumModel>
+
+<div class="container">
+    @{
+        foreach (var album in Model)
+        {
+            @Html.Partial("_Album", album);
+        }
+    }
+</div>

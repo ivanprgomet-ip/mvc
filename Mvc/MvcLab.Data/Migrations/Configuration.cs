@@ -32,8 +32,7 @@ namespace MvcLab.Data.Migrations
                 Username = "ivanprgomet",
                 Password = "ivan123",
                 DateRegistered = DateTime.Now,
-
-                Albums = new List<AlbumEntity>(),
+                //Albums = new List<AlbumEntity>(), //initialized in the construcotr of UserEntity
             };
             #region creating album for Ivan
             u1.Albums.Add(new AlbumEntity()
@@ -42,103 +41,108 @@ namespace MvcLab.Data.Migrations
                 DateCreated = DateTime.Now,
                 Name = "Coding Events",
                 Description = "Photos from some coding events that I have attended",
-                Photos = new List<PhotoEntity>(),
-                Comments = new List<CommentEntity>(),
-                User = u1,
+                //Photos = new List<PhotoEntity>(), //initialized in the construcotr of AlbumEntity
+                //Comments = new List<CommentEntity>(), //initialized in the construcotr of AlbumEntity
+                UserId = u1.UserId,
             });
             #endregion
 
-            UserEntity u2 = new UserEntity()
-            {
-                UserId = Guid.NewGuid(),
-                Firstname = "Lea",
-                Lastname = "Winchester",
-                Country = "England",
-                City = "London",
-                Street = "Grape Street",
-                Email = "leawinchester@gmail.com",
-                Phone = "92345873294",
-                Username = "leawinchester",
-                Password = "lealea",
-                DateRegistered = DateTime.Now,
-
-                Albums = new List<AlbumEntity>(),
-            };
-            #region creating album for Lea (files added in album folder before startup, later files get added thru mvc UI input type file)
-            u2.Albums.Add(new AlbumEntity()
-            {
-                AlbumId = Guid.NewGuid(),
-                DateCreated = DateTime.Now,
-                Name = "Lea Coding Album",
-                Description = "No Album Description",
-                Photos = new List<PhotoEntity>() {
-                    new PhotoEntity()
-                            {
-                                PhotoId = Guid.NewGuid(),
-                                Name = "coffe is love",
-                                FileName = "code2.jpg",
-                                DateCreated = DateTime.Now,
-                                Description = "No Photo Description",
-                                Comments = new List<CommentEntity>(),
-                            },
-                    new PhotoEntity()
-                            {
-                                PhotoId = Guid.NewGuid(),
-                                Name = "think before you code",
-                                FileName = "code4.png",
-                                DateCreated = DateTime.Now,
-                                Description = "you should never mix code with alcohol",
-                                Comments = new List<CommentEntity>(),
-                            },
-                    new PhotoEntity()
-                            {
-                                PhotoId = Guid.NewGuid(),
-                                Name = "no place like home",
-                                FileName = "code5.jpg",
-                                DateCreated = DateTime.Now,
-                                Description = "No Photo Description",
-                                Comments = new List<CommentEntity>(),
-                            },
-                },
-                Comments = new List<CommentEntity>(),
-                User = u2,
-            });
-            #endregion
-
-
-            UserEntity u3 = new UserEntity()
-            {
-                UserId = Guid.NewGuid(),
-                Firstname = "Scott",
-                Lastname = "Ferryson",
-                Country = "Australia",
-                City = "Sydney",
-                Street = "Kangaroo Alley 8",
-                Email = "ImScott@gmail.com",
-                Phone = "3940857",
-                Username = "scottferryson",
-                Password = "scott123",
-                DateRegistered = DateTime.Now,
-
-                Albums = new List<AlbumEntity>(),
-            };
-
-            //add the users to the database
             using (MvcLabContext ctx = new MvcLabContext())
             {
                 ctx.Users.AddOrUpdate(u1);
-                ctx.Users.AddOrUpdate(u2);
-                ctx.Users.AddOrUpdate(u3);
 
                 ctx.SaveChanges();
             }
 
+            //UserEntity u2 = new UserEntity()
+            //{
+            //    UserId = Guid.NewGuid(),
+            //    Firstname = "Lea",
+            //    Lastname = "Winchester",
+            //    Country = "England",
+            //    City = "London",
+            //    Street = "Grape Street",
+            //    Email = "leawinchester@gmail.com",
+            //    Phone = "92345873294",
+            //    Username = "leawinchester",
+            //    Password = "lealea",
+            //    DateRegistered = DateTime.Now,
 
+            //    Albums = new List<AlbumEntity>(),
+            //};
+            //#region creating album for Lea (files added in album folder before startup, later files get added thru mvc UI input type file)
+            //u2.Albums.Add(new AlbumEntity()
+            //{
+            //    AlbumId = Guid.NewGuid(),
+            //    DateCreated = DateTime.Now,
+            //    Name = "Lea Coding Album",
+            //    Description = "No Album Description",
+            //    Photos = new List<PhotoEntity>() {
+            //        new PhotoEntity()
+            //                {
+            //                    PhotoId = Guid.NewGuid(),
+            //                    Name = "coffe is love",
+            //                    FileName = "code2.jpg",
+            //                    DateCreated = DateTime.Now,
+            //                    Description = "No Photo Description",
+            //                    Comments = new List<CommentEntity>(),
+            //                },
+            //        new PhotoEntity()
+            //                {
+            //                    PhotoId = Guid.NewGuid(),
+            //                    Name = "think before you code",
+            //                    FileName = "code4.png",
+            //                    DateCreated = DateTime.Now,
+            //                    Description = "you should never mix code with alcohol",
+            //                    Comments = new List<CommentEntity>(),
+            //                },
+            //        new PhotoEntity()
+            //                {
+            //                    PhotoId = Guid.NewGuid(),
+            //                    Name = "no place like home",
+            //                    FileName = "code5.jpg",
+            //                    DateCreated = DateTime.Now,
+            //                    Description = "No Photo Description",
+            //                    Comments = new List<CommentEntity>(),
+            //                },
+            //    },
+            //    Comments = new List<CommentEntity>(),
+            //    User = u2,
+            //});
+            //#endregion
+
+
+            //UserEntity u3 = new UserEntity()
+            //{
+            //    UserId = Guid.NewGuid(),
+            //    Firstname = "Scott",
+            //    Lastname = "Ferryson",
+            //    Country = "Australia",
+            //    City = "Sydney",
+            //    Street = "Kangaroo Alley 8",
+            //    Email = "ImScott@gmail.com",
+            //    Phone = "3940857",
+            //    Username = "scottferryson",
+            //    Password = "scott123",
+            //    DateRegistered = DateTime.Now,
+
+            //    Albums = new List<AlbumEntity>(),
+            //};
+
+            //add the users to the database
+
+
+
+            SetupFolders();
+        }
+
+        private void SetupFolders()
+        {
             //server mappath doesnt work here, using alternative to get basedir (instead of ~)
             string baseDir = System.AppDomain.CurrentDomain.BaseDirectory;
 
             string destination = string.Format($"{baseDir}/UsersData/");
-            
+
             if (!Directory.Exists(destination))
             {
                 Directory.CreateDirectory(destination);
@@ -161,8 +165,6 @@ namespace MvcLab.Data.Migrations
                 }
 
             }
-
-
         }
     }
 }

@@ -16,8 +16,8 @@ namespace MvcLab.Data.Models
 
         //navigation properties and foreign key properties
         public virtual PhotoEntity Photo { get; set; }
-        public int PhotoId { get; set; }
+        public Guid PhotoId { get; set; }
         public virtual AlbumEntity Album { get; set; }
-        public int AlbumId { get; set; }
+        public Guid AlbumId { get; set; }
     }
 }

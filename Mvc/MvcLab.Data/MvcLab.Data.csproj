@@ -57,6 +57,10 @@
     <Compile Include="Migrations\201612011209510_InitialCreate.Designer.cs">
       <DependentUpon>201612011209510_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612021427072_bckup.cs" />
+    <Compile Include="Migrations\201612021427072_bckup.Designer.cs">
+      <DependentUpon>201612021427072_bckup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MvcLabContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +76,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612011209510_InitialCreate.resx">
       <DependentUpon>201612011209510_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612021427072_bckup.resx">
+      <DependentUpon>201612021427072_bckup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

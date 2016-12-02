@@ -16,6 +16,6 @@ namespace MvcLab.Web.Models
         public virtual ICollection<PhotoModel> Photos { get; set; }
 
         public virtual UserModel User { get; set; }
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
     }
 }

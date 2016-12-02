@@ -18,8 +18,8 @@ namespace MvcLab.Web.Models
         public virtual List<CommentModel> Comments { get; set; }
 
         public virtual UserModel User { get; set; }
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public virtual AlbumModel Album { get; set; }
-        public int AlbumId { get; set; }
+        public Guid AlbumId { get; set; }
     }
 }

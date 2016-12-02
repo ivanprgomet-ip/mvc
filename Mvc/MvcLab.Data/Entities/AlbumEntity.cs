@@ -21,7 +21,7 @@ namespace MvcLab.Data.Models
 
         //navigation property and foreign key property
         public virtual UserEntity User { get; set; }
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
 
         public AlbumEntity()
         {

@@ -3,22 +3,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2>Most Recent Albums</h2>
 
 <div class="container">
-    @{ 
-        if (Model.Any())
-        {
-            foreach (var album in Model)
-            {
-                @Html.Partial("_Album", album);
-            }
-        }
-        else
-        {
-            <h2>Sorry, no albums exist for this site..</h2>
-        }
-    }
-   @*@Html.Partial("ListAlbums", Model);*@
+    @Html.Partial("_Albums", Model)
 </div>

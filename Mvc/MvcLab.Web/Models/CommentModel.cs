@@ -14,8 +14,8 @@ namespace MvcLab.Web.Models
 
        
         public virtual PhotoModel Photo { get; set; }
-        public int PhotoId { get; set; }
+        public Guid PhotoId { get; set; }
         public virtual AlbumModel Album { get; set; }
-        public int AlbumId { get; set; }
+        public Guid AlbumId { get; set; }
     }
 }
