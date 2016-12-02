@@ -16,7 +16,6 @@ namespace MvcLab.Data.Repositories
     /// </summary>
     public class UserRepository
     {
-        MvcLabContext _context;
 
         /// <summary>
         /// register a new user. Adds user to the database.
@@ -30,7 +29,7 @@ namespace MvcLab.Data.Repositories
 
             userToBeRegistered.Albums = new List<AlbumEntity>();
 
-            using (_context = new MvcLabContext())
+            using (MvcLabContext _context = new MvcLabContext())
             {
                 _context.Users.Add(userToBeRegistered);
 
@@ -45,7 +44,7 @@ namespace MvcLab.Data.Repositories
         /// <returns></returns>
         public UserEntity GetUser(Guid userId)
         {
-            using (_context = new MvcLabContext())
+            using (MvcLabContext _context = new MvcLabContext())
             {
                 return _context.Users.FirstOrDefault(u => u.UserId == userId);
             }
@@ -53,9 +52,11 @@ namespace MvcLab.Data.Repositories
 
         public UserEntity RetrieveLoggedInUser(string username, string password)
         {
-            using (_context = new MvcLabContext())
+            using (MvcLabContext _context = new MvcLabContext())
             {
-                return _context.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
+                return _context.Users
+                    .FirstOrDefault(u => u.Username == username &&
+                    u.Password == password);
             }
 
         }
@@ -64,7 +65,7 @@ namespace MvcLab.Data.Repositories
         {
             List<UserEntity> users = new List<UserEntity>();
 
-            using (_context = new MvcLabContext())
+            using (MvcLabContext _context = new MvcLabContext())
             {
                 List<UserEntity> userEntitiesFromDB = _context.Users.ToList();
 
@@ -72,9 +73,10 @@ namespace MvcLab.Data.Repositories
                 {
                     users.Add(user);
                 }
+
+                return users;
             }
 
-            return users;
         }
     }
 }

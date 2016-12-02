@@ -7,35 +7,29 @@ namespace MvcLab.Data.Repositories
 {
     public class AlbumRepository
     {
-        private MvcLabContext _context;
-
         public AlbumEntity Get(Guid albumId)
         {
-            using (_context = new MvcLabContext())
+            using (MvcLabContext _context = new MvcLabContext())
             {
                 return _context.Albums.FirstOrDefault(a => a.AlbumId == albumId);
             }
         }
 
-
         public List<AlbumEntity> GetAll()
         {
-            List<AlbumEntity> albums = new List<AlbumEntity>();
-
-            using (_context = new MvcLabContext())
+            using (MvcLabContext _context = new MvcLabContext())
             {
-                albums = _context.Albums.ToList();
+                return _context.Albums.ToList();
             }
-
-            return albums;
         }
 
         public AlbumEntity Add(AlbumEntity newAlbum, Guid userId)
         {
-            using (_context = new MvcLabContext())
+            using (MvcLabContext _context = new MvcLabContext())
             {
                 //get the owner of the album
-                var albumUser = _context.Users.Where(u => u.UserId == userId).FirstOrDefault();
+                var albumUser = _context.Users.Where(u => u.UserId == userId)
+                    .FirstOrDefault();
 
                 //set some properties of the new album
                 newAlbum.AlbumId = Guid.NewGuid();
@@ -49,10 +43,10 @@ namespace MvcLab.Data.Repositories
                 //_context.Albums.Add(newAlbum);
 
                 _context.SaveChanges();
+
+                return newAlbum;
             }
 
-            return newAlbum;
         }
-
     }
 }

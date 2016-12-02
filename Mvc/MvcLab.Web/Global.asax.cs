@@ -39,7 +39,7 @@ namespace MvcLab.Web
         {
             //redirect to custom error page when encountering error..
             //tip: think about specifying the URL as arguments, not the path..
-            Response.Redirect("/Home/Error");
+            //Response.Redirect("/Home/Error");
         }
     }
 }

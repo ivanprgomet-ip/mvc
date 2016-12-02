@@ -9,10 +9,9 @@ namespace MvcLab.Data.Repositories
 {
     public class CommentRepository
     {
-        MvcLabContext _context;
         public void NewAlbumComment(Guid albumid, CommentEntity newAlbumComment)
         {
-            using (_context = new MvcLabContext())
+            using (MvcLabContext _context = new MvcLabContext())
             {
                 var albumEntity = _context.Albums.FirstOrDefault(a => a.AlbumId == albumid);
 

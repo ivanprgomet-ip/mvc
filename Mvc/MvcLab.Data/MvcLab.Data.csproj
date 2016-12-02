@@ -61,6 +61,10 @@
     <Compile Include="Migrations\201612021427072_bckup.Designer.cs">
       <DependentUpon>201612021427072_bckup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612021510042_Changed Ids from ints to Guids.cs" />
+    <Compile Include="Migrations\201612021510042_Changed Ids from ints to Guids.Designer.cs">
+      <DependentUpon>201612021510042_Changed Ids from ints to Guids.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MvcLabContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +83,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612021427072_bckup.resx">
       <DependentUpon>201612021427072_bckup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612021510042_Changed Ids from ints to Guids.resx">
+      <DependentUpon>201612021510042_Changed Ids from ints to Guids.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
