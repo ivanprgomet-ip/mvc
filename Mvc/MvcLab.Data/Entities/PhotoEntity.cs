@@ -9,7 +9,7 @@ namespace MvcLab.Data.Models
     public class PhotoEntity
     {
         [Key]
-        public Guid PhotoId { get; set; }
+        public int PhotoId { get; set; }
         public string Name { get; set; }
         public string FileName { get; set; }
         public string Description { get; set; }
@@ -22,9 +22,9 @@ namespace MvcLab.Data.Models
 
         //navigation properties and foreign key properties
         public virtual UserEntity User { get; set; }
-        public Guid UserId { get; set; }
+        public int? UserId { get; set; }
         public virtual AlbumEntity Album { get; set; }
-        public Guid AlbumId { get; set; }
+        public int? AlbumId { get; set; }
 
         public PhotoEntity()
         {

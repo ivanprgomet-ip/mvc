@@ -53,20 +53,7 @@
     <Compile Include="Entities\CommentEntity.cs" />
     <Compile Include="Entities\PhotoEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
-    <Compile Include="Migrations\201612011209510_InitialCreate.cs" />
-    <Compile Include="Migrations\201612011209510_InitialCreate.Designer.cs">
-      <DependentUpon>201612011209510_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612021427072_bckup.cs" />
-    <Compile Include="Migrations\201612021427072_bckup.Designer.cs">
-      <DependentUpon>201612021427072_bckup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612021510042_Changed Ids from ints to Guids.cs" />
-    <Compile Include="Migrations\201612021510042_Changed Ids from ints to Guids.Designer.cs">
-      <DependentUpon>201612021510042_Changed Ids from ints to Guids.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="MvcLabContext.cs" />
+    <Compile Include="MvcApplicationDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AlbumRepository.cs" />
     <Compile Include="Repositories\CommentRepository.cs" />
@@ -74,22 +61,10 @@
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612011209510_InitialCreate.resx">
-      <DependentUpon>201612011209510_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612021427072_bckup.resx">
-      <DependentUpon>201612021427072_bckup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612021510042_Changed Ids from ints to Guids.resx">
-      <DependentUpon>201612021510042_Changed Ids from ints to Guids.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="UsersData\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

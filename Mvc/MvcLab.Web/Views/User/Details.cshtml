@@ -43,7 +43,7 @@
             foreach (var album in Model.Albums)
             {
                 <div class="table-bordered" style="padding:15px">
-                    @Html.ActionLink(album.Name, "Details", "Album", new { id = album.Id, type = "AlbumModel" }, null);
+                    @Html.ActionLink(album.Name, "Details", "Album", new { id = album.AlbumId, type = "AlbumModel" }, null);
                     <small>(@album.DateCreated) - @album.Photos.Count photos</small>
                 </div>
             }
@@ -51,4 +51,4 @@
     }
 </article>
 
-@Html.ActionLink("Create Album", "Create", "Album", new { id = Model.Id }, null)
+@Html.ActionLink("Create Album", "Create", "Album", new { id = Model.UserId}, null)

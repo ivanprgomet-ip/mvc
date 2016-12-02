@@ -7,7 +7,7 @@ namespace MvcLab.Web.Models
 {
     public class PhotoModel
     {
-        public Guid PhotoId { get; set; }
+        public int PhotoId { get; set; }
         public string Name { get; set; }
         public string FileName { get; set; }
         public string Description { get; set; }
@@ -18,8 +18,8 @@ namespace MvcLab.Web.Models
         public virtual List<CommentModel> Comments { get; set; }
 
         public virtual UserModel User { get; set; }
-        public Guid UserId { get; set; }
+        public int? UserId { get; set; }
         public virtual AlbumModel Album { get; set; }
-        public Guid AlbumId { get; set; }
+        public int? AlbumId { get; set; }
     }
 }

@@ -92,7 +92,7 @@ namespace MvcLab.Web.Controllers
         {
             try
             {
-                Guid userId = albumModel.AlbumId; //TODO: userid and albumid the same? why?
+                int userId = albumModel.AlbumId; //TODO: userid and albumid the same? why?
 
                 var albumEntity = EntityModelMapper.ModelToEntity(albumModel);
 

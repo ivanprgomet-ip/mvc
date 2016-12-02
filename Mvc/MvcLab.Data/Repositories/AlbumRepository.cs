@@ -7,9 +7,9 @@ namespace MvcLab.Data.Repositories
 {
     public class AlbumRepository
     {
-        public AlbumEntity Get(Guid albumId)
+        public AlbumEntity Get(int albumId)
         {
-            using (MvcLabContext _context = new MvcLabContext())
+            using (MvcApplicationDB _context = new MvcApplicationDB())
             {
                 return _context.Albums.FirstOrDefault(a => a.AlbumId == albumId);
             }
@@ -17,22 +17,22 @@ namespace MvcLab.Data.Repositories
 
         public List<AlbumEntity> GetAll()
         {
-            using (MvcLabContext _context = new MvcLabContext())
+            using (MvcApplicationDB _context = new MvcApplicationDB())
             {
                 return _context.Albums.ToList();
             }
         }
 
-        public AlbumEntity Add(AlbumEntity newAlbum, Guid userId)
+        public AlbumEntity Add(AlbumEntity newAlbum, int userId)
         {
-            using (MvcLabContext _context = new MvcLabContext())
+            using (MvcApplicationDB _context = new MvcApplicationDB())
             {
                 //get the owner of the album
                 var albumUser = _context.Users.Where(u => u.UserId == userId)
                     .FirstOrDefault();
 
                 //set some properties of the new album
-                newAlbum.AlbumId = Guid.NewGuid();
+                //newAlbum.AlbumId = Guid.NewGuid();
                 newAlbum.DateCreated = DateTime.Now;
                 newAlbum.Photos = new List<PhotoEntity>();
                 newAlbum.User = albumUser;

@@ -23,13 +23,13 @@ namespace MvcLab.Data.Repositories
         /// <param name="userToBeRegistered"></param>
         public void Add(UserEntity userToBeRegistered)
         {
-            userToBeRegistered.UserId = Guid.NewGuid();
+            //userToBeRegistered.UserId = Guid.NewGuid();
 
             userToBeRegistered.DateRegistered = DateTime.Now;
 
             userToBeRegistered.Albums = new List<AlbumEntity>();
 
-            using (MvcLabContext _context = new MvcLabContext())
+            using (MvcApplicationDB _context = new MvcApplicationDB())
             {
                 _context.Users.Add(userToBeRegistered);
 
@@ -42,9 +42,9 @@ namespace MvcLab.Data.Repositories
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public UserEntity GetUser(Guid userId)
+        public UserEntity GetUser(int userId)
         {
-            using (MvcLabContext _context = new MvcLabContext())
+            using (MvcApplicationDB _context = new MvcApplicationDB())
             {
                 return _context.Users.FirstOrDefault(u => u.UserId == userId);
             }
@@ -52,7 +52,7 @@ namespace MvcLab.Data.Repositories
 
         public UserEntity RetrieveLoggedInUser(string username, string password)
         {
-            using (MvcLabContext _context = new MvcLabContext())
+            using (MvcApplicationDB _context = new MvcApplicationDB())
             {
                 return _context.Users
                     .FirstOrDefault(u => u.Username == username &&
@@ -65,7 +65,7 @@ namespace MvcLab.Data.Repositories
         {
             List<UserEntity> users = new List<UserEntity>();
 
-            using (MvcLabContext _context = new MvcLabContext())
+            using (MvcApplicationDB _context = new MvcApplicationDB())
             {
                 List<UserEntity> userEntitiesFromDB = _context.Users.ToList();
 

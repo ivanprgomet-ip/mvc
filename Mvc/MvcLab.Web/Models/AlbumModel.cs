@@ -7,7 +7,7 @@ namespace MvcLab.Web.Models
 {
     public class AlbumModel
     {
-        public Guid AlbumId { get; set; }
+        public int AlbumId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
@@ -16,6 +16,6 @@ namespace MvcLab.Web.Models
         public virtual ICollection<PhotoModel> Photos { get; set; }
 
         public virtual UserModel User { get; set; }
-        public Guid UserId { get; set; }
+        public int? UserId { get; set; }
     }
 }

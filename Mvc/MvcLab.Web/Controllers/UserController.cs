@@ -4,6 +4,7 @@ using MvcLab.Data.Models;
 using MvcLab.Web.Mapper;
 using System.Collections.Generic;
 using MvcLab.Web.Models;
+using System;
 
 namespace MvcLab.Web.Controllers
 {
@@ -54,9 +55,9 @@ namespace MvcLab.Web.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public ActionResult Details(UserModel user)
+        public ActionResult Details(int userid)
         {
-            UserModel userToShow = EntityModelMapper.EntityToModel(UserRepository.GetUser(user.UserId));
+            UserModel userToShow = EntityModelMapper.EntityToModel(UserRepository.GetUser(userid));
 
             return View(userToShow);
         }
