@@ -29,9 +29,16 @@ namespace MvcLab.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            AlbumRepo = new AlbumRepository();
+            List<AlbumEntity> albumEntities = AlbumRepo.GetAll();
 
-            return View(AlbumRepo.GetAll());
+            List<AlbumModel> albumModels = new List<AlbumModel>();
+
+            foreach (var albumEntity in albumEntities)
+            {
+                albumModels.Add(EntityModelMapper.EntityToModel(albumEntity));
+            }
+
+            return View(albumModels);
         }
 
         /// <summary>

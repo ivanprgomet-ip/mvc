@@ -14,10 +14,15 @@ namespace MvcLab.Data.Models
         public DateTime DateCreated { get; set; }
         public DateTime DateChanged { get; set; }
         public string UploadedBy { get; set; }
+
+        //navigation property
         public virtual List<CommentEntity> Comments { get; set; }
 
+        //navigation properties and foreign key properties
         public virtual UserEntity User { get; set; }
+        public int UserId { get; set; }
         public virtual AlbumEntity Album { get; set; }
+        public int AlbumId { get; set; }
 
         public PhotoEntity()
         {

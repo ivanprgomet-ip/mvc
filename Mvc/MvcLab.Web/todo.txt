@@ -1,0 +1,4 @@
+﻿[] make recent albums work
+[] when creating an album for a user, make it 
+	[] create an album for the user
+	[] create relevant folder(s)

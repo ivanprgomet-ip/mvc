@@ -8,9 +8,16 @@
 
 <div class="container">
     @{ 
-        foreach (var album in Model)
+        if (Model.Any())
         {
-            @Html.Partial("_Album", album);
+            foreach (var album in Model)
+            {
+                @Html.Partial("_Album", album);
+            }
+        }
+        else
+        {
+            <h2>Sorry, no albums exist for this site..</h2>
         }
     }
    @*@Html.Partial("ListAlbums", Model);*@
