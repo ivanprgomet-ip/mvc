@@ -35,7 +35,7 @@ namespace MvcLab.Data.Repositories
             using (_context = new MvcLabContext())
             {
                 //get the owner of the album
-                var albumUser = _context.Users.Where(u => u.Id == userId).FirstOrDefault();
+                var albumUser = _context.Users.Where(u => u.UserId == userId).FirstOrDefault();
 
                 //set some properties of the new album
                 newAlbum.AlbumId = Guid.NewGuid();

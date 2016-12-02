@@ -21,7 +21,7 @@ namespace MvcLab.Data.Migrations
             //create some default users
             UserEntity u1 = new UserEntity()
             {
-                Id = Guid.NewGuid(),
+                UserId = Guid.NewGuid(),
                 Firstname = "Ivan",
                 Lastname = "Prgomet",
                 Country = "Sweden",
@@ -50,7 +50,7 @@ namespace MvcLab.Data.Migrations
 
             UserEntity u2 = new UserEntity()
             {
-                Id = Guid.NewGuid(),
+                UserId = Guid.NewGuid(),
                 Firstname = "Lea",
                 Lastname = "Winchester",
                 Country = "England",
@@ -108,7 +108,7 @@ namespace MvcLab.Data.Migrations
 
             UserEntity u3 = new UserEntity()
             {
-                Id = Guid.NewGuid(),
+                UserId = Guid.NewGuid(),
                 Firstname = "Scott",
                 Lastname = "Ferryson",
                 Country = "Australia",

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,6 +8,7 @@ namespace MvcLab.Data.Models
 {
     public class CommentEntity
     {
+        [Key]
         public Guid CommentId { get; set; }
         public string Comment { get; set; }
         public DateTime DateCreated { get; set; }

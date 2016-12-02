@@ -24,7 +24,7 @@ namespace MvcLab.Data.Repositories
         /// <param name="userToBeRegistered"></param>
         public void Add(UserEntity userToBeRegistered)
         {
-            userToBeRegistered.Id = Guid.NewGuid();
+            userToBeRegistered.UserId = Guid.NewGuid();
 
             userToBeRegistered.DateRegistered = DateTime.Now;
 
@@ -47,7 +47,7 @@ namespace MvcLab.Data.Repositories
         {
             using (_context = new MvcLabContext())
             {
-                return _context.Users.FirstOrDefault(u => u.Id == userId);
+                return _context.Users.FirstOrDefault(u => u.UserId == userId);
             }
         }
 

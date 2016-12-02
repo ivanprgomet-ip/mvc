@@ -16,7 +16,7 @@ namespace MvcLab.Tests
             UserRepository userRepo = new UserRepository();
             UserEntity user = new UserEntity()
             {
-                Id = Guid.NewGuid(),
+                UserId = Guid.NewGuid(),
                 Firstname = "ivan",
                 Lastname = "prgomet",
                 Phone = "9238457",
@@ -32,7 +32,7 @@ namespace MvcLab.Tests
             userRepo.Add(user);
 
             //act
-            var retrievedUser = userRepo.GetUser(user.Id);
+            var retrievedUser = userRepo.GetUser(user.UserId);
 
             //assert
             Assert.AreEqual(user, retrievedUser);
@@ -44,7 +44,7 @@ namespace MvcLab.Tests
             UserRepository userRepo = new UserRepository();
             UserEntity user = new UserEntity()
             {
-                Id = Guid.NewGuid(),
+                UserId = Guid.NewGuid(),
                 Firstname = "ivan",
                 Lastname = "prgomet",
                 Phone = "9238457",
