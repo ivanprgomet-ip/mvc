@@ -7,7 +7,7 @@ namespace MvcLab.Data.Models
 {
     public class CommentEntity
     {
-        public Guid Id { get; set; }
+        public Guid CommentId { get; set; }
         public string Comment { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateChanged { get; set; }

@@ -56,7 +56,7 @@ namespace MvcLab.Web.Controllers
         /// <returns></returns>
         public ActionResult Details(UserModel user)
         {
-            UserModel userToShow = EntityModelMapper.EntityToModel(UserRepository.GetUser(user.Id));
+            UserModel userToShow = EntityModelMapper.EntityToModel(UserRepository.GetUser(user.UserId));
 
             return View(userToShow);
         }

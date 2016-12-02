@@ -38,7 +38,7 @@ namespace MvcLab.Data.Migrations
             #region creating album for Ivan
             u1.Albums.Add(new AlbumEntity()
             {
-                Id = Guid.NewGuid(),
+                AlbumId = Guid.NewGuid(),
                 DateCreated = DateTime.Now,
                 Name = "Coding Events",
                 Description = "Photos from some coding events that I have attended",
@@ -67,14 +67,14 @@ namespace MvcLab.Data.Migrations
             #region creating album for Lea (files added in album folder before startup, later files get added thru mvc UI input type file)
             u2.Albums.Add(new AlbumEntity()
             {
-                Id = Guid.NewGuid(),
+                AlbumId = Guid.NewGuid(),
                 DateCreated = DateTime.Now,
                 Name = "Lea Coding Album",
                 Description = "No Album Description",
                 Photos = new List<PhotoEntity>() {
                     new PhotoEntity()
                             {
-                                Id = Guid.NewGuid(),
+                                PhotoId = Guid.NewGuid(),
                                 Name = "coffe is love",
                                 FileName = "code2.jpg",
                                 DateCreated = DateTime.Now,
@@ -83,7 +83,7 @@ namespace MvcLab.Data.Migrations
                             },
                     new PhotoEntity()
                             {
-                                Id = Guid.NewGuid(),
+                                PhotoId = Guid.NewGuid(),
                                 Name = "think before you code",
                                 FileName = "code4.png",
                                 DateCreated = DateTime.Now,
@@ -92,7 +92,7 @@ namespace MvcLab.Data.Migrations
                             },
                     new PhotoEntity()
                             {
-                                Id = Guid.NewGuid(),
+                                PhotoId = Guid.NewGuid(),
                                 Name = "no place like home",
                                 FileName = "code5.jpg",
                                 DateCreated = DateTime.Now,

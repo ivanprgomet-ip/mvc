@@ -30,14 +30,14 @@ namespace MvcLab.Data.Repositories
         {
             //todo: point of this method?
             photo.DateCreated = DateTime.Now;
-            photo.Id = Guid.NewGuid();
+            photo.PhotoId = Guid.NewGuid();
         }
 
         public void DeletePhoto(PhotoEntity photo)
         {
             using (_context = new MvcLabContext())
             {
-                var photoToBeRemoved = _context.Photos.FirstOrDefault(p => p.Id == photo.Id);
+                var photoToBeRemoved = _context.Photos.FirstOrDefault(p => p.PhotoId == photo.PhotoId);
 
                 _context.Photos.Remove(photoToBeRemoved);
 
@@ -49,7 +49,7 @@ namespace MvcLab.Data.Repositories
         {
             using (_context = new MvcLabContext())
             {
-                return _context.Photos.FirstOrDefault(p => p.Id == id);
+                return _context.Photos.FirstOrDefault(p => p.PhotoId == id);
             }
         }
     }

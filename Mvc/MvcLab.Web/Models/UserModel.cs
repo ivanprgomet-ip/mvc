@@ -8,7 +8,7 @@ namespace MvcLab.Web.Models
 {
     public class UserModel
     {
-        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
         [Required(ErrorMessage = "Please enter your firstname", AllowEmptyStrings = false)]
         public string Firstname { get; set; }
         [Required(ErrorMessage = "Please enter your lastname", AllowEmptyStrings = false)]

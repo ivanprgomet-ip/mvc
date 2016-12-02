@@ -1,0 +1,8 @@
+﻿no initialization of collections in the user view models classes. that is done in the 
+data layer entities classes , and then mapped over for use in the corresponding model view
+classes. the model view classes also contain all the annotations and requirements that are for 
+example visible to the user when he enters forms etc, and the labels show error messages and requirements
+for how user is supposed to enter in the information. in the entity classes its different, these classes contain
+no annotations like the model view classes do. these classes instead have the collection initizlisers in the
+constructors, and also have the virtual keyword for the navigation properties for lazy loading. so this
+is a great way to decouple these entity and model view classes, which in essence are the same.

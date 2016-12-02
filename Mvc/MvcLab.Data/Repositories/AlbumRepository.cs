@@ -13,7 +13,7 @@ namespace MvcLab.Data.Repositories
         {
             using (_context = new MvcLabContext())
             {
-                return _context.Albums.FirstOrDefault(a => a.Id == albumId);
+                return _context.Albums.FirstOrDefault(a => a.AlbumId == albumId);
             }
         }
 
@@ -38,7 +38,7 @@ namespace MvcLab.Data.Repositories
                 var albumUser = _context.Users.Where(u => u.Id == userId).FirstOrDefault();
 
                 //set some properties of the new album
-                newAlbum.Id = Guid.NewGuid();
+                newAlbum.AlbumId = Guid.NewGuid();
                 newAlbum.DateCreated = DateTime.Now;
                 newAlbum.Photos = new List<PhotoEntity>();
                 newAlbum.User = albumUser;
