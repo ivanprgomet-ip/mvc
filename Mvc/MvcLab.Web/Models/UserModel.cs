@@ -26,7 +26,7 @@ namespace MvcLab.Web.Models
         [Required(ErrorMessage = "please enter a password", AllowEmptyStrings = false)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        public DateTime DateRegistered { get; set; }
+        public DateTime? DateRegistered { get; set; }
 
         public ICollection<AlbumModel> Albums { get; set; }
     }

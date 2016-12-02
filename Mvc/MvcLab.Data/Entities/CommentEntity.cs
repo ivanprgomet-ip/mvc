@@ -11,8 +11,8 @@ namespace MvcLab.Data.Models
         [Key]
         public int CommentId { get; set; }
         public string Comment { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime DateChanged { get; set; }
+        public DateTime? DateCreated { get; set; }
+        public DateTime? DateChanged { get; set; }
 
         //navigation properties and foreign key properties
         public virtual PhotoEntity Photo { get; set; }

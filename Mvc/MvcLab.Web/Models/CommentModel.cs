@@ -9,8 +9,8 @@ namespace MvcLab.Web.Models
     {
         public int CommentId { get; set; }
         public string Comment { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime DateChanged { get; set; }
+        public DateTime? DateCreated { get; set; }
+        public DateTime? DateChanged { get; set; }
 
        
         public virtual PhotoModel Photo { get; set; }

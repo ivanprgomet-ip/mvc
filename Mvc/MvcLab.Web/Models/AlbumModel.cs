@@ -10,7 +10,7 @@ namespace MvcLab.Web.Models
         public int AlbumId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTime? DateCreated { get; set; }
 
         public virtual ICollection<CommentModel> Comments { get; set; }
         public virtual ICollection<PhotoModel> Photos { get; set; }

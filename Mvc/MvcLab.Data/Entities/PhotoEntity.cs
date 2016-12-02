@@ -13,8 +13,8 @@ namespace MvcLab.Data.Models
         public string Name { get; set; }
         public string FileName { get; set; }
         public string Description { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime DateChanged { get; set; }
+        public DateTime? DateCreated { get; set; }
+        public DateTime? DateChanged { get; set; }
         public string UploadedBy { get; set; }
 
         //navigation property

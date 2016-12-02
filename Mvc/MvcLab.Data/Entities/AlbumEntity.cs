@@ -13,7 +13,7 @@ namespace MvcLab.Data.Models
         public int AlbumId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTime? DateCreated { get; set; }
 
         //navigation properties
         public virtual ICollection<CommentEntity> Comments { get; set; }
