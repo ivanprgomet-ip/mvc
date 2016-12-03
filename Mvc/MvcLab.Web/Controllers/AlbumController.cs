@@ -60,7 +60,7 @@ namespace MvcLab.Web.Controllers
 
             var commentEntity = EntityModelMapper.ModelToEntity(commentModel);
 
-            CommentRepo.NewAlbumComment(album.AlbumId, commentEntity);
+            CommentRepo.NewAlbumComment(album.AlbumModelId, commentEntity);
 
             return View(AlbumRepo.GetAll());
         }
@@ -68,7 +68,7 @@ namespace MvcLab.Web.Controllers
         [HttpGet]
         public ActionResult Details(AlbumModel album)
         {
-            var albumDetails = AlbumRepo.Get(album.AlbumId);
+            var albumDetails = AlbumRepo.Get(album.AlbumModelId);
 
             return View(albumDetails);
         }
@@ -92,7 +92,7 @@ namespace MvcLab.Web.Controllers
         {
             try
             {
-                int userId = albumModel.AlbumId; //TODO: userid and albumid the same? why?
+                int userId = albumModel.AlbumModelId; //TODO: userid and albumid the same? why?
 
                 var albumEntity = EntityModelMapper.ModelToEntity(albumModel);
 

@@ -11,7 +11,7 @@ namespace MvcLab.Data.Repositories
         {
             using (MvcApplicationDB _context = new MvcApplicationDB())
             {
-                return _context.Albums.FirstOrDefault(a => a.AlbumId == albumId);
+                return _context.Albums.FirstOrDefault(a => a.AlbumEntityId == albumId);
             }
         }
 
@@ -28,7 +28,7 @@ namespace MvcLab.Data.Repositories
             using (MvcApplicationDB _context = new MvcApplicationDB())
             {
                 //get the owner of the album
-                var albumUser = _context.Users.Where(u => u.UserId == userId)
+                var albumUser = _context.Users.Where(u => u.UserEntityId == userId)
                     .FirstOrDefault();
 
                 //set some properties of the new album

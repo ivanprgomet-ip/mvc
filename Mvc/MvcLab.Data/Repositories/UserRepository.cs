@@ -46,7 +46,7 @@ namespace MvcLab.Data.Repositories
         {
             using (MvcApplicationDB _context = new MvcApplicationDB())
             {
-                return _context.Users.FirstOrDefault(u => u.UserId == userId);
+                return _context.Users.FirstOrDefault(u => u.UserEntityId == userId);
             }
         }
 

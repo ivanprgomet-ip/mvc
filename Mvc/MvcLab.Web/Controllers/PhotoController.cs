@@ -45,7 +45,7 @@ namespace MvcLab.Web.Controllers
         public ActionResult Create(PhotoModel photo, HttpPostedFileBase[] filesToBeUploaded)
         {
             //why is the photo id and album id same?
-            int albumId = photo.PhotoId; 
+            int albumId = photo.PhotoModelId; 
 
             AlbumModel album = EntityModelMapper.EntityToModel(AlbumRepo.Get(albumId));
 
@@ -93,7 +93,7 @@ namespace MvcLab.Web.Controllers
         [HttpGet]
         public ActionResult Details(PhotoModel photo)
         {
-            PhotoModel photoToDisplay = EntityModelMapper.EntityToModel(PhotoRepo.GetPhoto(photo.PhotoId));
+            PhotoModel photoToDisplay = EntityModelMapper.EntityToModel(PhotoRepo.GetPhoto(photo.PhotoModelId));
             return View(photoToDisplay);
         }
 
@@ -106,7 +106,7 @@ namespace MvcLab.Web.Controllers
         [HttpPost]
         public ActionResult Details(PhotoModel photo, string comment)
         {
-            PhotoModel photoToCommentOn = EntityModelMapper.EntityToModel(PhotoRepo.GetPhoto(photo.PhotoId));
+            PhotoModel photoToCommentOn = EntityModelMapper.EntityToModel(PhotoRepo.GetPhoto(photo.PhotoModelId));
 
             CommentModel newComment = new CommentModel()
             {

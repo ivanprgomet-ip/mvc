@@ -32,7 +32,7 @@ namespace MvcLab.Tests
             userRepo.Add(user);
 
             //act
-            var retrievedUser = userRepo.GetUser(user.UserId);
+            var retrievedUser = userRepo.GetUser(user.UserEntityId);
 
             //assert
             Assert.AreEqual(user, retrievedUser);

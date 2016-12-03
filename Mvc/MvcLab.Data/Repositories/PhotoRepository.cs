@@ -30,7 +30,7 @@ namespace MvcLab.Data.Repositories
             using (MvcApplicationDB _context = new MvcApplicationDB())
             {
                 PhotoEntity photoToBeRemoved = _context.Photos
-                    .FirstOrDefault(p => p.PhotoId == photo.PhotoId);
+                    .FirstOrDefault(p => p.PhotoEntityId == photo.PhotoEntityId);
 
                 _context.Photos.Remove(photoToBeRemoved);
 
@@ -42,7 +42,7 @@ namespace MvcLab.Data.Repositories
         {
             using (MvcApplicationDB _context = new MvcApplicationDB())
             {
-                return _context.Photos.FirstOrDefault(p => p.PhotoId == id);
+                return _context.Photos.FirstOrDefault(p => p.PhotoEntityId == id);
             }
         }
     }

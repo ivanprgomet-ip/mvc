@@ -14,7 +14,7 @@ namespace MvcLab.Web.Mapper
         {
             UserEntity entity = new UserEntity()
             {
-                UserId = model.UserId,
+                UserEntityId = model.UserModelId,
                 Firstname = model.Firstname,
                 Lastname = model.Lastname,
                 Street = model.Street,
@@ -33,7 +33,7 @@ namespace MvcLab.Web.Mapper
         {
             UserModel model = new UserModel()
             {
-                UserId = entity.UserId,
+                UserModelId = entity.UserEntityId,
                 Firstname = entity.Firstname,
                 Lastname = entity.Lastname,
                 Street = entity.Street,
@@ -52,11 +52,11 @@ namespace MvcLab.Web.Mapper
         {
             AlbumEntity entity = new AlbumEntity()
             {
-                AlbumId = model.AlbumId,
+                AlbumEntityId = model.AlbumModelId,
                 Name = model.Name,
                 Description = model.Description,
                 DateCreated = model.DateCreated,
-                UserId = model.UserId,
+                UserEntityId = model.UserModelId,
             };
 
             return entity;
@@ -65,11 +65,11 @@ namespace MvcLab.Web.Mapper
         {
             AlbumModel model = new AlbumModel()
             {
-                AlbumId = entity.AlbumId,
+                AlbumModelId = entity.AlbumEntityId,
                 Name = entity.Name,
                 Description = entity.Description,
                 DateCreated = entity.DateCreated,
-                UserId = entity.UserId,
+                UserModelId= entity.UserEntityId,
 
             };
 
@@ -79,14 +79,14 @@ namespace MvcLab.Web.Mapper
         {
             PhotoEntity entity = new PhotoEntity()
             {
-                PhotoId = model.PhotoId,
+                PhotoEntityId = model.PhotoModelId,
                 Name = model.Name,
                 Description = model.Description,
                 DateCreated = model.DateCreated,
                 FileName = model.FileName,
                 UploadedBy = model.UploadedBy,
-                AlbumId = model.AlbumId,
-                UserId  = model.UserId,
+                AlbumEntityId= model.AlbumModelId,
+                UserEntityId= model.UserModelId,
             };
 
             return entity;
@@ -95,14 +95,14 @@ namespace MvcLab.Web.Mapper
         {
             PhotoModel model = new PhotoModel()
             {
-                PhotoId = entity.PhotoId,
+                PhotoModelId= entity.PhotoEntityId,
                 Name = entity.Name,
                 Description = entity.Description,
                 DateCreated = entity.DateCreated,
                 FileName = entity.FileName,
                 UploadedBy = entity.UploadedBy,
-                AlbumId = entity.AlbumId,
-                UserId = entity.AlbumId,
+                AlbumModelId= entity.AlbumEntityId,
+                UserModelId= entity.AlbumEntityId,
             };
 
             return model;
@@ -111,10 +111,10 @@ namespace MvcLab.Web.Mapper
         {
             CommentEntity entity = new CommentEntity()
             {
-                CommentId = model.CommentId,
+                CommentEntityId= model.CommentModelId,
                 Comment = model.Comment,
                 DateCreated = model.DateCreated,
-                AlbumId = model.AlbumId,
+                AlbumEntityId= model.AlbumModelId,
             };
 
             return entity;
@@ -123,11 +123,11 @@ namespace MvcLab.Web.Mapper
         {
             CommentModel model = new CommentModel()
             {
-                CommentId = entity.CommentId,
+                CommentModelId= entity.CommentEntityId,
                 Comment = entity.Comment,
                 DateCreated = entity.DateCreated,
-                AlbumId = entity.AlbumId,
-                PhotoId = entity.PhotoId,
+                AlbumModelId= entity.AlbumEntityId,
+                PhotoModelId= entity.PhotoEntityId,
             };
 
             return model;

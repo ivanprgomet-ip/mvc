@@ -13,7 +13,7 @@ namespace MvcLab.Data.Repositories
         {
             using (MvcApplicationDB _context = new MvcApplicationDB())
             {
-                var albumEntity = _context.Albums.FirstOrDefault(a => a.AlbumId == albumid);
+                var albumEntity = _context.Albums.FirstOrDefault(a => a.AlbumEntityId == albumid);
 
                 albumEntity.Comments.Add(newAlbumComment);
 
