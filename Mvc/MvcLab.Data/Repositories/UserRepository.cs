@@ -3,32 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using MvcLab.Data.Models;
 using System.IO;
+using System.Data.Entity;
 
 namespace MvcLab.Data.Repositories
 {
-    /// <summary>
-    /// the repository classes only hade direct contact with the 
-    /// entity models of the database, and not the viewmodels that 
-    /// the controllers have their main comunication with.
-    /// 
-    /// The repositories do logical crud operations against the database
-    /// context.
-    /// </summary>
     public class UserRepository
     {
-
-        /// <summary>
-        /// register a new user. Adds user to the database.
-        /// </summary>
-        /// <param name="userToBeRegistered"></param>
         public void Add(UserEntity userToBeRegistered)
         {
-            //userToBeRegistered.UserId = Guid.NewGuid();
-
-            userToBeRegistered.DateRegistered = DateTime.Now;
-
-            userToBeRegistered.Albums = new List<AlbumEntity>();
-
             using (MvcApplicationDB _context = new MvcApplicationDB())
             {
                 _context.Users.Add(userToBeRegistered);
@@ -37,16 +19,15 @@ namespace MvcLab.Data.Repositories
             }
         }
 
-        /// <summary>
-        /// return a specific user by userId
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        public UserEntity GetUser(int userId)
+        public UserEntity GetUser(int IserModelId)
         {
             using (MvcApplicationDB _context = new MvcApplicationDB())
             {
-                return _context.Users.FirstOrDefault(u => u.UserEntityId == userId);
+                UserEntity user = _context.Users
+                    .Where(u => u.UserEntityId == IserModelId)
+                    .FirstOrDefault();
+
+                return user;
             }
         }
 

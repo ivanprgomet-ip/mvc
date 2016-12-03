@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>User.Index</h2>
+<h2>Users</h2>
 
 @{
     foreach (var user in Model)
@@ -12,7 +12,7 @@
         <section>
             <h4>@user.Firstname @user.Lastname (@user.Username)</h4>
             <p>Date Registered: @user.DateRegistered</p>
-            @Html.ActionLink("Profile", "Details", "User", new { id = user.UserId, email = user.Email, Type = "UserModel" }, null)
+            @Html.ActionLink("Profile", "Details", "User", new { id = user.UserModelId }, null)
             <hr />
         </section>
     }

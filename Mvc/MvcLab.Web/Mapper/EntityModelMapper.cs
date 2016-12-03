@@ -1,4 +1,5 @@
 ﻿using MvcLab.Data.Models;
+using MvcLab.Data.Repositories;
 using MvcLab.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,10 @@ namespace MvcLab.Web.Mapper
 {
     static class EntityModelMapper
     {
+        private static AlbumRepository albumRepo = new AlbumRepository();
         public static UserEntity ModelToEntity(UserModel model)
         {
+
             UserEntity entity = new UserEntity()
             {
                 UserEntityId = model.UserModelId,
@@ -31,6 +34,7 @@ namespace MvcLab.Web.Mapper
         }
         public static UserModel EntityToModel(UserEntity entity)
         {
+            //mapping simple properties
             UserModel model = new UserModel()
             {
                 UserModelId = entity.UserEntityId,
@@ -45,6 +49,16 @@ namespace MvcLab.Web.Mapper
                 Username = entity.Username,
                 Password = entity.Password,
             };
+
+            //mapping albums collection separately
+            List<AlbumModel> albumModels = new List<AlbumModel>();
+
+            foreach (var albumEntity in entity.Albums)
+            {
+                albumModels.Add(EntityToModel(albumEntity));
+            }
+
+            model.Albums = albumModels;
 
             return model;
         }
@@ -69,8 +83,7 @@ namespace MvcLab.Web.Mapper
                 Name = entity.Name,
                 Description = entity.Description,
                 DateCreated = entity.DateCreated,
-                UserModelId= entity.UserEntityId,
-
+                UserModelId = entity.UserEntityId,
             };
 
             return model;
@@ -85,8 +98,8 @@ namespace MvcLab.Web.Mapper
                 DateCreated = model.DateCreated,
                 FileName = model.FileName,
                 UploadedBy = model.UploadedBy,
-                AlbumEntityId= model.AlbumModelId,
-                UserEntityId= model.UserModelId,
+                AlbumEntityId = model.AlbumModelId,
+                UserEntityId = model.UserModelId,
             };
 
             return entity;
@@ -95,14 +108,14 @@ namespace MvcLab.Web.Mapper
         {
             PhotoModel model = new PhotoModel()
             {
-                PhotoModelId= entity.PhotoEntityId,
+                PhotoModelId = entity.PhotoEntityId,
                 Name = entity.Name,
                 Description = entity.Description,
                 DateCreated = entity.DateCreated,
                 FileName = entity.FileName,
                 UploadedBy = entity.UploadedBy,
-                AlbumModelId= entity.AlbumEntityId,
-                UserModelId= entity.AlbumEntityId,
+                AlbumModelId = entity.AlbumEntityId,
+                UserModelId = entity.AlbumEntityId,
             };
 
             return model;
@@ -111,10 +124,10 @@ namespace MvcLab.Web.Mapper
         {
             CommentEntity entity = new CommentEntity()
             {
-                CommentEntityId= model.CommentModelId,
+                CommentEntityId = model.CommentModelId,
                 Comment = model.Comment,
                 DateCreated = model.DateCreated,
-                AlbumEntityId= model.AlbumModelId,
+                AlbumEntityId = model.AlbumModelId,
             };
 
             return entity;
@@ -123,11 +136,11 @@ namespace MvcLab.Web.Mapper
         {
             CommentModel model = new CommentModel()
             {
-                CommentModelId= entity.CommentEntityId,
+                CommentModelId = entity.CommentEntityId,
                 Comment = entity.Comment,
                 DateCreated = entity.DateCreated,
-                AlbumModelId= entity.AlbumEntityId,
-                PhotoModelId= entity.PhotoEntityId,
+                AlbumModelId = entity.AlbumEntityId,
+                PhotoModelId = entity.PhotoEntityId,
             };
 
             return model;

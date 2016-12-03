@@ -132,6 +132,10 @@
     <Content Include="Global.asax" />
     <Content Include="icons\folder.png" />
     <Content Include="Models\info.txt" />
+    <Content Include="photos\code1.jpg" />
+    <Content Include="photos\event1.jpg" />
+    <Content Include="photos\event2.jpg" />
+    <Content Include="photos\event3.jpg" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -203,7 +207,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="photos\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MvcLab.Data\MvcLab.Data.csproj">
