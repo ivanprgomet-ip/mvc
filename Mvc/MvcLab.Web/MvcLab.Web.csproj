@@ -203,7 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="UsersData\" />
+    <Folder Include="photos\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MvcLab.Data\MvcLab.Data.csproj">

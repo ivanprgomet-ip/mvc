@@ -15,7 +15,6 @@ namespace MvcLab.Data
         {
             Database.SetInitializer(new DropCreateDatabaseAlways<MvcApplicationDB>());
 
-            Seed();
         }
 
         public DbSet<UserEntity> Users { get; set; }
@@ -24,85 +23,85 @@ namespace MvcLab.Data
         public DbSet<CommentEntity> Comments { get; set; }
 
 
-        private void Seed()
-        {
-            PhotoEntity p1 = new PhotoEntity()
-            {
-                Name = "event1",
-                FileName = "event1.jpg",
-                DateCreated = DateTime.Now,
-                Description = "no description",
-            };
-            PhotoEntity p2 = new PhotoEntity()
-            {
-                Name = "event2",
-                FileName = "event2.jpg",
-                DateCreated = DateTime.Now,
-                Description = "no description",
-            };
+        //private void Seed()
+        //{
+        //    PhotoEntity p1 = new PhotoEntity()
+        //    {
+        //        Name = "event1",
+        //        FileName = "event1.jpg",
+        //        DateCreated = DateTime.Now,
+        //        Description = "no description",
+        //    };
+        //    PhotoEntity p2 = new PhotoEntity()
+        //    {
+        //        Name = "event2",
+        //        FileName = "event2.jpg",
+        //        DateCreated = DateTime.Now,
+        //        Description = "no description",
+        //    };
 
-            AlbumEntity a1 = new AlbumEntity()
-            {
-                Name = "my coding events",
-                Description = "coding events that i have attended",
-                DateCreated = DateTime.Now,
-                Comments = new List<CommentEntity>(),
-                Photos = new List<PhotoEntity>() { p1, p2 },
-            };
+        //    AlbumEntity a1 = new AlbumEntity()
+        //    {
+        //        Name = "my coding events",
+        //        Description = "coding events that i have attended",
+        //        DateCreated = DateTime.Now,
+        //        Comments = new List<CommentEntity>(),
+        //        Photos = new List<PhotoEntity>() { p1, p2 },
+        //    };
 
-            UserEntity u1 = new UserEntity()
-            {
-                Firstname = "ivan",
-                Lastname = "prgomet",
-                Country = "sweden",
-                City = "lund",
-                DateRegistered = DateTime.Now,
-                Email = "ivanprgomet_ip@hotmail.com",
-                Street = "lundstreet 3",
-                Phone = "9423587495",
-                Username = "ivanprgomet",
-                Password = "ivan123",
-                Albums = new List<AlbumEntity>() { a1 },
-            };
+        //    UserEntity u1 = new UserEntity()
+        //    {
+        //        Firstname = "ivan",
+        //        Lastname = "prgomet",
+        //        Country = "sweden",
+        //        City = "lund",
+        //        DateRegistered = DateTime.Now,
+        //        Email = "ivanprgomet_ip@hotmail.com",
+        //        Street = "lundstreet 3",
+        //        Phone = "9423587495",
+        //        Username = "ivanprgomet",
+        //        Password = "ivan123",
+        //        Albums = new List<AlbumEntity>() { a1 },
+        //    };
 
-            SetupFolders();
+        //    SetupFolders();
 
-            Users.Add(u1);
+        //    Users.Add(u1);
 
-            SaveChanges();
-        }
+        //    SaveChanges();
+        //}
 
-        private void SetupFolders()
-        {
+        //private void SetupFolders()
+        //{
 
-            //server mappath doesnt work here, using alternative to get basedir (instead of ~)
-            string baseDir = System.AppDomain.CurrentDomain.BaseDirectory;
+        //    //server mappath doesnt work here, using alternative to get basedir (instead of ~)
+        //    string baseDir = System.AppDomain.CurrentDomain.BaseDirectory;
 
-            string destination = string.Format($"{baseDir}/UsersData/");
+        //    string destination = string.Format($"{baseDir}/UsersData/");
 
-            if (!Directory.Exists(destination))
-            {
-                Directory.CreateDirectory(destination);
-            }
+        //    if (!Directory.Exists(destination))
+        //    {
+        //        Directory.CreateDirectory(destination);
+        //    }
 
-            //using (var ctx = new MvcApplicationDB())
-            //{
-                List<UserEntity> userEntitiesFromDB = Users.ToList();
+        //    //using (var ctx = new MvcApplicationDB())
+        //    //{
+        //        List<UserEntity> userEntitiesFromDB = Users.ToList();
 
-                foreach (var user in userEntitiesFromDB)
-                {
-                    string individualUserDir = Path.Combine(destination, user.Username);
-                    Directory.CreateDirectory(individualUserDir);
+        //        foreach (var user in userEntitiesFromDB)
+        //        {
+        //            string individualUserDir = Path.Combine(destination, user.Username);
+        //            Directory.CreateDirectory(individualUserDir);
 
-                    foreach (var album in user.Albums)
-                    {
-                        string IndividualUserAlbumDir = Path.Combine(individualUserDir, album.Name);
-                        Directory.CreateDirectory(IndividualUserAlbumDir);
-                    }
-                //}
+        //            foreach (var album in user.Albums)
+        //            {
+        //                string IndividualUserAlbumDir = Path.Combine(individualUserDir, album.Name);
+        //                Directory.CreateDirectory(IndividualUserAlbumDir);
+        //            }
+        //        //}
 
 
-            }
-        }
+        //    }
+        //}
     }
 }

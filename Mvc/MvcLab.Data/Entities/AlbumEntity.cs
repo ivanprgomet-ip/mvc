@@ -9,8 +9,7 @@ namespace MvcLab.Data.Models
 {
     public class AlbumEntity
     {
-        [Key]
-        public int AlbumId { get; set; }
+        public int AlbumEntityId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime? DateCreated { get; set; }
@@ -21,7 +20,7 @@ namespace MvcLab.Data.Models
 
         //navigation property and foreign key property
         public virtual UserEntity User { get; set; }
-        public int? UserId { get; set; }
+        public int? UserEntityId { get; set; }
 
         public AlbumEntity()
         {
