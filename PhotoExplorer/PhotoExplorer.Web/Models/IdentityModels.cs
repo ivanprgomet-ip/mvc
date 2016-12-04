@@ -23,10 +23,10 @@ namespace PhotoExplorer.Web.Models
         public UserModel()
         {
             Albums = new List<AlbumModel>();
+            DateRegistered = DateTime.Now;
         }
 
         public string Fullname { get; set; }
-        public string Password { get; set; }
         public DateTime? DateRegistered { get; set; }
 
         //slow apps do alot of eager-loading    (loading things right away). 

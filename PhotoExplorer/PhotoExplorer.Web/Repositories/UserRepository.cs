@@ -39,7 +39,7 @@ namespace MvcLab.Web.Repositories
             {
                 return _context.Users
                     .FirstOrDefault(u => u.UserName == username &&
-                    u.Password == password);
+                    u.PasswordHash == password);
             }
 
         }
