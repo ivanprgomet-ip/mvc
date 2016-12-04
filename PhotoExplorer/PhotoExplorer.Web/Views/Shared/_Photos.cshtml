@@ -1,45 +1,35 @@
 ﻿@model PhotoExplorer.Web.Models.AlbumModel
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserModelId)
-        </th>
-        <th></th>
-    </tr>
+@foreach (var photo in Model.Photos)
+{
+    @*<tr>
+        <td>
+            @Html.DisplayFor(modelItem => photo.FileName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => photo.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => photo.DateCreated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => photo.DateChanged)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => photo.UploadedBy)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = photo.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = photo.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = photo.Id })
+        </td>
+    </tr>*@
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserModelId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+        <a class="thumbnail" href="@Url.Action("Details","Photo",new {id=photo.Id },null)">
+            <img class="img-responsive" src="~/photos/@photo.FileName" alt=""> @*VALIDATE IF THIS PATH IS LEGIT*@
+        </a>
+    </div>
+
 }
 
-</table>

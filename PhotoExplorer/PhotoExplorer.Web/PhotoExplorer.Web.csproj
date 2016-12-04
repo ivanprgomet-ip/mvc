@@ -145,9 +145,11 @@
     <Content Include="Web.config" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\AboutUs.cshtml" />
-    <Content Include="Views\Shared\_Photos.cshtml" />
     <Content Include="Views\Shared\_Users.cshtml" />
     <Content Include="Views\Shared\_User.cshtml" />
+    <Content Include="Views\Shared\_Album.cshtml" />
+    <Content Include="Views\Shared\_Albums.cshtml" />
+    <Content Include="Views\Shared\_Photos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace PhotoExplorer.Web.Controllers
 {
@@ -16,7 +17,15 @@ namespace PhotoExplorer.Web.Controllers
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
-                usersFromDB = cx.Users.ToList(); 
+                /*
+                    must include related properties because lazy loading is enabled for all 
+                    navigation properties, which means i load related properties only when they 
+                    are needed, which makes the application ultimately faster
+                */
+                usersFromDB = cx.Users
+                    .Include(u=>u.Albums
+                        .Select(a=>a.Photos))
+                    .ToList(); 
             }
 
             return View("Index",usersFromDB);

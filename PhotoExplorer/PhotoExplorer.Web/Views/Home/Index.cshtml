@@ -4,31 +4,82 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Home</h2>
+<h2>EXPLORE</h2>
 
-@*takes in an album and displays its photos*@
-@*<h3>Explore Photos</h3>
-@{
-    foreach (var user in Model)
-    {
-        foreach (var album in user.Albums)
-        {
-            @Html.Partial("_Photos", album) 
-        }
+@*DISPLAY ALL USERS ALBUMS PHOTOS*@
+<div class="container" style="background-color:Highlight;">
+    <h3>Photos</h3>
+    @{
+        <p>
+            @Html.ActionLink("Upload New Photo", "Create", "Photo", null, null)
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Filename:
+                </th>
+                <th>
+                    Description:
+                </th>
+                <th>
+                    DateCreated:
+                </th>
+                <th>
+                    DateChanged:
+                </th>
+                <th>
+                    Uploaded By:
+                </th>
+                <th></th>
+            </tr>
+
+            @{
+                foreach (var user in Model)
+                {
+                    foreach (var album in user.Albums)
+                    {
+                        @Html.Partial("_Photos", album)
+                    }
+                }
+            }
+        </table>
     }
-}*@
+</div>
 
-@*takes in an user and displays his/her albums*@
-@*<h3>Explore Albums</h3>
-@{
-    foreach (var user in Model)
-    {
-        @Html.Partial("_Albums", user) 
+@* DISPLAY ALL USERS ALBUMS *@
+<div class="container" style="background-color:lemonchiffon;">
+    <h3>Albums</h3>
+    @{
+        <p>
+            @Html.ActionLink("Create New Album", "Create", "Album", null)
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Name:
+                </th>
+                <th>
+                    Description:
+                </th>
+                <th>
+                    DateCreated:
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var user in Model)
+            {
+                @Html.Partial("_Albums", user)
+            }
+        </table>
     }
-}*@
+</div>
 
-@*takes in a list of users and displays them*@
-<h3>Explore other Users</h3>
-@{
-    @Html.Partial("_Users", Model) 
-}
+
+@*DISPLAY ALL USERS*@
+<div class="container" style="background-color:blanchedalmond;">
+    <h3>Other Users</h3>
+    @{
+        @Html.Partial("_Users", Model)
+    }
+</div>

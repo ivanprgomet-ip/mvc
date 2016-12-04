@@ -19,6 +19,11 @@ namespace PhotoExplorer.Web.Models
         public string Password { get; set; }
         public DateTime? DateRegistered { get; set; }
 
+        //slow apps do alot of eager-loading    (loading things right away). 
+        //Fast apps do alot of lazy-loading     (only loading things when they are needed)
+
+        //non-virtual property -        lazy load disabled
+        //virtual property -            lazy load enabled (for specific navigation property)
         public virtual ICollection<AlbumModel> Albums { get; set; }
     }
 }
