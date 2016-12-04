@@ -5,83 +5,62 @@
 }
 
 <h2>EXPLORE</h2>
+<div class="container" style="background-color:lemonchiffon">
+    @*DISPLAY ALL USERS ALBUMS PHOTOS*@
+    <section>
+        <h3>Photos</h3>
+        @{
 
-@*DISPLAY ALL USERS ALBUMS PHOTOS*@
-<div class="container">
-    <h3>Photos</h3>
-    @{
-        if (User.Identity.IsAuthenticated)
-        {
             <p>
                 @Html.ActionLink("Upload New Photo", "Create", "Photo", null, null)
             </p>
-        }
-        <table class="table">
-            <tr>
-                <th>
-                    Filename:
-                </th>
-                <th>
-                    Description:
-                </th>
-                <th>
-                    DateCreated:
-                </th>
-                <th>
-                    DateChanged:
-                </th>
-                <th>
-                    Uploaded By:
-                </th>
-                <th></th>
-            </tr>
 
-            @{
-                foreach (var user in Model)
+
+            foreach (var user in Model)
+            {
+                foreach (var album in user.Albums)
                 {
-                    foreach (var album in user.Albums)
-                    {
-                        @Html.Partial("_Photos", album)
-                    }
+                    @Html.Partial("_Photos", album)
                 }
             }
-        </table>
-    }
-</div>
 
-@* DISPLAY ALL USERS ALBUMS *@
-<div class="container" style="background-color:lemonchiffon;">
-    <h3>Albums</h3>
-    @{
-        <p>
-            @Html.ActionLink("Create New Album", "Create", "Album", null)
-        </p>
-        <table class="table">
-            <tr>
-                <th>
-                    Name:
-                </th>
-                <th>
-                    Description:
-                </th>
-                <th>
-                    DateCreated:
-                </th>
-                <th></th>
-            </tr>
+        }
+    </section>
 
-            @foreach (var user in Model)
+    @* DISPLAY ALL USERS ALBUMS *@
+    <section>
+        <h3>Albums</h3>
+        @{
+            <p>
+                @Html.ActionLink("Create New Album", "Create", "Album", null)
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        Name:
+                    </th>
+                    <th>
+                        Description:
+                    </th>
+                    <th>
+                        DateCreated:
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var user in Model)
             {
-                @Html.Partial("_Albums", user)
-            }
-        </table>
-    }
-</div>
+                    @Html.Partial("_Albums", user)
+                }
+            </table>
+        }
+    </section>
 
-@*DISPLAY ALL USERS*@
-<div class="container" style="background-color:blanchedalmond;">
-    <h3>Other Users</h3>
-    @{
-        @Html.Partial("_Users", Model)
-    }
+    @*DISPLAY ALL USERS*@
+    <section>
+        <h3>Other Users</h3>
+        @{
+            @Html.Partial("_Users", Model)
+        }
+    </section>
 </div>
