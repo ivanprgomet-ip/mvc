@@ -15,7 +15,7 @@ namespace MvcLab.Data
         {
             Database.SetInitializer(new DropCreateDatabaseAlways<MvcApplicationDB>());
             //Lazy loading means delaying the loading of related data, until you specifically request for it
-            this.Configuration.LazyLoadingEnabled = false; 
+            this.Configuration.LazyLoadingEnabled = false;
         }
 
         public DbSet<UserEntity> Users { get; set; }

@@ -27,7 +27,7 @@
 
 
 @* pass album id to create of photo, so that the photo gets uploaded to correct album... *@
-@Html.ActionLink("Upload Photo", "Create", "Photo", new { id = Model.Id }, null)
+@Html.ActionLink("Upload Photo", "Create", "Photo", new { id = Model.AlbumModelId }, null)
     <table>
         <tr>
             <td>
@@ -36,8 +36,8 @@
                     <img src="~/UsersData/@Model.User.Username/@Model.Name/@photo.FileName" alt="@photo.Name" width="220" />
 
                     //send both photoid and albumid to remove the specific photo in specific album
-                    <small> @Html.ActionLink("Delete", "Delete", "Photo", new { photoid = photo.Id, albumid = Model.Id }, null)</small>
-                        <small> @Html.ActionLink("Edit", "Edit", "Photo", new { photoid = photo.Id, albumid = Model.Id }, null)</small>
+                    <small> @Html.ActionLink("Delete", "Delete", "Photo", new { photoid = photo.PhotoModelId, albumid = Model.AlbumModelId}, null)</small>
+                        <small> @Html.ActionLink("Edit", "Edit", "Photo", new { photoid = photo.PhotoModelId, albumid = Model.AlbumModelId }, null)</small>
                 }
             </td>
         </tr>

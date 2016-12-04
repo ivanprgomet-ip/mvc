@@ -4,11 +4,11 @@
 @{
     <article class="col-md-3 img-thumbnail">
         <h3>@Model.Name</h3>
-        <a href="@Url.Action(actionName:"Details", controllerName:"Album",routeValues:new { id = Model.AlbumId })">
+        <a href="@Url.Action(actionName:"Details", controllerName:"Album",routeValues:new { id = Model.AlbumModelId })">
             <img src="~/icons/folder.png" width="120" />
         </a>
         <br />
-        <small>uploaded by @Html.ActionLink(@Model.User.Username, "Details", "User", new { id = Model.UserId }, null)</small>
+        <small>uploaded by @Html.ActionLink(@Model.User.Username, "Details", "User", new { id = Model.UserModelId}, null)</small>
         <br />
 
         @{
@@ -29,7 +29,7 @@
         <br />
         <small>
             @* comment on album here *@
-            @using (Html.BeginForm(routeValues: new { id = Model.AlbumId }))//pass album id into controller
+            @using (Html.BeginForm(routeValues: new { id = Model.AlbumModelId }))//pass album id into controller
             {
                 @Html.AntiForgeryToken()
                 <textarea name="albumComment"></textarea>

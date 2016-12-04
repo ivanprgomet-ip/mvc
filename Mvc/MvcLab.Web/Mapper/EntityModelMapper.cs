@@ -11,10 +11,10 @@ namespace MvcLab.Web.Mapper
 {
     static class EntityModelMapper
     {
-        private static AlbumRepository albumRepo = new AlbumRepository();
+        //TODO: fix the user modeltoentity, because the related data is not being added to the database in the global asax.
         public static UserEntity ModelToEntity(UserModel model)
         {
-
+            #region mapping the model simple properties directly
             UserEntity entity = new UserEntity()
             {
                 UserEntityId = model.UserModelId,
@@ -29,12 +29,23 @@ namespace MvcLab.Web.Mapper
                 Username = model.Username,
                 Password = model.Password,
             };
+            #endregion
+
+            #region mapping the model albums collection
+            List<AlbumEntity> albumEntities = new List<AlbumEntity>();
+            foreach (var albumModel in model.Albums)
+            {
+                albumEntities.Add(ModelToEntity(albumModel));
+            }
+            entity.Albums = albumEntities;
+            #endregion
 
             return entity;
         }
         public static UserModel EntityToModel(UserEntity entity)
         {
-            //mapping simple properties
+
+            #region mapping the entity simple properties directly
             UserModel model = new UserModel()
             {
                 UserModelId = entity.UserEntityId,
@@ -49,16 +60,16 @@ namespace MvcLab.Web.Mapper
                 Username = entity.Username,
                 Password = entity.Password,
             };
+            #endregion
 
-            //mapping albums collection separately
+            #region mapping the entity albums collection
             List<AlbumModel> albumModels = new List<AlbumModel>();
-
             foreach (var albumEntity in entity.Albums)
             {
                 albumModels.Add(EntityToModel(albumEntity));
             }
-
-            model.Albums = albumModels;
+            model.Albums = albumModels; 
+            #endregion
 
             return model;
         }
@@ -72,6 +83,15 @@ namespace MvcLab.Web.Mapper
                 DateCreated = model.DateCreated,
                 UserEntityId = model.UserModelId,
             };
+
+            //#region mapping the photos for the album
+            //List<PhotoEntity> photoEntities = new List<PhotoEntity>();
+            //foreach (var photoModel in model.Photos)
+            //{
+            //    photoEntities.Add(ModelToEntity(photoModel));
+            //}
+            //entity.Photos = photoEntities;
+            //#endregion
 
             return entity;
         }

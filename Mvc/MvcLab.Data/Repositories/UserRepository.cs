@@ -25,8 +25,10 @@ namespace MvcLab.Data.Repositories
             {
                 UserEntity user = _context.Users
                     .Where(u => u.UserEntityId == IserModelId)
+                    .Include(u => u.Albums
+                        .Select(p => p.Photos
+                        .Select(c => c.Comments))) //neccessary to include the albums 
                     .FirstOrDefault();
-
                 return user;
             }
         }
