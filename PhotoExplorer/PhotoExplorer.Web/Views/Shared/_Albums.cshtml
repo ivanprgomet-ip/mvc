@@ -1,9 +1,0 @@
-﻿@model PhotoExplorer.Web.Models.UserModel
-
-
-@{
-    foreach (var album in Model.Albums)
-    {
-        @Html.Partial("_Album", album);
-    }
-}

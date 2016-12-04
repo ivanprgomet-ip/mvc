@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoExplorer.Web", "PhotoExplorer.Web\PhotoExplorer.Web.csproj", "{24F10BD1-F33B-4130-9714-B47B3EEB17C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoExplorer.Web", "PhotoExplorer.Web\PhotoExplorer.Web.csproj", "{62D077FC-2269-43E7-BD1B-D485A4061800}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoExplorer.Tests", "PhotoExplorer.Tests\PhotoExplorer.Tests.csproj", "{58E83D35-0EF9-4F91-9A9D-EEAB92DFF7AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoExplorer.Tests", "PhotoExplorer.Tests\PhotoExplorer.Tests.csproj", "{BCF8AD50-423F-4CDA-9846-6D0ED64BCBA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{24F10BD1-F33B-4130-9714-B47B3EEB17C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{24F10BD1-F33B-4130-9714-B47B3EEB17C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{24F10BD1-F33B-4130-9714-B47B3EEB17C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{24F10BD1-F33B-4130-9714-B47B3EEB17C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{58E83D35-0EF9-4F91-9A9D-EEAB92DFF7AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58E83D35-0EF9-4F91-9A9D-EEAB92DFF7AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58E83D35-0EF9-4F91-9A9D-EEAB92DFF7AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58E83D35-0EF9-4F91-9A9D-EEAB92DFF7AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62D077FC-2269-43E7-BD1B-D485A4061800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62D077FC-2269-43E7-BD1B-D485A4061800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62D077FC-2269-43E7-BD1B-D485A4061800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62D077FC-2269-43E7-BD1B-D485A4061800}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCF8AD50-423F-4CDA-9846-6D0ED64BCBA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCF8AD50-423F-4CDA-9846-6D0ED64BCBA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCF8AD50-423F-4CDA-9846-6D0ED64BCBA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCF8AD50-423F-4CDA-9846-6D0ED64BCBA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
