@@ -10,9 +10,12 @@
 <div class="container">
     <h3>Photos</h3>
     @{
-        <p>
-            @Html.ActionLink("Upload New Photo", "Create", "Photo", null, null)
-        </p>
+        if (User.Identity.IsAuthenticated)
+        {
+            <p>
+                @Html.ActionLink("Upload New Photo", "Create", "Photo", null, null)
+            </p>
+        }
         <table class="table">
             <tr>
                 <th>
