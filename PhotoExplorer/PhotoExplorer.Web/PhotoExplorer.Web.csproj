@@ -150,10 +150,12 @@
     <Content Include="Views\Shared\_Album.cshtml" />
     <Content Include="Views\Shared\_Albums.cshtml" />
     <Content Include="Views\Shared\_Photos.cshtml" />
+    <Content Include="Views\Photo\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
