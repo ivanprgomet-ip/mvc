@@ -19,8 +19,7 @@ namespace PhotoExplorer.Web.Models
             return userIdentity;
         }
 
-
-        //custom properties
+        //custom properties for UserModel
         public UserModel()
         {
             Albums = new List<AlbumModel>();
@@ -40,9 +39,9 @@ namespace PhotoExplorer.Web.Models
 
     public class PhotoExplorerDbContext : IdentityDbContext<UserModel>
     {
-        public PhotoExplorerDbContext(): base("DefaultConnection", throwIfV1Schema: false)
+        public PhotoExplorerDbContext(): base("PhotoExplorerConnectionString", throwIfV1Schema: false)
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<PhotoExplorerDbContext>());
+            //Database.SetInitializer(new DropCreateDatabaseAlways<PhotoExplorerDbContext>());
         }
 
         public DbSet<AlbumModel> Albums { get; set; }
