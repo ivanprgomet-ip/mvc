@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Optimization;
 using System.Web.Routing;
 
 namespace PhotoExplorer.Web
@@ -14,11 +13,9 @@ namespace PhotoExplorer.Web
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //Seed();
+            Seed();
         }
 
         private void Seed()
@@ -55,9 +52,8 @@ namespace PhotoExplorer.Web
             UserModel u1 = new UserModel()
             {
                 Fullname = "Ivan Prgomet",
-                Email = "ivanprgomet@gmail.com",
-                UserName = "ivanprgomet",
-                PasswordHash = "8q?*}H6gCyxM",
+                Username = "ivanprgomet",
+                Password = "ivan123",
                 DateRegistered = DateTime.Now,
                 Albums = new List<AlbumModel>() { a1 },
             };
@@ -82,19 +78,16 @@ namespace PhotoExplorer.Web
             UserModel u2 = new UserModel()
             {
                 Fullname = "lea winchester",
-                Email = "leawinchester@gmail.com",
-                UserName = "leawinchester",
-                PasswordHash = "lealea",
+                Username = "leawinchester",
+                Password = "lealea",
                 DateRegistered = DateTime.Now,
                 Albums = new List<AlbumModel>() { a2 },
             };
             #endregion
 
-            using (PhotoExplorerDbContext context = new PhotoExplorerDbContext())
+            using (PhotoExplorerContext context = new PhotoExplorerContext())
             {
-                context.Users.Add(u1);
-
-                context.Users.Add(u2);
+                context.Users.AddRange(new List<UserModel> { u1, u2 });
 
                 context.SaveChanges();
             }

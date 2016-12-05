@@ -15,7 +15,7 @@ namespace PhotoExplorer.Web.Controllers
         {
             List<UserModel> usersFromDB = new List<UserModel>();
 
-            using (PhotoExplorerDbContext cx = new PhotoExplorerDbContext())
+            using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
                 /*
                     must include related properties because lazy loading is enabled for all 
@@ -23,25 +23,27 @@ namespace PhotoExplorer.Web.Controllers
                     are needed, which makes the application ultimately faster
                 */
                 usersFromDB = cx.Users
-                    .Include(u => u.Albums
-                        .Select(a => a.Photos))
-                    .ToList();
+                    .Include(u=>u.Albums
+                        .Select(a=>a.Photos))
+                    .ToList(); 
             }
 
-            return View("Index", usersFromDB);
+            return View("Index",usersFromDB);
         }
-
-        public ActionResult About()
+        [HttpGet]
+        public ActionResult AboutUs()
         {
-            ViewBag.Message = "Your application description page.";
-
+            return View();
+        }
+        [HttpGet]
+        public ActionResult Contact()
+        {
             return View();
         }
 
-        public ActionResult Contact()
+        [HttpGet]
+        public ActionResult Error()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

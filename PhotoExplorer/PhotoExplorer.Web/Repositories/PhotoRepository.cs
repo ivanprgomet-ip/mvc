@@ -11,7 +11,7 @@ namespace MvcLab.Web.Repositories
     {
         public List<PhotoModel> RetrieveAll()
         {
-            using (PhotoExplorerDbContext _context = new PhotoExplorerDbContext())
+            using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
                 List<PhotoModel> allPhotosFromDB = _context.Photos.ToList();
 
@@ -27,7 +27,7 @@ namespace MvcLab.Web.Repositories
 
         public void DeletePhoto(PhotoModel photo)
         {
-            using (PhotoExplorerDbContext _context = new PhotoExplorerDbContext())
+            using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
                 PhotoModel photoToBeRemoved = _context.Photos
                     .FirstOrDefault(p => p.Id == photo.Id);
@@ -40,7 +40,7 @@ namespace MvcLab.Web.Repositories
 
         public PhotoModel GetPhoto(int id)
         {
-            using (PhotoExplorerDbContext _context = new PhotoExplorerDbContext())
+            using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
                 return _context.Photos.FirstOrDefault(p => p.Id == id);
             }

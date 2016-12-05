@@ -11,7 +11,7 @@ namespace PhotoExplorer.Web.Repositories
     {
         public void NewAlbumComment(int albumid, CommentModel newAlbumComment)
         {
-            using (PhotoExplorerDbContext _context = new PhotoExplorerDbContext())
+            using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
                 var albumEntity = _context.Albums.FirstOrDefault(a => a.Id == albumid);
 

@@ -9,7 +9,7 @@ namespace PhotoExplorer.Web.Repositories
     {
         public AlbumModel Get(int albumId)
         {
-            using (PhotoExplorerDbContext _context = new PhotoExplorerDbContext())
+            using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
                 return _context.Albums.FirstOrDefault(a => a.Id == albumId);
             }
@@ -17,15 +17,15 @@ namespace PhotoExplorer.Web.Repositories
 
         public List<AlbumModel> GetAll()
         {
-            using (PhotoExplorerDbContext _context = new PhotoExplorerDbContext())
+            using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
                 return _context.Albums.ToList();
             }
         }
 
-        public AlbumModel Add(AlbumModel newAlbum, string userId)
+        public AlbumModel Add(AlbumModel newAlbum, int userId)
         {
-            using (PhotoExplorerDbContext _context = new PhotoExplorerDbContext())
+            using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
                 //get the owner of the album
                 var albumUser = _context.Users.Where(u => u.Id == userId)

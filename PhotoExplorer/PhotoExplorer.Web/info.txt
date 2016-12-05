@@ -1,0 +1,9 @@
+﻿# to avoid the ObjectDisposedException you must include related data when retrieveing from the database, 
+due to using lazy loading in this particular project.
+
+#ajax.beginform is very similiar to html.beginform. ajax.beginform makes an asynchronous request to the server and can redraw 
+only an portion of the screen. html.beginform makes an synchronous request to the server and redraws the entire screen. all you need 
+to do is tell the helper what to update on the screen
+
+# the unobtrusive-ajax.min.js is needed, because without it the comment would not land neatly on the same page in the div where its 
+supposed to land, the partialview returned with take up its completely own page. 
