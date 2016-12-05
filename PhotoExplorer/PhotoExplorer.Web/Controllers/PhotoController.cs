@@ -14,6 +14,7 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Details(int Id)
         {
+            #region retrieve photo to show
             var retrievedPhoto = new PhotoModel();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
@@ -23,6 +24,7 @@ namespace PhotoExplorer.Web.Controllers
                     .Include(p => p.Comments)
                     .FirstOrDefault();
             }
+            #endregion
 
             return View("Details", retrievedPhoto);
         }
@@ -30,7 +32,6 @@ namespace PhotoExplorer.Web.Controllers
         [HttpPost]
         public ActionResult Comment(int id, string txt_comment)
         {
-            #region retrieve photo commented on
             var retrievedPhoto = new PhotoModel();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
@@ -39,19 +40,15 @@ namespace PhotoExplorer.Web.Controllers
                     .Where(p => p.Id == id)
                     .Include(p => p.Comments)
                     .FirstOrDefault();
-            }
-            #endregion
 
-            #region prepare a new comment for the photo
-            CommentModel commentModel = new CommentModel()
-            {
-                DateCreated = DateTime.Now,
-                Comment = txt_comment,
-            };
-            #endregion
+                #region prepare a new comment for the photo
+                CommentModel commentModel = new CommentModel()
+                {
+                    DateCreated = DateTime.Now,
+                    Comment = txt_comment,
+                };
+                #endregion
 
-            using (PhotoExplorerContext cx = new PhotoExplorerContext())
-            {
                 retrievedPhoto.Comments.Add(commentModel);
 
                 cx.SaveChanges();
@@ -60,7 +57,7 @@ namespace PhotoExplorer.Web.Controllers
             /*
                 note: only updating portion of the page by using partial view (with the NEW model)            
             */
-            return PartialView("_PhotoComments", retrievedPhoto); 
+            return PartialView("_PhotoComments", retrievedPhoto);
         }
     }
 }
