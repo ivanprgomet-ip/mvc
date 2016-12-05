@@ -1,4 +1,4 @@
-﻿using PhotoExplorer.Web.Models;
+﻿using PhotoExplorer.Web.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            List<UserViewModel> usersFromDB = new List<UserViewModel>();
+            List<UserEntityModel> usersFromDB = new List<UserEntityModel>();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {

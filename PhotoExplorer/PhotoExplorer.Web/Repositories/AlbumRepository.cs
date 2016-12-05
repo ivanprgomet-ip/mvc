@@ -1,4 +1,4 @@
-﻿using PhotoExplorer.Web.Models;
+﻿using PhotoExplorer.Web.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ namespace PhotoExplorer.Web.Repositories
 {
     public class AlbumRepository
     {
-        public AlbumViewModel Get(int albumId)
+        public AlbumEntityModel Get(int albumId)
         {
             using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
@@ -15,7 +15,7 @@ namespace PhotoExplorer.Web.Repositories
             }
         }
 
-        public List<AlbumViewModel> GetAll()
+        public List<AlbumEntityModel> GetAll()
         {
             using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
@@ -23,7 +23,7 @@ namespace PhotoExplorer.Web.Repositories
             }
         }
 
-        public AlbumViewModel Add(AlbumViewModel newAlbum, int userId)
+        public AlbumEntityModel Add(AlbumEntityModel newAlbum, int userId)
         {
             using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
@@ -34,9 +34,9 @@ namespace PhotoExplorer.Web.Repositories
                 //set some properties of the new album
                 //newAlbum.AlbumId = Guid.NewGuid();
                 newAlbum.DateCreated = DateTime.Now;
-                newAlbum.Photos = new List<PhotoViewModel>();
+                newAlbum.Photos = new List<PhotoEntityModel>();
                 newAlbum.User = albumUser;
-                newAlbum.Comments = new List<CommentViewModel>();
+                newAlbum.Comments = new List<CommentEntityModel>();
 
                 //add the album to the users albums
                 albumUser.Albums.Add(newAlbum);

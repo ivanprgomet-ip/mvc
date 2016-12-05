@@ -1,4 +1,4 @@
-﻿using PhotoExplorer.Web.Models;
+﻿using PhotoExplorer.Web.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,27 +9,27 @@ namespace MvcLab.Web.Repositories
 {
     public class PhotoRepository
     {
-        public List<PhotoViewModel> RetrieveAll()
+        public List<PhotoEntityModel> RetrieveAll()
         {
             using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
-                List<PhotoViewModel> allPhotosFromDB = _context.Photos.ToList();
+                List<PhotoEntityModel> allPhotosFromDB = _context.Photos.ToList();
 
                 return allPhotosFromDB;
             }
 
         }
 
-        public void CreatePhoto(PhotoViewModel photo)
+        public void CreatePhoto(PhotoEntityModel photo)
         {
             //todo: create photo method
         }
 
-        public void DeletePhoto(PhotoViewModel photo)
+        public void DeletePhoto(PhotoEntityModel photo)
         {
             using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
-                PhotoViewModel photoToBeRemoved = _context.Photos
+                PhotoEntityModel photoToBeRemoved = _context.Photos
                     .FirstOrDefault(p => p.Id == photo.Id);
 
                 _context.Photos.Remove(photoToBeRemoved);
@@ -38,7 +38,7 @@ namespace MvcLab.Web.Repositories
             }
         }
 
-        public PhotoViewModel GetPhoto(int id)
+        public PhotoEntityModel GetPhoto(int id)
         {
             using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {

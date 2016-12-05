@@ -4,18 +4,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace PhotoExplorer.Web.Models
+namespace PhotoExplorer.Web.Entities
 {
-    public class CommentViewModel
+    public class CommentEntityModel
     {
         public int Id { get; set; }
         public string Comment { get; set; }
         public DateTime? DateCreated { get; set; }
         public DateTime? DateChanged { get; set; }
 
-        public virtual PhotoViewModel Photo { get; set; }
-        //public int PhotoModelId { get; set; }
-        public virtual AlbumViewModel Album { get; set; }
-        //public int AlbumModelId { get; set; }
+        public virtual PhotoEntityModel Photo { get; set; }
+        public virtual AlbumEntityModel Album { get; set; }
     }
 }

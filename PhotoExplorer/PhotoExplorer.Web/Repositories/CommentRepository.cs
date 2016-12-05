@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PhotoExplorer.Web.Models;
+using PhotoExplorer.Web.Entities;
 
 namespace PhotoExplorer.Web.Repositories
 {
     public class CommentRepository
     {
-        public void NewAlbumComment(int albumid, CommentViewModel newAlbumComment)
+        public void NewAlbumComment(int albumid, CommentEntityModel newAlbumComment)
         {
             using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {

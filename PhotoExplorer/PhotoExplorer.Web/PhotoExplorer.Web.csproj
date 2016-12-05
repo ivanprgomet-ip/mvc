@@ -163,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PhotoController.cs" />
@@ -170,11 +171,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AlbumViewModel.cs" />
-    <Compile Include="Models\CommentViewModel.cs" />
-    <Compile Include="Models\PhotoExplorerContext.cs" />
-    <Compile Include="Models\PhotoViewModel.cs" />
-    <Compile Include="Models\UserViewModel.cs" />
+    <Compile Include="Entities\AlbumEntityModel.cs" />
+    <Compile Include="Entities\CommentEntityModel.cs" />
+    <Compile Include="Entities\PhotoExplorerContext.cs" />
+    <Compile Include="Entities\PhotoEntityModel.cs" />
+    <Compile Include="Models\ProfileManagementViewModels.cs" />
+    <Compile Include="Entities\UserEntityModel.cs" />
+    <Compile Include="Models\ContentManagementViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AlbumRepository.cs" />
     <Compile Include="Repositories\CommentRepository.cs" />
@@ -214,6 +217,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Account\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

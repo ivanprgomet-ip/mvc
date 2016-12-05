@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Data.Entity;
-using PhotoExplorer.Web.Models;
+using PhotoExplorer.Web.Entities;
 
 namespace MvcLab.Web.Repositories
 {
     public class UserRepository
     {
-        public void Add(UserViewModel userToBeRegistered)
+        public void Add(UserEntityModel userToBeRegistered)
         {
             using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
@@ -19,11 +19,11 @@ namespace MvcLab.Web.Repositories
             }
         }
 
-        public UserViewModel GetUser(int IserModelId)
+        public UserEntityModel GetUser(int IserModelId)
         {
             using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
-                UserViewModel user = _context.Users
+                UserEntityModel user = _context.Users
                     .Where(u => u.Id == IserModelId)
                     .Include(u => u.Albums
                         .Select(p => p.Photos
@@ -33,7 +33,7 @@ namespace MvcLab.Web.Repositories
             }
         }
 
-        public UserViewModel RetrieveLoggedInUser(string username, string password)
+        public UserEntityModel RetrieveLoggedInUser(string username, string password)
         {
             using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
@@ -44,13 +44,13 @@ namespace MvcLab.Web.Repositories
 
         }
 
-        public List<UserViewModel> RetrieveAll()
+        public List<UserEntityModel> RetrieveAll()
         {
-            List<UserViewModel> users = new List<UserViewModel>();
+            List<UserEntityModel> users = new List<UserEntityModel>();
 
             using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
-                List<UserViewModel> userEntitiesFromDB = _context.Users.ToList();
+                List<UserEntityModel> userEntitiesFromDB = _context.Users.ToList();
 
                 foreach (var user in userEntitiesFromDB)
                 {

@@ -1,5 +1,5 @@
 ﻿using MvcLab.Web.Repositories;
-using PhotoExplorer.Web.Models;
+using PhotoExplorer.Web.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var photos = new List<PhotoViewModel>();
+            var photos = new List<PhotoEntityModel>();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
@@ -28,7 +28,7 @@ namespace PhotoExplorer.Web.Controllers
         public ActionResult Details(int Id)
         {
             #region retrieve photo to show
-            var retrievedPhoto = new PhotoViewModel();
+            var retrievedPhoto = new PhotoEntityModel();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
@@ -45,7 +45,7 @@ namespace PhotoExplorer.Web.Controllers
         [HttpPost]
         public ActionResult Comment(int id, string txt_comment)
         {
-            var retrievedPhoto = new PhotoViewModel();
+            var retrievedPhoto = new PhotoEntityModel();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
@@ -55,7 +55,7 @@ namespace PhotoExplorer.Web.Controllers
                     .FirstOrDefault();
 
                 #region prepare a new comment for the photo
-                CommentViewModel commentModel = new CommentViewModel()
+                CommentEntityModel commentModel = new CommentEntityModel()
                 {
                     DateCreated = DateTime.Now,
                     Comment = txt_comment,
@@ -74,7 +74,7 @@ namespace PhotoExplorer.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Upload(PhotoViewModel photo, HttpPostedFileBase[] photofiles)
+        public ActionResult Upload(PhotoEntityModel photo, HttpPostedFileBase[] photofiles)
         {
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
@@ -82,7 +82,7 @@ namespace PhotoExplorer.Web.Controllers
                 foreach (var file in photofiles)
                 {
                     //create new class object representation of photo for every file uploaded
-                    PhotoViewModel uploadedPhoto = new PhotoViewModel()
+                    PhotoEntityModel uploadedPhoto = new PhotoEntityModel()
                     {
                         FileName = file.FileName,
                         DateCreated = DateTime.Now,

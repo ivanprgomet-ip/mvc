@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace PhotoExplorer.Web.Models
+namespace PhotoExplorer.Web.Entities
 {
     public class PhotoExplorerContext:DbContext
     {
@@ -14,9 +14,9 @@ namespace PhotoExplorer.Web.Models
             Database.SetInitializer(new DropCreateDatabaseAlways<PhotoExplorerContext>());
         }
         
-        public DbSet<UserViewModel> Users { get; set; }
-        public DbSet<AlbumViewModel> Albums { get; set; }
-        public DbSet<PhotoViewModel> Photos { get; set; }
-        public DbSet<CommentViewModel> Comments { get; set; }
+        public DbSet<UserEntityModel> Users { get; set; }
+        public DbSet<AlbumEntityModel> Albums { get; set; }
+        public DbSet<PhotoEntityModel> Photos { get; set; }
+        public DbSet<CommentEntityModel> Comments { get; set; }
     }
 }

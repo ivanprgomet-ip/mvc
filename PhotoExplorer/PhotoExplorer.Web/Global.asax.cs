@@ -1,4 +1,4 @@
-﻿using PhotoExplorer.Web.Models;
+﻿using PhotoExplorer.Web.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,116 +21,127 @@ namespace PhotoExplorer.Web
         private void Seed()
         {
             #region user 1
-            PhotoViewModel p1 = new PhotoViewModel()
+            PhotoEntityModel p1 = new PhotoEntityModel()
             {
                 FileName = "event1.jpg",
+                Name = "first event",
                 DateCreated = DateTime.Now,
                 Description = "no description",
             };
-            PhotoViewModel p2 = new PhotoViewModel()
+            PhotoEntityModel p2 = new PhotoEntityModel()
             {
                 FileName = "event2.jpg",
+                Name = "second event",
                 DateCreated = DateTime.Now,
                 Description = "no description",
             };
-            PhotoViewModel p3 = new PhotoViewModel()
+            PhotoEntityModel p3 = new PhotoEntityModel()
             {
                 FileName = "event3.jpg",
+                Name = "third event",
                 DateCreated = DateTime.Now,
                 Description = "no description",
             };
 
-            AlbumViewModel a1 = new AlbumViewModel()
+            AlbumEntityModel a1 = new AlbumEntityModel()
             {
                 Name = "my coding events",
                 Description = "coding events that i have attended",
                 DateCreated = DateTime.Now,
-                Comments = new List<CommentViewModel>(),
-                Photos = new List<PhotoViewModel>() { p1, p2, p3 },
+                Comments = new List<CommentEntityModel>(),
+                Photos = new List<PhotoEntityModel>() { p1, p2, p3 },
             };
 
-            UserViewModel u1 = new UserViewModel()
+            UserEntityModel u1 = new UserEntityModel()
             {
                 Fullname = "Ivan Prgomet",
                 Username = "ivanprgomet",
+                Email = "ivanprgomet@gmail.com",
                 Password = "ivan123",
                 DateRegistered = DateTime.Now,
-                Albums = new List<AlbumViewModel>() { a1 },
+                Albums = new List<AlbumEntityModel>() { a1 },
             };
             #endregion
 
             #region user 2
-            PhotoViewModel p4 = new PhotoViewModel()
+            PhotoEntityModel p4 = new PhotoEntityModel()
             {
                 FileName = "code1.jpg",
+                Name = "some code",
                 DateCreated = DateTime.Now,
                 Description = "no description",
             };
-            AlbumViewModel a2 = new AlbumViewModel()
+            AlbumEntityModel a2 = new AlbumEntityModel()
             {
                 Name = "random coding photos",
                 Description = "just some coding casual coding photos",
                 DateCreated = DateTime.Now,
-                Comments = new List<CommentViewModel>(),
-                Photos = new List<PhotoViewModel>() { p4 },
+                Comments = new List<CommentEntityModel>(),
+                Photos = new List<PhotoEntityModel>() { p4 },
             };
 
-            UserViewModel u2 = new UserViewModel()
+            UserEntityModel u2 = new UserEntityModel()
             {
                 Fullname = "lea winchester",
                 Username = "leawinchester",
+                Email = "leawinchester@gmail.com",
                 Password = "lealea",
                 DateRegistered = DateTime.Now,
-                Albums = new List<AlbumViewModel>() { a2 },
+                Albums = new List<AlbumEntityModel>() { a2 },
             };
             #endregion
 
             #region user 3
-            PhotoViewModel p5 = new PhotoViewModel()
+            PhotoEntityModel p5 = new PhotoEntityModel()
             {
                 FileName = "mockerie1.jpg",
+                Name = "mock one",
                 DateCreated = DateTime.Now,
                 Description = "no description",
             };
-            PhotoViewModel p6 = new PhotoViewModel()
+            PhotoEntityModel p6 = new PhotoEntityModel()
             {
                 FileName = "mockerie2.jpg",
+                Name = "mock two",
                 DateCreated = DateTime.Now,
                 Description = "no description",
             };
-            PhotoViewModel p7 = new PhotoViewModel()
+            PhotoEntityModel p7 = new PhotoEntityModel()
             {
                 FileName = "mockerie3.jpg",
+                Name = "mock three",
                 DateCreated = DateTime.Now,
                 Description = "no description",
             };
-            PhotoViewModel p8 = new PhotoViewModel()
+            PhotoEntityModel p8 = new PhotoEntityModel()
             {
                 FileName = "mockerie4.jpg",
+                Name = "mock four",
                 DateCreated = DateTime.Now,
                 Description = "no description",
             };
-            AlbumViewModel a3 = new AlbumViewModel()
+            AlbumEntityModel a3 = new AlbumEntityModel()
             {
                 Name = "mockups",
                 Description = "some of my experimental mockups",
                 DateCreated = DateTime.Now,
-                Comments = new List<CommentViewModel>(),
-                Photos = new List<PhotoViewModel>() { p5, p6, p7, p8 },
+                Comments = new List<CommentEntityModel>(),
+                Photos = new List<PhotoEntityModel>() { p5, p6, p7, p8 },
             };
 
-            UserViewModel u3 = new UserViewModel()
+            UserEntityModel u3 = new UserEntityModel()
             {
                 Fullname = "jason bourne",
                 Username = "jasonbourne",
+                Email = "jasonbourne@gmail.com",
                 Password = "whatsmyname",
                 DateRegistered = DateTime.Now,
-                Albums = new List<AlbumViewModel>() { a3 },
+                Albums = new List<AlbumEntityModel>() { a3 },
             };
             #endregion
             using (PhotoExplorerContext context = new PhotoExplorerContext())
             {
-                context.Users.AddRange(new List<UserViewModel> { u1, u2,u3 });
+                context.Users.AddRange(new List<UserEntityModel> { u1, u2,u3 });
 
                 context.SaveChanges();
             }

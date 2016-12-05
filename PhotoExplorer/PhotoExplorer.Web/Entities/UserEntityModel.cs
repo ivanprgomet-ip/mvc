@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace PhotoExplorer.Web.Models
+namespace PhotoExplorer.Web.Entities
 {
-    public class UserViewModel
+    public class UserEntityModel
     {
-        public UserViewModel()
+        public UserEntityModel()
         {
-            Albums = new List<AlbumViewModel>();
+            Albums = new List<AlbumEntityModel>();
         }
 
         public int Id { get; set; }
@@ -18,12 +18,13 @@ namespace PhotoExplorer.Web.Models
         public string Username { get; set; }
         public string Password { get; set; }
         public DateTime? DateRegistered { get; set; }
+        public string Email { get; set; }
 
         //slow apps do alot of eager-loading    (loading things right away). 
         //Fast apps do alot of lazy-loading     (only loading things when they are needed)
 
         //non-virtual property -        lazy load disabled
         //virtual property -            lazy load enabled (for specific navigation property)
-        public virtual ICollection<AlbumViewModel> Albums { get; set; }
+        public virtual ICollection<AlbumEntityModel> Albums { get; set; }
     }
 }

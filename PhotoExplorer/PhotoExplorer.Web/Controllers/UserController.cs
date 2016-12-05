@@ -1,4 +1,4 @@
-﻿using PhotoExplorer.Web.Models;
+﻿using PhotoExplorer.Web.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var users = new List<UserViewModel>();
+            var users = new List<UserEntityModel>();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
@@ -26,7 +26,7 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var userToShow = new UserViewModel();
+            var userToShow = new UserEntityModel();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
@@ -41,7 +41,7 @@ namespace PhotoExplorer.Web.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            var userToDelete = new UserViewModel();
+            var userToDelete = new UserEntityModel();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
