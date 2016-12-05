@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace PhotoExplorer.Web.Controllers
 {
@@ -20,6 +21,21 @@ namespace PhotoExplorer.Web.Controllers
             }
 
             return View(users);
+        }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            var userToShow = new UserModel();
+
+            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            {
+                userToShow = cx.Users
+                    .Include(u=>u.Albums)
+                    .FirstOrDefault(u => u.Id == id);
+            }
+
+            return View("Details", userToShow);
         }
     }
 }
