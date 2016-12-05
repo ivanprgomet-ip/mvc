@@ -1,18 +1,12 @@
 ﻿@model PhotoExplorer.Web.Models.UserModel
 
-<tr>
-    <td>
-        @Html.DisplayFor(u => u.Fullname)
-    </td>
-    <td>
-        @Html.DisplayFor(u => u.Username)
-    </td>
-    <td>
-        @Html.DisplayFor(u => u.DateRegistered)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Details", "Details", new { id = Model.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = Model.Id })
-    </td>
-</tr>
+<article class="user">
+    <div class="col-lg-2 col-md-2 col-xs-4 text-center">
+        <a href="@Url.Action("Details","User",new {id=Model.Id },null)">
+            <i class="glyphicon glyphicon-user" style="font-size:36px;"></i>
+        </a>
+        <div>
+            <small>@Model.Username</small>
+        </div>
+    </div>
+</article>
