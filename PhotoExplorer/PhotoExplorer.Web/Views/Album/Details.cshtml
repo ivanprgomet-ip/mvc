@@ -1,0 +1,9 @@
+﻿@model PhotoExplorer.Web.Models.AlbumModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name</h2>
+
+@Html.Partial("_Photos", Model);

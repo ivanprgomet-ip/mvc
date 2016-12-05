@@ -10,12 +10,6 @@
     <section class="container">
         <h3 style="background-color:lemonchiffon">Photos</h3>
         @{
-
-            <p>
-                @Html.ActionLink("Upload New Photo", "Create", "Photo", null, null)
-            </p>
-
-
             foreach (var user in Model)
             {
                 foreach (var album in user.Albums)
@@ -30,30 +24,12 @@
     @* DISPLAY ALL USERS ALBUMS *@
     <section class="container">
         <h3 style="background-color:lemonchiffon">Albums</h3>
-        @{
-            <p>
-                @Html.ActionLink("Create New Album", "Create", "Album", null)
-            </p>
-            <table class="table">
-                <tr>
-                    <th>
-                        Name:
-                    </th>
-                    <th>
-                        Description:
-                    </th>
-                    <th>
-                        DateCreated:
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var user in Model)
+        <div>
+            @foreach (var user in Model)
             {
-                    @Html.Partial("_Albums", user)
-                }
-            </table>
-        }
+                @Html.Partial("_Albums", user)
+            }
+        </div>
     </section>
 
     @*DISPLAY ALL USERS*@
