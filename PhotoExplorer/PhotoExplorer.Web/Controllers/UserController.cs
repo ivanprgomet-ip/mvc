@@ -13,7 +13,7 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var users = new List<UserModel>();
+            var users = new List<UserViewModel>();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
@@ -26,7 +26,7 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var userToShow = new UserModel();
+            var userToShow = new UserViewModel();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
@@ -36,6 +36,25 @@ namespace PhotoExplorer.Web.Controllers
             }
 
             return View("Details", userToShow);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var userToDelete = new UserViewModel();
+
+            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            {
+                userToDelete = cx.Users
+                    .Include(u => u.Albums)
+                    .FirstOrDefault(u => u.Id == id);
+
+                cx.Users.Remove(userToDelete);
+
+                cx.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

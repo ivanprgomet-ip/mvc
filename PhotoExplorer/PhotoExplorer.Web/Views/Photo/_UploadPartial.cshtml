@@ -1,9 +1,4 @@
-﻿@* upload photo(s).
-
-    []  But the POST is happeningn within index because
-        this is a partial view? so the controller action will
-        be the Index action that will be attributet with the POST? *@
-@using (Html.BeginForm("Upload", "Photo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+﻿@using (Html.BeginForm("Upload", "Photo", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <table class="table">
 

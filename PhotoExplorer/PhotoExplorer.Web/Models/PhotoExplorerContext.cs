@@ -14,9 +14,9 @@ namespace PhotoExplorer.Web.Models
             Database.SetInitializer(new DropCreateDatabaseAlways<PhotoExplorerContext>());
         }
         
-        public DbSet<UserModel> Users { get; set; }
-        public DbSet<AlbumModel> Albums { get; set; }
-        public DbSet<PhotoModel> Photos { get; set; }
-        public DbSet<CommentModel> Comments { get; set; }
+        public DbSet<UserViewModel> Users { get; set; }
+        public DbSet<AlbumViewModel> Albums { get; set; }
+        public DbSet<PhotoViewModel> Photos { get; set; }
+        public DbSet<CommentViewModel> Comments { get; set; }
     }
 }

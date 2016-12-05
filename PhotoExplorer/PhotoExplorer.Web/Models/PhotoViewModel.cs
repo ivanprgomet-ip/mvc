@@ -6,11 +6,11 @@ using System.Web;
 
 namespace PhotoExplorer.Web.Models
 {
-    public class PhotoModel
+    public class PhotoViewModel
     {
-        public PhotoModel()
+        public PhotoViewModel()
         {
-            Comments = new List<CommentModel>();
+            Comments = new List<CommentViewModel>();
         }
 
         public int Id { get; set; }
@@ -21,11 +21,11 @@ namespace PhotoExplorer.Web.Models
         public string UploadedBy { get; set; }
 
         //navigation property
-        public virtual List<CommentModel> Comments { get; set; }
+        public virtual List<CommentViewModel> Comments { get; set; }
 
-        public virtual UserModel User { get; set; }
+        public virtual UserViewModel User { get; set; }
         //public int UserModelId { get; set; }
-        public virtual AlbumModel Album { get; set; }
+        public virtual AlbumViewModel Album { get; set; }
         //public int AlbumModelId { get; set; }
 
     }

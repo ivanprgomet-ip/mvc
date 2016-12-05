@@ -14,7 +14,7 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var photos = new List<PhotoModel>();
+            var photos = new List<PhotoViewModel>();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
@@ -28,7 +28,7 @@ namespace PhotoExplorer.Web.Controllers
         public ActionResult Details(int Id)
         {
             #region retrieve photo to show
-            var retrievedPhoto = new PhotoModel();
+            var retrievedPhoto = new PhotoViewModel();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
@@ -45,7 +45,7 @@ namespace PhotoExplorer.Web.Controllers
         [HttpPost]
         public ActionResult Comment(int id, string txt_comment)
         {
-            var retrievedPhoto = new PhotoModel();
+            var retrievedPhoto = new PhotoViewModel();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
@@ -55,7 +55,7 @@ namespace PhotoExplorer.Web.Controllers
                     .FirstOrDefault();
 
                 #region prepare a new comment for the photo
-                CommentModel commentModel = new CommentModel()
+                CommentViewModel commentModel = new CommentViewModel()
                 {
                     DateCreated = DateTime.Now,
                     Comment = txt_comment,
@@ -74,7 +74,7 @@ namespace PhotoExplorer.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Upload(PhotoModel photo, HttpPostedFileBase[] photofiles)
+        public ActionResult Upload(PhotoViewModel photo, HttpPostedFileBase[] photofiles)
         {
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
@@ -82,7 +82,7 @@ namespace PhotoExplorer.Web.Controllers
                 foreach (var file in photofiles)
                 {
                     //create new class object representation of photo for every file uploaded
-                    PhotoModel uploadedPhoto = new PhotoModel()
+                    PhotoViewModel uploadedPhoto = new PhotoViewModel()
                     {
                         FileName = file.FileName,
                         DateCreated = DateTime.Now,

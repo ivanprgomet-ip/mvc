@@ -6,11 +6,11 @@ using System.Web;
 
 namespace PhotoExplorer.Web.Models
 {
-    public class UserModel
+    public class UserViewModel
     {
-        public UserModel()
+        public UserViewModel()
         {
-            Albums = new List<AlbumModel>();
+            Albums = new List<AlbumViewModel>();
         }
 
         public int Id { get; set; }
@@ -24,6 +24,6 @@ namespace PhotoExplorer.Web.Models
 
         //non-virtual property -        lazy load disabled
         //virtual property -            lazy load enabled (for specific navigation property)
-        public virtual ICollection<AlbumModel> Albums { get; set; }
+        public virtual ICollection<AlbumViewModel> Albums { get; set; }
     }
 }

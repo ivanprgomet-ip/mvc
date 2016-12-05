@@ -13,7 +13,7 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var albums = new List<AlbumModel>();
+            var albums = new List<AlbumViewModel>();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
@@ -26,7 +26,7 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var albumToShow = new AlbumModel();
+            var albumToShow = new AlbumViewModel();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {

@@ -7,12 +7,12 @@ using System.Web;
 
 namespace PhotoExplorer.Web.Models
 {
-    public class AlbumModel
+    public class AlbumViewModel
     {
-        public AlbumModel()
+        public AlbumViewModel()
         {
-            Comments = new List<CommentModel>();
-            Photos = new List<PhotoModel>();
+            Comments = new List<CommentViewModel>();
+            Photos = new List<PhotoViewModel>();
         }
 
         public int Id { get; set; }
@@ -20,10 +20,10 @@ namespace PhotoExplorer.Web.Models
         public string Description { get; set; }
         public DateTime? DateCreated { get; set; }
 
-        public virtual ICollection<CommentModel> Comments { get; set; }
-        public virtual ICollection<PhotoModel> Photos { get; set; }
+        public virtual ICollection<CommentViewModel> Comments { get; set; }
+        public virtual ICollection<PhotoViewModel> Photos { get; set; }
 
-        public virtual UserModel User { get; set; }
+        public virtual UserViewModel User { get; set; }
         //public int UserModelId { get; set; }
     }
 }

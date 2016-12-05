@@ -9,7 +9,7 @@ namespace PhotoExplorer.Web.Repositories
 {
     public class CommentRepository
     {
-        public void NewAlbumComment(int albumid, CommentModel newAlbumComment)
+        public void NewAlbumComment(int albumid, CommentViewModel newAlbumComment)
         {
             using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {

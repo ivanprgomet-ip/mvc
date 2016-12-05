@@ -6,4 +6,129 @@ only an portion of the screen. html.beginform makes an synchronous request to th
 to do is tell the helper what to update on the screen
 
 # the unobtrusive-ajax.min.js is needed, because without it the comment would not land neatly on the same page in the div where its 
-supposed to land, the partialview returned with take up its completely own page. 
+supposed to land, the partialview returned with take up its completely own page.
+
+# think of ajax as a partial page update.
+
+#... Ajax.BeginForm is very similar to Html.BeginForm. It writes out to form tag and you can tell what controller 
+and action and route values to use. But Ajax.BeginForm will make an asynchronous request to the server. Html.BeginForm 
+makes a synchronous request to the server that withdraws the entire screen. Ajax.BeginForm makes an async request and it 
+can withdraw just a portion of the screen. All you need to do is tell the helper what to update on the page, and you could 
+do this with the AjaxOptions object that we pass it. We tell the helper to make a get request and whatever comes back should 
+replace the content in the page that's currently identified by this UpdateTargetId. We don't have an HTML element by that name, 
+so I need to add one. This element will delimit essentially the area that we want updated. So I want to update all of the restaurant 
+information and all of that is now inside of a div with an id of restaurantList. And with just this code in place, let me press F5 
+to run this application with the debugger. That will prompt me to change by Web.config back. If you remember, we went into 
+Web.config and set debug equals false. This is going to set that back to true which makes things a little bit easier to 
+debug if something goes wrong. I'll just click Okay and let it make that change. And now, in the application, let's 
+search for 23. And you can see this kind of works. Asynchronous form made a request back to the server, got back a 
+response, and then we're after that into the page where the restaurant list used to be. So we now we have a page 
+inside of a page that has a restaurant list and I could continue doing that infinitely. So the problem in here 
+is that the client side stuff all worked, we need this server to respond differently when we do a search. 
+We need it to return just updated restaurants that should be displayed on the page. And that means this 
+restaurantList needs to display in two ways. First of all, it needs to display on the homepage when the 
+user first comes to the homepage. We need the restaurant list there. And then, when we do a search, we 
+need the restaurant list to display and just the restaurant list. And since we're going to need to this 
+in two places, that means we'll be using a partial view. Let me cut the restaurantList out of the Index 
+view and come into the views for the HomeController and add a view called _Restaurants. This will be a 
+Razor view. It's going to be a partial view. And I'll just click Add and paste in our HTML. We can also 
+make this strongly typed. It's going to have the same model is the Index view, so I'll just copy the model 
+directive out of the Index view, paste it into _Restaurants, that's our partial view. That's part of what we 
+have to do. Now, we can render this when someone renders the Index view, so that we get a full page with the restaurants 
+and the header and the login and everything. So we'll render Restaurants and we'll send the model along to be rendered. 
+And now, it's really going to be up to the controller to decide how to render a response to the indexed action because this 
+is all happening through the index action, the homepage, the search results. Let's open up the HomeController and I'll show 
+you how easy it is to make this decision inside of the HomeController. What I'll do is stop debugging, shift F5. And then 
+paste in a little bit of code that can determine if a request arriving to the server is in an asynchronous request. 
+It does this behind the scenes by looking into the HTTP headers. There'll be a special flag there that you can find 
+out easily just by asking Request.IsAjaxRequest. So if it is an asynchronous request, we'll return just that partial 
+view with the restaurant information, otherwise, we'll return the full view. Use the same model object for both views. 
+But now, if I run the application again, we should have the result we're looking for. I'll scroll down the page just a 
+little bit and search for 24. And you can see that bottom portion of the screen just updates instantly. We don't lose our 
+scroll position. In fact, it's sometimes hard to tell that the screen changed. We might need to add a little animation or 
+fade-in, fade-out effect, just to draw the user's attention to the fact that the screen has in fact updated.
+
+# the web.config file in the views folder is for the razor configurations. here you can add default namespaces for example so that
+you dont have to write whole namespaces everytime you take in a model into a view.
+
+CLAIMS
+# a claim consists of information about the user
+# claims are sent back and forth to the webserver - with the aid of cookies
+# well can we change a claim then? because cookies are "unsafe".
+	-> your cookie is signed, so if you change it, the server will know
+Install-Package Microsoft.Owin.Host.SystemWeb
+Install-Package Microsoft.AspNet.Identity.OWIN
+Install-Package Microsoft.AspNet.Identity.EntityFramework
+
+the usermanager handles everything that has to do with the user
+
+#how do i register a user?
+	var user = new IdentityUser
+	{
+		UserName = username,
+		Email = email
+	};
+	var result = await userManager.CreateAsync(user, password);		//Skapa användaren med ett anviget lösenord
+	if (result.Succeeded) { }										//Vi vill verifiera att det gick att skapa användaren – Vi kanske har specialvalidering av längd på lösenord
+
+#so now the user exists, but how do i login?
+	-> we must create an identity
+	User.Identity ->ClaimsIdentity:IIdentity						//När man är inloggad vet ASP.NET detta genom att kolla på en Cookie. Den sätter då User.Identity till en ClaimsPrincipal!
+#but how do we create an identity?
+	var identity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+#now we must tell ASP.NET that we want to get logged in with this identity
+	IAuthenticationManager
+	var authenticationManager = HttpContext.GetOwinContext().Authentication;	//Vi använder OWIN för att
+																				kunna applicera ASP.NET
+																				Identity. Detta konfigurerar vi
+																				t.ex. i Startup.cs. Vi kan sen
+																				hämta ut detta context här
+																				och använda en
+																				AuthenticationManager
+
+#now we want to set a cookie that says we are logged in!
+var properties = new AuthenticationProperties
+{
+IsPersistent = false
+};
+authenticationManager.SignIn(properties, identity);
+
+How does ASP.NET know which cookie to set, and that its even suposed to look for a cookie?
+	->gets configured in Startup.cs
+app.UseCookieAuthentication(new CookieAuthenticationOptions
+{
+AuthenticationType =
+DefaultAuthenticationTypes.ApplicationCookie,
+LoginPath = new PathString("/Home/Login")
+});
+
+#now just set an authorize attribute on an action to prompt for login.
+
+#this is how the login action would look now:
+	[AllowAnonymous]
+	[HttpPost]
+	[ValidateAntiForgeryToken]
+	public async Task<ActionResult> Login(string username,
+	string password)
+	{
+	var user = await userManager.FindAsync(username, password);
+	if (user != null)
+	{
+	var identity = await userManager.CreateIdentityAsync(user,
+	DefaultAuthenticationTypes.ApplicationCookie);
+	var authenticationManager = HttpContext.GetOwinContext().Authentication;
+	authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true },
+	identity);
+	return RedirectToAction("Index");
+	}
+	return View();
+	}
+
+#but what does claims have to do with this?
+	->claims contain for example your email:
+[Authorize]
+public ActionResult Index()
+{
+var identity = User.Identity as ClaimsIdentity;
+var email = identity.FindFirst("email").Value;
+}

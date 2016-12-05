@@ -1,4 +1,13 @@
-﻿@model PhotoExplorer.Web.Models.UserModel
+﻿@model PhotoExplorer.Web.Models.UserViewModel
+
+@{
+    AjaxOptions ajaxOptions = new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "users_id", //index view of usercontroller
+    };
+}
 
 <article class="user">
     <div class="col-lg-2 col-md-2 col-xs-4 text-center">
@@ -7,6 +16,11 @@
         </a>
         <div>
             <small>@Model.Username</small>
+        </div>
+        <div>
+            <small>
+                @Ajax.ActionLink("Delete User", "User", new { id = Model.Id }, ajaxOptions, null)
+            </small>
         </div>
     </div>
 </article>

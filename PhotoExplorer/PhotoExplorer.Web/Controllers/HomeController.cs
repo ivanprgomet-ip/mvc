@@ -13,7 +13,7 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            List<UserModel> usersFromDB = new List<UserModel>();
+            List<UserViewModel> usersFromDB = new List<UserViewModel>();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {

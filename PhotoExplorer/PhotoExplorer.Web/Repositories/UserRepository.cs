@@ -9,7 +9,7 @@ namespace MvcLab.Web.Repositories
 {
     public class UserRepository
     {
-        public void Add(UserModel userToBeRegistered)
+        public void Add(UserViewModel userToBeRegistered)
         {
             using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
@@ -19,11 +19,11 @@ namespace MvcLab.Web.Repositories
             }
         }
 
-        public UserModel GetUser(int IserModelId)
+        public UserViewModel GetUser(int IserModelId)
         {
             using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
-                UserModel user = _context.Users
+                UserViewModel user = _context.Users
                     .Where(u => u.Id == IserModelId)
                     .Include(u => u.Albums
                         .Select(p => p.Photos
@@ -33,7 +33,7 @@ namespace MvcLab.Web.Repositories
             }
         }
 
-        public UserModel RetrieveLoggedInUser(string username, string password)
+        public UserViewModel RetrieveLoggedInUser(string username, string password)
         {
             using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
@@ -44,13 +44,13 @@ namespace MvcLab.Web.Repositories
 
         }
 
-        public List<UserModel> RetrieveAll()
+        public List<UserViewModel> RetrieveAll()
         {
-            List<UserModel> users = new List<UserModel>();
+            List<UserViewModel> users = new List<UserViewModel>();
 
             using (PhotoExplorerContext _context = new PhotoExplorerContext())
             {
-                List<UserModel> userEntitiesFromDB = _context.Users.ToList();
+                List<UserViewModel> userEntitiesFromDB = _context.Users.ToList();
 
                 foreach (var user in userEntitiesFromDB)
                 {
