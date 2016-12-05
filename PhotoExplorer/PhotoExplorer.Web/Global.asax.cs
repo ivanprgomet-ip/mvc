@@ -85,9 +85,52 @@ namespace PhotoExplorer.Web
             };
             #endregion
 
+            #region user 3
+            PhotoModel p5 = new PhotoModel()
+            {
+                FileName = "mockerie1.jpg",
+                DateCreated = DateTime.Now,
+                Description = "no description",
+            };
+            PhotoModel p6 = new PhotoModel()
+            {
+                FileName = "mockerie2.jpg",
+                DateCreated = DateTime.Now,
+                Description = "no description",
+            };
+            PhotoModel p7 = new PhotoModel()
+            {
+                FileName = "mockerie3.jpg",
+                DateCreated = DateTime.Now,
+                Description = "no description",
+            };
+            PhotoModel p8 = new PhotoModel()
+            {
+                FileName = "mockerie4.jpg",
+                DateCreated = DateTime.Now,
+                Description = "no description",
+            };
+            AlbumModel a3 = new AlbumModel()
+            {
+                Name = "mockups",
+                Description = "some of my experimental mockups",
+                DateCreated = DateTime.Now,
+                Comments = new List<CommentModel>(),
+                Photos = new List<PhotoModel>() { p5, p6, p7, p8 },
+            };
+
+            UserModel u3 = new UserModel()
+            {
+                Fullname = "jason bourne",
+                Username = "jasonbourne",
+                Password = "whatsmyname",
+                DateRegistered = DateTime.Now,
+                Albums = new List<AlbumModel>() { a3 },
+            };
+            #endregion
             using (PhotoExplorerContext context = new PhotoExplorerContext())
             {
-                context.Users.AddRange(new List<UserModel> { u1, u2 });
+                context.Users.AddRange(new List<UserModel> { u1, u2,u3 });
 
                 context.SaveChanges();
             }

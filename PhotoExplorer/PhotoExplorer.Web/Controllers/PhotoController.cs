@@ -12,6 +12,19 @@ namespace PhotoExplorer.Web.Controllers
     public class PhotoController : Controller
     {
         [HttpGet]
+        public ActionResult Index()
+        {
+            var photos = new List<PhotoModel>();
+
+            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            {
+                photos = cx.Photos.ToList();
+            }
+
+            return View(photos);
+        }
+
+        [HttpGet]
         public ActionResult Details(int Id)
         {
             #region retrieve photo to show
@@ -58,6 +71,36 @@ namespace PhotoExplorer.Web.Controllers
                 note: only updating portion of the page by using partial view (with the NEW model)            
             */
             return PartialView("_PhotoComments", retrievedPhoto);
+        }
+
+        [HttpPost]
+        public ActionResult Upload(PhotoModel photo, HttpPostedFileBase[] photofiles)
+        {
+            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            {
+                //iterate all files uploaded by user
+                foreach (var file in photofiles)
+                {
+                    //create new class object representation of photo for every file uploaded
+                    PhotoModel uploadedPhoto = new PhotoModel()
+                    {
+                        FileName = file.FileName,
+                        DateCreated = DateTime.Now,
+                        Description = "no description",
+                    };
+
+                    //save physical file representation of photo 
+                    file.SaveAs(Server.MapPath($"~/photos/{uploadedPhoto.FileName}"));
+
+                    //save class object representation of photo 
+                    cx.Photos.Add(uploadedPhoto);
+
+                    //persist/save to database
+                    cx.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

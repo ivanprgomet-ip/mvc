@@ -1,0 +1,16 @@
+﻿@model IEnumerable<PhotoExplorer.Web.Models.PhotoModel>
+
+<div class="container">
+    <h2>Explore Photos</h2>
+    <div class="container">
+        @Html.Partial("_UploadPartial")
+    </div>
+    <div>
+        @{
+            foreach (var photo in Model)
+            {
+                @Html.Partial("_Photo", photo)
+            }
+        }
+    </div>
+</div>
