@@ -34,6 +34,7 @@ namespace PhotoExplorer.Web.Controllers
 
             return View("Index",model);
         }
+
         [HttpGet]
         public ActionResult AboutUs()
         {

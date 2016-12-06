@@ -1,8 +1,6 @@
 ﻿@model  PhotoExplorer.Web.Models.ListUsersAlbumsViewModel
 
-@{
-    ViewBag.Title = "Index";
-}
+@* home index *@
 
 <div class="jumbotron">
     <h1>Explore</h1>
@@ -10,28 +8,16 @@
 </div>
 
 <div class="container">
-  
     <section class="container">
-        <h3>Photos</h3>@*DISPLAY ALL USERS ALBUMS PHOTOS*@
-        @{
-            foreach (var album in Model.Albums)
-            {
-                foreach (var photo in album.Photos)
-                {
-                    @Html.Partial("_Photo", photo)
-                }
-            }
-        }
-    </section>
-
-  
-    <section class="container">
-        <h3>Albums</h3>@* DISPLAY ALL USERS ALBUMS *@
+        <h3>Photos</h3>
         <div>
-            @foreach (var album in Model.Albums)
-            {
-                @Html.Partial("_Album", album)
-            }
+            @Html.Partial("_Photos", Model.Albums)
+        </div>
+    </section>
+    <section class="container">
+        <h3>Albums</h3>
+        <div>
+            @Html.Partial("_Albums", Model)
         </div>
     </section>
 </div>

@@ -1,10 +1,11 @@
-﻿@model PhotoExplorer.Web.Models.AlbumViewModel
+﻿@model  IEnumerable<PhotoExplorer.Web.Entities.AlbumEntityModel>
 
-@foreach (var photo in Model.Photos)
-{
-    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-        <a class="thumbnail" href="@Url.Action("Details","Photo",new {id=photo.Id },null)">
-            <img class="img-responsive" src="~/photos/@photo.FileName" alt="">
-        </a>
-    </div>
+@{
+    foreach (var album in Model)
+    {
+        foreach (var photo in album.Photos)
+        {
+            @Html.Partial("_Photo", photo)
+        }
+    }
 }
