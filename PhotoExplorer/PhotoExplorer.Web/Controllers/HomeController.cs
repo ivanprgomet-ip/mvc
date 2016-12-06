@@ -9,12 +9,18 @@ namespace PhotoExplorer.Web.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// in this particular action, the only importatn property of the UserDetailsViewModel 
+        /// will be the albums, because thats the only thing that is used in the index view, the 
+        /// rest of the properties are ommitted for this view, but used in other views.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Index()
         {
             List<UserEntityModel> usersFromDB = new List<UserEntityModel>();
 
-            ListUsersAlbumsViewModel model = new ListUsersAlbumsViewModel();
+            UserDetailsViewModel model = new UserDetailsViewModel();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {

@@ -7,10 +7,7 @@ using System.Web;
 
 namespace PhotoExplorer.Web.Models
 {
-    /// <summary>
-    /// todo: dont use any entities in these classes. that means you 
-    /// must map values
-    /// </summary>
+    //todo: initialize the datetimes and collection properties
     public class UploadPhotoViewModel
     {
         [Required(ErrorMessage ="Please enter name for photo")]
@@ -56,13 +53,29 @@ namespace PhotoExplorer.Web.Models
         public ICollection<PhotoEntityModel> Photos { get; set; }
         public UserEntityModel User { get; set; }
     }
-    public class ListUsersAlbumsViewModel
+    public class UserSimplifiedViewModel
     {
-        public ICollection<AlbumEntityModel> Albums { get; set; }//all users albums
+        public int Id { get; set; }//needed in the views when we send ids into controller action...
+        public string Username { get; set; }
+        public DateTime? DateRegistered { get; set; }
 
-        public ListUsersAlbumsViewModel()
+        public UserSimplifiedViewModel()
+        {
+            DateRegistered = DateTime.Now;
+        }
+    }
+    public class UserDetailsViewModel
+    {
+        public string Fullname { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public DateTime? DateRegistered { get; set; }
+        public ICollection<AlbumEntityModel> Albums { get; set; }
+
+        public UserDetailsViewModel()
         {
             Albums = new List<AlbumEntityModel>();
+            DateRegistered = DateTime.Now;
         }
     }
 }

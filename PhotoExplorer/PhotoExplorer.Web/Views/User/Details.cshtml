@@ -1,4 +1,4 @@
-﻿@model PhotoExplorer.Web.Models.UserViewModel
+﻿@model PhotoExplorer.Web.Models.UserDetailsViewModel
 
 <div class="container">
     <h2>@Model.Username Details</h2>
@@ -8,7 +8,6 @@
             <div style="display:flex;flex-direction:column;">
                 <small style="font-weight:800">Fullname: @Model.Fullname</small>
                 <small>Date Registered: @Model.DateRegistered</small>
-                <small>Username: @Model.Username</small>
             </div>
             @Html.Partial("_Albums", Model)
         </div>
