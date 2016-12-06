@@ -41,6 +41,7 @@ namespace PhotoExplorer.Web.Models
     }
     public class AlbumListedViewModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public DateTime? DateCreated { get; set; }
         public UserEntityModel User { get; set; }

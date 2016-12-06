@@ -218,6 +218,7 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\Photo\_Photo2.cshtml" />
+    <Content Include="Views\Album\_Album2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

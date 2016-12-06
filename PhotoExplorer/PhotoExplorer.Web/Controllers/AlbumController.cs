@@ -14,14 +14,28 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var albums = new List<AlbumEntityModel>();
+            List<AlbumListedViewModel> model = new List<AlbumListedViewModel>();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
-                albums = cx.Albums.ToList();
+                var entities = cx.Albums.ToList();
+
+                foreach (var entity in entities)
+                {
+                    AlbumListedViewModel albumModel = new AlbumListedViewModel()
+                    {
+                        Id = entity.Id,
+                        Name = entity.Name,
+                        DateCreated = entity.DateCreated,
+                        User = entity.User,
+                    };
+
+                    model.Add(albumModel);
+                }
+
             }
 
-            return View(albums);
+            return View(model);
         }
 
         [HttpGet]

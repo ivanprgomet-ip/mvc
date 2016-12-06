@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PhotoExplorer.Web.Models.AlbumViewModel>
+﻿@model IEnumerable<PhotoExplorer.Web.Models.AlbumListedViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -9,7 +9,7 @@
     @{
         foreach (var album in Model)
         {
-            @Html.Partial("_Album", album);
+            @Html.Partial("_Album2", album);
         }
     }
 </div>
