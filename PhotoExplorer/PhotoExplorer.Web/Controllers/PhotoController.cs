@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using PhotoExplorer.Web.Models;
 
 namespace PhotoExplorer.Web.Controllers
 {
@@ -28,18 +29,30 @@ namespace PhotoExplorer.Web.Controllers
         public ActionResult Details(int Id)
         {
             #region retrieve photo to show
-            var retrievedPhoto = new PhotoEntityModel();
+            PhotoDetailsViewModel model = null;
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
-                retrievedPhoto = cx.Photos
+                PhotoEntityModel entity = cx.Photos
                     .Where(p => p.Id == Id)
                     .Include(p => p.Comments)
                     .FirstOrDefault();
+
+                model = new PhotoDetailsViewModel()
+                {
+                    Id = entity.Id,
+                    Name = entity.Name,
+                    FileName = entity.FileName,
+                    DateCreated = entity.DateCreated,
+                    Album = entity.Album,
+                    Comments = entity.Comments,
+                    Description = entity.Description,
+                    User = entity.User,
+                };
             }
             #endregion
 
-            return View("Details", retrievedPhoto);
+            return View("Details", model);
         }
 
         [HttpPost]

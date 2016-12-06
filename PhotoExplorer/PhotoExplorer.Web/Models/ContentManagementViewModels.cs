@@ -8,7 +8,7 @@ using System.Web;
 namespace PhotoExplorer.Web.Models
 {
     //todo: initialize the datetimes and collection properties
-    public class UploadPhotoViewModel
+    public class PhotoUploadViewModel
     {
         [Required(ErrorMessage ="Please enter name for photo")]
         public string Name { get; set; }
@@ -22,7 +22,9 @@ namespace PhotoExplorer.Web.Models
 
     public class PhotoDetailsViewModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
+        public string FileName { get; set; }
         public string Description { get; set; }
         public DateTime? DateCreated { get; set; }
         public List<CommentEntityModel> Comments { get; set; }
@@ -30,7 +32,7 @@ namespace PhotoExplorer.Web.Models
         public AlbumEntityModel Album { get; set; }
     }
 
-    public class CreateAlbumViewModel
+    public class AlbumCreateViewModel
     {
         [Required(ErrorMessage = "Please enter name for album")]
         public string Name { get; set; }
