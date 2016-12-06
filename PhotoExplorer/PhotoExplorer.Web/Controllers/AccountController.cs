@@ -14,6 +14,33 @@ namespace PhotoExplorer.Web.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        /// <summary>
+        /// the currently logged in users startpage
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Index()
+        {
+            UserDetailsViewModel model = null;
+
+            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            {
+                var entity = cx.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
+
+                model = new UserDetailsViewModel()
+                {
+                    Email = entity.Email,
+                    Albums = entity.Albums,
+                    Username = entity.Username,
+                    DateRegistered = entity.DateRegistered,
+                    Fullname = entity.Fullname,
+                };
+            }
+
+                return View(new UserDetailsViewModel());
+        }
+
+
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login()
