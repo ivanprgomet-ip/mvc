@@ -37,8 +37,7 @@
                     <li>@Html.ActionLink("About Us", "AboutUs", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Register", "Register", "Account")</li>
-                    <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                    @Html.Partial("_LoginPartial");
                 </ul>
             </div>
         </div>

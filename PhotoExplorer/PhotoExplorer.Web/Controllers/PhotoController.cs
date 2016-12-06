@@ -65,6 +65,7 @@ namespace PhotoExplorer.Web.Controllers
 
             return View("Details", model);
         }
+
         [HttpPost]
         public ActionResult Comment(int id, string txt_comment)
         {
