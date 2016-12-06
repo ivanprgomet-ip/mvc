@@ -57,7 +57,7 @@ namespace PhotoExplorer.Web
                 Fullname = "Ivan Prgomet",
                 Username = "ivanprgomet",
                 Email = "ivanprgomet@gmail.com",
-                Password = "ivan123",
+                Password = "ivan12345",
                 DateRegistered = DateTime.Now,
                 Albums = new List<AlbumEntityModel>() { a1 },
             };

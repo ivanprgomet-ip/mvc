@@ -8,6 +8,10 @@ namespace PhotoExplorer.Web.Models
 {
     public class UserLoginViewModel
     {
+        public int Id { get; set; }
+
+        public string Fullname { get; set; }
+
         [Required(ErrorMessage ="Specify username for login attempt")]
         public string Username { get; set; }
 
