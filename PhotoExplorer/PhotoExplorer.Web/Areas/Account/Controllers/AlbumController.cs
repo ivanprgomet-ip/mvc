@@ -50,32 +50,24 @@ namespace PhotoExplorer.Web.Areas.Account.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(AlbumCreateViewModel model)
         {
-            #region prepare new album for user
-            AlbumEntityModel entityToCreate = new AlbumEntityModel()
-            {
-                Name = model.Name,
-                Description = model.Description,
-            };
-            #endregion
-
-            #region retrieve user id from claimsidentity so that we can find user in databse
             ClaimsIdentity currentIdentity = User.Identity as ClaimsIdentity;
+            int userid = int.Parse(currentIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
 
-            var modelid = int.Parse((currentIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)).Value);
-            #endregion
-
-            #region retrieve user in database using id and save new album to his/her collection
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
-                UserEntityModel userEntity = cx.Users
-                    //.Include(u=>u.Albums)
-                    .FirstOrDefault(u => u.Id == modelid);
+                
+                AlbumEntityModel newEntityAlbum = new AlbumEntityModel()
+                {
+                    Name = model.Name,
+                    Description = model.Name,
+                };
 
-                userEntity.Albums.Add(entityToCreate);
+                var userEntity = cx.Users.FirstOrDefault(u => u.Id == userid);
+
+                userEntity.Albums.Add(newEntityAlbum);
 
                 cx.SaveChanges();
             }
-            #endregion
 
             return RedirectToAction("Index", "Home");
         }

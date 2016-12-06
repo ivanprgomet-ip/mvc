@@ -5,13 +5,15 @@
     {
         <article class="album">
             <div>
-                <a href="@Url.Action("Details","Album",new {id=Model.Id},null)">
-                    <i class="glyphicon glyphicon-book" style="font-size:36px;"></i>
+                <a href="@Url.Action(actionName: "Details", controllerName: "Album",routeValues: new { id = album.Id })">
+                <i class="glyphicon glyphicon-book" style="font-size:36px;"></i>
                 </a>
-                <div style="display:flex;flex-direction:column;">
+                <div>
                     <small style="font-weight:800">@album.Name</small>
+                    <br />
                     <small>@album.DateCreated</small>
-                    <small>Username</small>
+                    <br />
+                    <small>@album.User.Username</small>
                 </div>
             </div>
         </article>

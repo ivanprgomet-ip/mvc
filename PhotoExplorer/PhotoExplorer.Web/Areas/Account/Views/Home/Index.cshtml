@@ -1,5 +1,14 @@
 ﻿@model PhotoExplorer.Web.Models.UserDetailsViewModel
 
+<style>
+    .albumslist {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+</style>
+
 <div class="container">
     <h2>@Model.Username Details</h2>
     <article class="user">
@@ -14,7 +23,9 @@
             </div>
             <div>
                 <h3>@Model.Username's Album(s)</h3>
-                @Html.Partial("_AlbumsPartial", Model) 
+                <div class="albumslist">
+                    @Html.Partial("_AlbumsPartial", Model)
+                </div>
             </div>
         </div>
     </article>

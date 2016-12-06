@@ -8,7 +8,7 @@
         <div style="display:flex;flex-direction:column;">
             <small style="font-weight:800">@Model.Name</small>
             <small>@Model.DateCreated</small>
-            <small>Username</small>
+            <small>@Html.ActionLink(@Model.User.Username, "Details", "User", new { id = Model.User.Id },null)</small>
         </div>
     </div>
 </article>
