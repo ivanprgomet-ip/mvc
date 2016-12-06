@@ -10,10 +10,10 @@ using System.Web.Mvc;
 namespace PhotoExplorer.Web.Areas.Account.Controllers
 {
     [Authorize]
-    public class ProfileController : Controller
+    public class HomeController : Controller
     {
         [HttpGet]
-        public ActionResult Dashboard()
+        public ActionResult Index()
         {
             #region retrieving the claim values for the currently logged in user (to retrieve him using his/her id)
             ClaimsIdentity currentIdentity = User.Identity as ClaimsIdentity;
@@ -41,7 +41,8 @@ namespace PhotoExplorer.Web.Areas.Account.Controllers
                 #endregion
             }
 
-            return View("Dashboard",model);
+            return View("Index",model);
         }
+
     }
 }

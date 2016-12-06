@@ -21,6 +21,15 @@
                 </button>
                 @Html.ActionLink("Back", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("My Albums", "/", "/")</li>
+                    <li>@Html.ActionLink("My Photos", "/", "/")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @Html.Partial("_LoginPartial");
+                </ul>
+            </div>
         </div>
     </div>
 
