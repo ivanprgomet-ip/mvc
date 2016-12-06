@@ -7,6 +7,10 @@ using System.Web;
 
 namespace PhotoExplorer.Web.Models
 {
+    /// <summary>
+    /// todo: dont use any entities in these classes. that means you 
+    /// must map values
+    /// </summary>
     public class UploadPhotoViewModel
     {
         [Required(ErrorMessage ="Please enter name for photo")]
@@ -51,5 +55,14 @@ namespace PhotoExplorer.Web.Models
         public ICollection<CommentEntityModel> Comments { get; set; }
         public ICollection<PhotoEntityModel> Photos { get; set; }
         public UserEntityModel User { get; set; }
+    }
+    public class ListUsersAlbumsViewModel
+    {
+        public ICollection<AlbumEntityModel> Albums { get; set; }//all users albums
+
+        public ListUsersAlbumsViewModel()
+        {
+            Albums = new List<AlbumEntityModel>();
+        }
     }
 }

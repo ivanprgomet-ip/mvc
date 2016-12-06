@@ -1,10 +1,9 @@
 ﻿using PhotoExplorer.Web.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using PhotoExplorer.Web.Models;
 
 namespace PhotoExplorer.Web.Controllers
 {
@@ -15,20 +14,25 @@ namespace PhotoExplorer.Web.Controllers
         {
             List<UserEntityModel> usersFromDB = new List<UserEntityModel>();
 
+            ListUsersAlbumsViewModel model = new ListUsersAlbumsViewModel();
+
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
-                /*
-                    must include related properties because lazy loading is enabled for all 
-                    navigation properties, which means i load related properties only when they 
-                    are needed, which makes the application ultimately faster
-                */
                 usersFromDB = cx.Users
                     .Include(u=>u.Albums
                         .Select(a=>a.Photos))
-                    .ToList(); 
+                    .ToList();
+
+                foreach (var user in usersFromDB)
+                {
+                    foreach (var album in user.Albums)
+                    {
+                        model.Albums.Add(album);
+                    }
+                }
             }
 
-            return View("Index",usersFromDB);
+            return View("Index",model);
         }
         [HttpGet]
         public ActionResult AboutUs()

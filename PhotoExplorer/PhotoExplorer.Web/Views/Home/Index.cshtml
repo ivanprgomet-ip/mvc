@@ -1,4 +1,4 @@
-﻿@model  IEnumerable<PhotoExplorer.Web.Models.UserViewModel>
+﻿@model  PhotoExplorer.Web.Models.ListUsersAlbumsViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -10,28 +10,27 @@
 </div>
 
 <div class="container">
-    @*DISPLAY ALL USERS ALBUMS PHOTOS*@
+  
     <section class="container">
-        <h3 style="background-color:lemonchiffon">Photos</h3>
+        <h3>Photos</h3>@*DISPLAY ALL USERS ALBUMS PHOTOS*@
         @{
-            foreach (var user in Model)
+            foreach (var album in Model.Albums)
             {
-                foreach (var album in user.Albums)
+                foreach (var photo in album.Photos)
                 {
-                    @Html.Partial("_Photos", album)
+                    @Html.Partial("_Photo", photo)
                 }
             }
-
         }
     </section>
 
-    @* DISPLAY ALL USERS ALBUMS *@
+  
     <section class="container">
-        <h3 style="background-color:lemonchiffon">Albums</h3>
+        <h3>Albums</h3>@* DISPLAY ALL USERS ALBUMS *@
         <div>
-            @foreach (var user in Model)
+            @foreach (var album in Model.Albums)
             {
-                @Html.Partial("_Albums", user)
+                @Html.Partial("_Album", album)
             }
         </div>
     </section>
