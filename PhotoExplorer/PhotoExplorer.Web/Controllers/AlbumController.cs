@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using PhotoExplorer.Web.Models;
 
 namespace PhotoExplorer.Web.Controllers
 {
@@ -26,17 +27,28 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var albumToShow = new AlbumEntityModel();
+            AlbumDetailsViewModel model = null;
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
-                albumToShow = cx.Albums
+                var entity= cx.Albums
                     .Include(a => a.Photos)
                     .Include(a => a.Comments)
                     .FirstOrDefault(a => a.Id == id);
+
+                model = new AlbumDetailsViewModel()
+                {
+                    Id = entity.Id,
+                    Name = entity.Name,
+                    Comments = entity.Comments,
+                    DateCreated = entity.DateCreated,
+                    Description = entity.Description,
+                    Photos = entity.Photos,
+                    User = entity.User,
+                };
             }
 
-            return View("Details", albumToShow);
+            return View("Details", model);
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿@model PhotoExplorer.Web.Models.AlbumViewModel
-
+﻿@model PhotoExplorer.Web.Models.AlbumDetailsViewModel
 
 <div class="container">
     <h2>@Model.Name</h2>
-    @Html.Partial("_Photos", Model)
+    @foreach (var photo in Model.Photos)
+    {
+        @Html.Partial("_Photo", photo)
+    }
 </div>

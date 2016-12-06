@@ -17,6 +17,7 @@ namespace PhotoExplorer.Web.Models
 
     public class PhotoListedViewModel
     {
+        public int Id { get; set; }
         public string FileName { get; set; }
     }
 
@@ -38,16 +39,15 @@ namespace PhotoExplorer.Web.Models
         public string Name { get; set; }
         public string Description { get; set; }
     }
-
     public class AlbumListedViewModel
     {
         public string Name { get; set; }
         public DateTime? DateCreated { get; set; }
         public UserEntityModel User { get; set; }
     }
-
     public class AlbumDetailsViewModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime? DateCreated { get; set; }

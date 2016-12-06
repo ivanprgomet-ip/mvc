@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PhotoExplorer.Web.Models.PhotoViewModel>
+﻿@model IEnumerable<PhotoExplorer.Web.Models.PhotoListedViewModel>
 
 <div class="container">
     <h2>Explore Photos</h2>
@@ -9,7 +9,7 @@
         @{
             foreach (var photo in Model)
             {
-                @Html.Partial("_Photo", photo)
+                @Html.Partial("_Photo2", photo)
             }
         }
     </div>

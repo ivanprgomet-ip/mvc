@@ -15,14 +15,25 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var photos = new List<PhotoEntityModel>();
+            List<PhotoListedViewModel> model = new List<PhotoListedViewModel>();
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
-                photos = cx.Photos.ToList();
+                var entities = cx.Photos.ToList();
+
+                foreach (var entity in entities)
+                {
+                    PhotoListedViewModel photoModel = new PhotoListedViewModel()
+                    {
+                        Id = entity.Id,
+                        FileName = entity.FileName,
+                    };
+
+                    model.Add(photoModel);
+                }
             }
 
-            return View(photos);
+            return View(model);
         }
 
         [HttpGet]
@@ -54,18 +65,19 @@ namespace PhotoExplorer.Web.Controllers
 
             return View("Details", model);
         }
-
         [HttpPost]
         public ActionResult Comment(int id, string txt_comment)
         {
-            var retrievedPhoto = new PhotoEntityModel();
+            PhotoDetailsViewModel model = null;
 
             using (PhotoExplorerContext cx = new PhotoExplorerContext())
             {
-                retrievedPhoto = cx.Photos
+                #region get the photoentity commented on
+                PhotoEntityModel entity = cx.Photos
                     .Where(p => p.Id == id)
                     .Include(p => p.Comments)
-                    .FirstOrDefault();
+                    .FirstOrDefault(); 
+                #endregion
 
                 #region prepare a new comment for the photo
                 CommentEntityModel commentModel = new CommentEntityModel()
@@ -75,17 +87,30 @@ namespace PhotoExplorer.Web.Controllers
                 };
                 #endregion
 
-                retrievedPhoto.Comments.Add(commentModel);
+                entity.Comments.Add(commentModel);
 
                 cx.SaveChanges();
+
+                #region mapping entity to model
+                model = new PhotoDetailsViewModel()
+                {
+                    Name = entity.Name,
+                    Comments = entity.Comments,
+                    Album = entity.Album,
+                    DateCreated = entity.DateCreated,
+                    FileName = entity.FileName,
+                    Description = entity.Description,
+                    Id = entity.Id,
+                    User = entity.User,
+                }; 
+                #endregion
             }
 
             /*
                 note: only updating portion of the page by using partial view (with the NEW model)            
             */
-            return PartialView("_PhotoComments", retrievedPhoto);
+            return PartialView("_PhotoComments", model);
         }
-
         [HttpPost]
         public ActionResult Upload(PhotoEntityModel photo, HttpPostedFileBase[] photofiles)
         {
