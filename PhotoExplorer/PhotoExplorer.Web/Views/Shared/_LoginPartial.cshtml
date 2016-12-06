@@ -2,20 +2,20 @@
 @if (Request.IsAuthenticated)
 {
     <li>
-        @Html.ActionLink("Logout", "Logout", "Account")
+        @Html.ActionLink("Logout", "Logout", "Authenticate")
     </li>
 
     <li>
         @Html.ActionLink(
                linkText: "Hello " + User.Identity.GetUserName() + "!",
-               actionName: "Index",
-               controllerName: "Account",
+               actionName: "Dashboard",
+               controllerName: "Account/Profile",
                routeValues: null,
                htmlAttributes: new { title = "Home" })
     </li>
 }
 else
 {
-    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-    <li>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    <li>@Html.ActionLink("Register", "Register", "Authenticate", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink("Login", "Login", "Authenticate", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
 }

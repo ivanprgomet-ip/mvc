@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using PhotoExplorer.Web.Entities;
 using PhotoExplorer.Web.Models;
@@ -12,35 +13,8 @@ using System.Web.Mvc;
 namespace PhotoExplorer.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AuthenticateController : Controller
     {
-        /// <summary>
-        /// the currently logged in users startpage
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public ActionResult Index()
-        {
-            UserDetailsViewModel model = null;
-
-            using (PhotoExplorerContext cx = new PhotoExplorerContext())
-            {
-                var entity = cx.Users.FirstOrDefault(u => u.Username == User.Identity.Name);
-
-                model = new UserDetailsViewModel()
-                {
-                    Email = entity.Email,
-                    Albums = entity.Albums,
-                    Username = entity.Username,
-                    DateRegistered = entity.DateRegistered,
-                    Fullname = entity.Fullname,
-                };
-            }
-
-                return View(new UserDetailsViewModel());
-        }
-
-
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login()
@@ -122,8 +96,8 @@ namespace PhotoExplorer.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(UserRegisterViewModel model)
         {
+            //todo: register user functionality
             return View();
         }
-
     }
 }

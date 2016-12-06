@@ -14,7 +14,7 @@ namespace PhotoExplorer.Web.App_Start
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = "ApplicationCookie",
-                LoginPath = new PathString("/Account/Login")
+                LoginPath = new PathString("/Authenticate/Login")
             });
         }
     }

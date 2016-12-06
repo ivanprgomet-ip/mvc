@@ -1,0 +1,19 @@
+﻿@model PhotoExplorer.Web.Models.UserDetailsViewModel
+
+@{
+    foreach (var album in Model.Albums)
+    {
+        <article class="album">
+            <div class="col-lg-4 col-md-4 col-xs-4">
+                <a href="@Url.Action("Details","Album",new {id=Model.Id},null)">
+                    <i class="glyphicon glyphicon-book" style="font-size:36px;"></i>
+                </a>
+                <div style="display:flex;flex-direction:column;">
+                    <small style="font-weight:800">@album.Name</small>
+                    <small>@album.DateCreated</small>
+                    <small>Username</small>
+                </div>
+            </div>
+        </article>
+    }
+}
