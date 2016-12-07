@@ -4,6 +4,9 @@
     foreach (var comment in Model.Comments)
     {
         <article class="breadcrumb">
+            <small>
+                @comment.User.Username commented:
+            </small>
             <p>
                 @comment.Comment
             </p>

@@ -12,6 +12,7 @@ namespace PhotoExplorer.Web.Entities
         public string Comment { get; set; }
         public DateTime? DateCreated { get; set; }
         public DateTime? DateChanged { get; set; }
+        public virtual UserEntityModel User { get; set; }
 
         public virtual PhotoEntityModel Photo { get; set; }
         public virtual AlbumEntityModel Album { get; set; }

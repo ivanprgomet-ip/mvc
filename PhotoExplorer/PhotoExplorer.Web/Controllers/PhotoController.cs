@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using PhotoExplorer.Web.Models;
+using System.Security.Claims;
 
 namespace PhotoExplorer.Web.Controllers
 {
@@ -69,22 +70,32 @@ namespace PhotoExplorer.Web.Controllers
         [HttpPost]
         public ActionResult Comment(int id, string txt_comment)
         {
+            #region get id of currently logged in user
+            ClaimsIdentity currentIdentity = User.Identity as ClaimsIdentity;
+            int userid = int.Parse(currentIdentity.Claims.FirstOrDefault(u => u.Type == ClaimTypes.NameIdentifier).Value); 
+            #endregion
+
             PhotoDetailsViewModel model = null;
 
             using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
+
+                UserEntityModel loggedInEntity = cx.Users.FirstOrDefault(u => u.Id == userid);
+
                 #region get the photoentity commented on
                 PhotoEntityModel entity = cx.Photos
                     .Where(p => p.Id == id)
                     .Include(p => p.Comments)
-                    .FirstOrDefault(); 
+                    .FirstOrDefault();
                 #endregion
 
-                #region prepare a new comment for the photo
+                #region prepare a new comment for the photo and include important related data
+                //todo: get the commenter of the comment (user)
                 CommentEntityModel commentModel = new CommentEntityModel()
                 {
                     DateCreated = DateTime.Now,
                     Comment = txt_comment,
+                    User = loggedInEntity,
                 };
                 #endregion
 
@@ -102,7 +113,7 @@ namespace PhotoExplorer.Web.Controllers
                     FileName = entity.FileName,
                     Description = entity.Description,
                     Id = entity.Id,
-                    User = entity.User,
+                    User = loggedInEntity,
                 }; 
                 #endregion
             }
