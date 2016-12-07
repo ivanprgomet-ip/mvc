@@ -190,6 +190,8 @@
     <Content Include="Areas\Account\Views\Home\_AlbumsPartial.cshtml" />
     <Content Include="Areas\Account\Views\Album\Create.cshtml" />
     <Content Include="Areas\Account\Views\Photo\Create.cshtml" />
+    <Content Include="Areas\Account\Views\Photo\Details.cshtml" />
+    <Content Include="Areas\Account\Views\Photo\_PhotoComments.cshtml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />

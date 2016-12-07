@@ -1,0 +1,15 @@
+﻿@model PhotoExplorer.Web.Models.PhotoDetailsViewModel
+
+@{
+    foreach (var comment in Model.Comments)
+    {
+        <article class="breadcrumb">
+            <p>
+                @comment.Comment
+            </p>
+            <small>
+                @comment.DateCreated
+            </small>
+        </article>
+    }
+}
