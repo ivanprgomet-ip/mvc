@@ -7,17 +7,13 @@
     <p class="lead">enjoy fine albums and photos</p>
 </div>
 
-<div class="container">
+<div>
+    <h3>Photos</h3>
     <section class="row">
-        <h3>Photos</h3>
-        <div>
-            @Html.Partial("_Photos", Model.Albums)
-        </div>
+        @Html.Partial("_Photos", Model.Albums)
     </section>
+    <h3>Albums</h3>
     <section class="row">
-        <h3>Albums</h3>
-        <div>
-            @Html.Partial("_Albums", Model)
-        </div>
+        @Html.Partial("_Albums", Model)
     </section>
 </div>
