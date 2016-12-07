@@ -22,16 +22,26 @@
             };
         }
         @* make a comment on the photo using ajax *@
-        @using (Ajax.BeginForm(
+        @{
+            if (User.Identity.IsAuthenticated)
+            {
+                using (Ajax.BeginForm(
                         actionName: "Comment",
                         controllerName: "Photo",
                         ajaxOptions: ajaxOptions,
                         routeValues: new { id = Model.Id }))
-        {
-            <textarea name="txt_comment" placeholder="Enter comment..." cols="220"></textarea>
+                {
+                    <textarea name="txt_comment" placeholder="Enter comment..." cols="220"></textarea>
 
-            <input type="submit" value="Add" class="btn-default" />
+                    <input type="submit" value="Add" class="btn-default" />
+                }
+            }
+            else
+            {
+                @Html.ActionLink("Login to Comment", "Login", "Authenticate")
+            }
         }
+
 
     </div>
 
@@ -44,7 +54,10 @@
             }
             else
             {
-                <small>be the first to comment...</small>
+                if (User.Identity.IsAuthenticated)
+                {
+                    <small>be the first to comment...</small>
+                }
             }
         }
     </div>
