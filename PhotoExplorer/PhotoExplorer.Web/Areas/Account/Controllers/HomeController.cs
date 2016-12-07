@@ -24,7 +24,7 @@ namespace PhotoExplorer.Web.Areas.Account.Controllers
 
             UserDetailsViewModel model = null;
 
-            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
                 UserEntityModel entity = cx.Users.FirstOrDefault(u => u.Id == modelid);
 

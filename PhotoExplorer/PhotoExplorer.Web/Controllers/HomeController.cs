@@ -22,7 +22,7 @@ namespace PhotoExplorer.Web.Controllers
 
             UserDetailsViewModel model = new UserDetailsViewModel();
 
-            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
                 usersFromDB = cx.Users
                     .Include(u=>u.Albums

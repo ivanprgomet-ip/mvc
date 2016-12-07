@@ -6,4 +6,12 @@
     {
         @Html.Partial("_Photo", photo)
     }
+    <p>
+        @Html.ActionLink(
+       linkText: "Upload Photo to " + "'" + Model.Name + "'",
+       actionName: "Create",
+       controllerName: "Photo",
+       routeValues: new { id = Model.Id },
+       htmlAttributes: null)
+    </p>
 </div>

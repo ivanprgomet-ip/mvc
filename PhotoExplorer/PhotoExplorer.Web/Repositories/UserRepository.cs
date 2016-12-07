@@ -11,7 +11,7 @@ namespace MvcLab.Web.Repositories
     {
         public void Add(UserEntityModel userToBeRegistered)
         {
-            using (PhotoExplorerContext _context = new PhotoExplorerContext())
+            using (PhotoExplorerEntities _context = new PhotoExplorerEntities())
             {
                 _context.Users.Add(userToBeRegistered);
 
@@ -21,7 +21,7 @@ namespace MvcLab.Web.Repositories
 
         public UserEntityModel GetUser(int IserModelId)
         {
-            using (PhotoExplorerContext _context = new PhotoExplorerContext())
+            using (PhotoExplorerEntities _context = new PhotoExplorerEntities())
             {
                 UserEntityModel user = _context.Users
                     .Where(u => u.Id == IserModelId)
@@ -35,7 +35,7 @@ namespace MvcLab.Web.Repositories
 
         public UserEntityModel RetrieveLoggedInUser(string username, string password)
         {
-            using (PhotoExplorerContext _context = new PhotoExplorerContext())
+            using (PhotoExplorerEntities _context = new PhotoExplorerEntities())
             {
                 return _context.Users
                     .FirstOrDefault(u => u.Username == username &&
@@ -48,7 +48,7 @@ namespace MvcLab.Web.Repositories
         {
             List<UserEntityModel> users = new List<UserEntityModel>();
 
-            using (PhotoExplorerContext _context = new PhotoExplorerContext())
+            using (PhotoExplorerEntities _context = new PhotoExplorerEntities())
             {
                 List<UserEntityModel> userEntitiesFromDB = _context.Users.ToList();
 

@@ -18,7 +18,7 @@ namespace PhotoExplorer.Web.Areas.Account.Controllers
         {
             AlbumDetailsViewModel model = null;
 
-            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
                 var entity = cx.Albums
                     .Include(a => a.Photos)
@@ -53,7 +53,7 @@ namespace PhotoExplorer.Web.Areas.Account.Controllers
             ClaimsIdentity currentIdentity = User.Identity as ClaimsIdentity;
             int userid = int.Parse(currentIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
 
-            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
                 
                 AlbumEntityModel newEntityAlbum = new AlbumEntityModel()

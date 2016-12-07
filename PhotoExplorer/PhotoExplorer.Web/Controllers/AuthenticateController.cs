@@ -33,7 +33,7 @@ namespace PhotoExplorer.Web.Controllers
                 var userToLogin = new UserEntityModel();
 
                 #region get user to login
-                using (PhotoExplorerContext cx = new PhotoExplorerContext())
+                using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
                 {
                     userToLogin = cx.Users
                         .FirstOrDefault(u => u.Username == model.Username &&

@@ -7,11 +7,11 @@ using System.Web;
 
 namespace PhotoExplorer.Web.Entities
 {
-    public class PhotoExplorerContext:DbContext
+    public class PhotoExplorerEntities:DbContext
     {
-        public PhotoExplorerContext()
+        public PhotoExplorerEntities()
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<PhotoExplorerContext>());
+            Database.SetInitializer(new DropCreateDatabaseAlways<PhotoExplorerEntities>());
         }
         
         public DbSet<UserEntityModel> Users { get; set; }

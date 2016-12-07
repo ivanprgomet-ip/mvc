@@ -18,7 +18,7 @@ namespace PhotoExplorer.Web.Controllers
 
             List<UserSimplifiedViewModel> model = new List<UserSimplifiedViewModel>();
 
-            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
                 entities = cx.Users.ToList();
 
@@ -44,7 +44,7 @@ namespace PhotoExplorer.Web.Controllers
 
             UserDetailsViewModel model = null;
 
-            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
                 entity = cx.Users
                     .Include(u=>u.Albums)
@@ -68,7 +68,7 @@ namespace PhotoExplorer.Web.Controllers
         {
             var userToDelete = new UserEntityModel();
 
-            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
                 userToDelete = cx.Users
                     .Include(u => u.Albums)

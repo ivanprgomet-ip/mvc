@@ -132,3 +132,23 @@ public ActionResult Index()
 var identity = User.Identity as ClaimsIdentity;
 var email = identity.FindFirst("email").Value;
 }
+
+
+
+---WORKING WITH ENTITIES 
+#it is recomended to materialize queries and work with them outside of the context. 
+different ways of materializing queries into objects is by running the tolist();, first(); firstordefault();
+etc. on the query.
+
+---interact with the materialized results instead of working immediately against the databse and paying high roundtrip costs:
+...I'm looking at this code and I know that I actually want to do a whole bunch of stuff with a query. 
+But I have to stop and think, wait a minute, it's not the query I want to interact with, it's the results 
+of the query. So I want to do something to execute it so that I can have the results in hand and that's where 
+I frequently use the ToList method. Understand the difference; that's the query, this represents the results. This 
+represents a list of customer objects. So, I'm going to work with customer objects now. So far my count equals customers.
+Count, right? Or I could get the first one, so var myfirstcustomer equals customers.First. So now all I'm doing is working 
+with that in-memory list of customers or I could do a databinding, whatever. So, that's a really, really important thing. 
+What I'm showing you here about working with the results as opposed to working with the query itself is not just LINQ to 
+entities. It's any query that you write, any flavor of query that you write, whether it's entity SQL or using LINQ 
+methods or using query builder methods. Just remember the difference between interacting with a query and interacting 
+with the results...

@@ -189,6 +189,7 @@
     <Content Include="Areas\Account\Views\Home\Index.cshtml" />
     <Content Include="Areas\Account\Views\Home\_AlbumsPartial.cshtml" />
     <Content Include="Areas\Account\Views\Album\Create.cshtml" />
+    <Content Include="Areas\Account\Views\Photo\Create.cshtml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -217,6 +218,7 @@
     <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
     <Compile Include="Areas\Account\Controllers\AlbumController.cs" />
     <Compile Include="Areas\Account\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Account\Controllers\PhotoController.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -227,7 +229,7 @@
     </Compile>
     <Compile Include="Entities\AlbumEntityModel.cs" />
     <Compile Include="Entities\CommentEntityModel.cs" />
-    <Compile Include="Entities\PhotoExplorerContext.cs" />
+    <Compile Include="Entities\PhotoExplorerEntities.cs" />
     <Compile Include="Entities\PhotoEntityModel.cs" />
     <Compile Include="Models\ProfileManagementViewModels.cs" />
     <Compile Include="Entities\UserEntityModel.cs" />

@@ -143,7 +143,7 @@ namespace PhotoExplorer.Web
                 Albums = new List<AlbumEntityModel>() { a3 },
             };
             #endregion
-            using (PhotoExplorerContext context = new PhotoExplorerContext())
+            using (PhotoExplorerEntities context = new PhotoExplorerEntities())
             {
                 context.Users.AddRange(new List<UserEntityModel> { u1, u2,u3 });
 

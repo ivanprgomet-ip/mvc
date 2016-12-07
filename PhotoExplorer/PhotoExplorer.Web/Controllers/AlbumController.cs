@@ -16,7 +16,7 @@ namespace PhotoExplorer.Web.Controllers
         {
             List<AlbumListedViewModel> model = new List<AlbumListedViewModel>();
 
-            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
                 var entities = cx.Albums.ToList();
 
@@ -43,7 +43,7 @@ namespace PhotoExplorer.Web.Controllers
         {
             AlbumDetailsViewModel model = null;
 
-            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
                 var entity= cx.Albums
                     .Include(a => a.Photos)

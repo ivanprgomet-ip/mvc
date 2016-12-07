@@ -17,7 +17,7 @@ namespace PhotoExplorer.Web.Controllers
         {
             List<PhotoListedViewModel> model = new List<PhotoListedViewModel>();
 
-            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
                 var entities = cx.Photos.ToList();
 
@@ -42,7 +42,7 @@ namespace PhotoExplorer.Web.Controllers
             #region retrieve photo to show
             PhotoDetailsViewModel model = null;
 
-            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
                 PhotoEntityModel entity = cx.Photos
                     .Where(p => p.Id == Id)
@@ -71,7 +71,7 @@ namespace PhotoExplorer.Web.Controllers
         {
             PhotoDetailsViewModel model = null;
 
-            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
                 #region get the photoentity commented on
                 PhotoEntityModel entity = cx.Photos
@@ -115,7 +115,7 @@ namespace PhotoExplorer.Web.Controllers
         [HttpPost]
         public ActionResult Upload(PhotoEntityModel photo, HttpPostedFileBase[] photofiles)
         {
-            using (PhotoExplorerContext cx = new PhotoExplorerContext())
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
                 //iterate all files uploaded by user
                 foreach (var file in photofiles)

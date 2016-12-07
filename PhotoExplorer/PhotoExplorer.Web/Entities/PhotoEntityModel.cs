@@ -11,6 +11,7 @@ namespace PhotoExplorer.Web.Entities
         public PhotoEntityModel()
         {
             Comments = new List<CommentEntityModel>();
+            DateCreated = DateTime.Now;
         }
 
         public int Id { get; set; }
