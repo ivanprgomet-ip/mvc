@@ -185,15 +185,6 @@
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
-    <Content Include="Areas\Account\Views\web.config" />
-    <Content Include="Areas\Account\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Account\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Account\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Account\Views\Home\_AlbumsPartial.cshtml" />
-    <Content Include="Areas\Account\Views\Album\Create.cshtml" />
-    <Content Include="Areas\Account\Views\Photo\Create.cshtml" />
-    <Content Include="Areas\Account\Views\Photo\Details.cshtml" />
-    <Content Include="Areas\Account\Views\Photo\_PhotoComments.cshtml" />
     <Content Include="Areas\User\Views\web.config" />
     <Content Include="Areas\User\Views\_ViewStart.cshtml" />
     <Content Include="Areas\User\Views\Shared\_Layout.cshtml" />
@@ -228,10 +219,6 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
-    <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
-    <Compile Include="Areas\Account\Controllers\AlbumController.cs" />
-    <Compile Include="Areas\Account\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Account\Controllers\PhotoController.cs" />
     <Compile Include="Areas\User\Controllers\ManagementController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
@@ -295,7 +282,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Account\Models\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="scripts\js\" />
   </ItemGroup>

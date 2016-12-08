@@ -17,7 +17,7 @@ namespace PhotoExplorer.Web.Areas.User
             context.MapRoute(
                 "User_default",
                 "User/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { Controller="Management", action = "Dashboard", id = UrlParameter.Optional }
             );
         }
     }
