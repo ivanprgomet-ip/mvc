@@ -194,6 +194,15 @@
     <Content Include="Areas\Account\Views\Photo\Create.cshtml" />
     <Content Include="Areas\Account\Views\Photo\Details.cshtml" />
     <Content Include="Areas\Account\Views\Photo\_PhotoComments.cshtml" />
+    <Content Include="Areas\User\Views\web.config" />
+    <Content Include="Areas\User\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\User\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\User\Views\Management\Dashboard.cshtml" />
+    <Content Include="Areas\User\Views\Management\AlbumDetails.cshtml" />
+    <Content Include="Areas\User\Views\Management\AlbumCreate.cshtml" />
+    <Content Include="Areas\User\Views\Management\PhotoCreate.cshtml" />
+    <Content Include="Areas\User\Views\Management\PhotoDetails.cshtml" />
+    <Content Include="Areas\User\Views\Shared\_PhotoCommentsPartial.cshtml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -223,6 +232,8 @@
     <Compile Include="Areas\Account\Controllers\AlbumController.cs" />
     <Compile Include="Areas\Account\Controllers\HomeController.cs" />
     <Compile Include="Areas\Account\Controllers\PhotoController.cs" />
+    <Compile Include="Areas\User\Controllers\ManagementController.cs" />
+    <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -285,6 +296,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Account\Models\" />
+    <Folder Include="Areas\User\Models\" />
     <Folder Include="scripts\js\" />
   </ItemGroup>
   <PropertyGroup>

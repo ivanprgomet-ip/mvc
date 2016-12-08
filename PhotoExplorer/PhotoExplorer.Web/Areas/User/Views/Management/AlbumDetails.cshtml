@@ -1,0 +1,23 @@
+﻿@model PhotoExplorer.Web.Models.AlbumDetailsViewModel
+
+<div class="container">
+    <h2>Details - @Model.Name</h2>
+    @foreach (var photo in Model.Photos)
+    {
+        <article class="photo">
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="@Url.Action("PhotoDetails","Management",new {id=Model.Id },null)">
+                    <img class="img-responsive" src="~/photos/@photo.FileName" alt="">
+                </a>
+            </div>
+        </article>
+    }
+    <p>
+        @Html.ActionLink(
+       linkText: "Upload Photo to " + "'" + Model.Name + "'",
+       actionName: "PhotoCreate",
+       controllerName: "Management",
+       routeValues: new { id = Model.Id },
+       htmlAttributes: null)
+    </p>
+</div>
