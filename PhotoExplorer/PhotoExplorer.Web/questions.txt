@@ -1,0 +1,107 @@
+﻿_________________________________________________________________________________________________________________
+Vecka 1
+Läsanvisningar: Kapitel 1, 2, 3, 4, 5
+
+Lektion 1 - Introduktion
+
+- Vad är MVC? Hur skiljer det sig från vad vi gjort tidigare?
+- Djupdykning i MVC som ett mönster
+- Hur skapar vi ett nytt projekt som bygger på MVC - Tomt vs. "Template" - Vilka referenser behövs
+- Vad innerhåller projektet?
+- Hur fungerar request-pipelinene?
+- "Startup" och Middlewares
+
+Lektion 2 - Introduktion Fortsätter
+
+- GET, POST - Hur sätter vi upp en action?
+- Modell-bidningar
+- Modell-validering
+- Razor
+- Layouts
+- Views, Jobba med data, ViewBag
+- Sections
+- Felhantering
+- Kompilera vyer för att hitta fel
+- Publicering
+- Web.config
+- Areas
+- HTML Helpers
+
+_________________________________________________________________________________________________________________
+Vecka 2
+Läsanvisningar: Kapitel 23, 24, 25
+
+Lektion 3 - Javascript & Ajax
+
+- Repetition: Vad är MVC? Hur hänger det ihop med ASP.NET? Hur bygger jag ett MVC-projekt?
+- HTTP - Hur funkar egentligen GET, POST, PUT, DELETE? När använder man vilken och hur funkar en webbserver?
+- Hur skiljer sig server-kod från kod som exekveras på klienten?
+- Vad är Asynkron Programmering?
+- Vad är Ajax?
+- GET, POST via Ajax
+- Hur hanterar vi svar från servern via GET/POST med JavaScript?
+- Hur manipulerar vi DOM?
+
+Lektion 4 - Javascript & Ajax Fortsätter
+
+- Validering - Automatisk & Manuell validering på klientsidan
+- Validering - Server- eller Klient-validering?
+- Ramverk för att underlätta smarta klienter (Angular)
+- SPA (Single Page Apps)
+- Hantera uppdatering av segment i DOM
+- Jobba med Partial Views
+- Hantera fel
+- Felsökning på klienten
+- Utnyttja Browserlink och Fiddler/Postman
+	#browser link: ctrl+alt+enter
+- Jobba med JSON
+
+_________________________________________________________________________________________________________________
+Vecka 3
+Läsanvisningar: Kapitel 6, 13, 16, 15, 18, 19, 26, 27
+
+Lektion 4 - Datalagring
+
+- Repetition: Vad är MVC? Hur hänger det ihop med ASP.NET? Hur bygger jag ett MVC-projekt?
+- Utnyttja Session och Cookies
+- Lägga på ett datalager med EntityFramework
+- Förstå skillnaden på datamodell och vymodell
+- Hur hänger det ihop med ASP.NET life cycle
+- Använda ett Repository Pattern
+
+Lektion 5 - Testning & Separation of Concerns
+
+- Repetition: Hur introducerar vi EntityFramework? Hur använder vi Repository Pattern? Vad är AjaxExtensions?
+- Hur testar man ASP.NET MVC kod
+- Hur testar jag en Action, Controller och Modell
+- Hur testar jag mitt service, business eller datalager
+- Vad är enhetstester, automattester, UI-tester och andra typer av tester
+- Hur skriver jag tester utan att gå mot databasen
+- Dependency Injection & Inversion of Control
+- Mock & Fake
+
+Lektion 6 - Säkerhet & Avancerad MVC
+
+- Repetition: Hur testar vi vår MVC-kod? Vad är skillnaden på enhetstester och integrationstester? Hur skriver vi testbar kod? Hur hänger detta ihop med MVC och vad är fördelarna med att använda MVC för testbar kod?
+- Hur tillåter vi användare att logga in på vår webbplats
+- Vad är ASP.NET Identity
+- Vad är Claims och hur jobbar vi med det
+- Vad är Filter och hur jobbar vi med det
+- Säkerhetstänk
+
+_________________________________________________________________________________________________________________
+Vecka 4
+ASP.NET MVC Repetition & Diskussion
+
+- Vad är MVC? Vad är ASP.NET MVC?
+- Hur skapar vi ett projekt med bra struktur?
+- När lägger man till nya Controllers, Vyer och vilka Actions skall man ha?
+- Vilka olika sätt kan vi använda AJAX på?
+- Hur skiljer sig JavaScript från C# - Client vs Server
+- Säkerhet – Vad bör vi tänka på?
+- Routing
+
+Mer avancerat
+- Vad är ett Filter? Hur skapar vi egna?
+- Vad är OWASP
+- Vad är en webbserver? Hur hostar man ASP.NET MVC?

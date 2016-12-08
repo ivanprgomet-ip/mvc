@@ -179,6 +179,7 @@
     <Content Include="photos\mockerie2.jpg" />
     <Content Include="photos\mockerie3.jpg" />
     <Content Include="photos\mockerie4.jpg" />
+    <Content Include="questions.txt" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="scripts\bootstrap.js" />
