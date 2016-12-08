@@ -1,6 +1,7 @@
 ﻿@model  PhotoExplorer.Web.Models.UserDetailsViewModel
 
 @* home index *@
+<link href="~/Content/css/masonry.layout.css" rel="stylesheet" />
 
 <div class="jumbotron">
     <h1>Explore</h1>
@@ -9,8 +10,18 @@
 
 <div>
     <h3>Photos</h3>
-    <section class="row">
-        @Html.Partial("_Photos", Model.Albums)
+    <section class="row masoncontainer">
+        @{
+            foreach (var album in Model.Albums)
+            {
+                foreach (var photo in album.Photos)
+                {
+                    <a href="@Url.Action("Details","Photo",new {id=Model.Id },null)">
+                        <img class="img-responsive masonitem" src="~/photos/@photo.FileName" alt="">
+                    </a>
+                }
+            }
+        }
     </section>
     <h3>Albums</h3>
     <section class="row">

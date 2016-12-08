@@ -108,7 +108,7 @@ namespace PhotoExplorer.Web.Areas.Account.Controllers
                     .Include(p => p.Comments)
                     .FirstOrDefault();
 
-                model = new PhotoDetailsViewModel()
+                model = new PhotoDetailsViewModel() //todo: object reference not set to an instance of an object?
                 {
                     Id = entity.Id,
                     Name = entity.Name,
