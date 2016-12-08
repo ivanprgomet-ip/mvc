@@ -235,6 +235,7 @@
     <Compile Include="Entities\CommentEntityModel.cs" />
     <Compile Include="Entities\PhotoExplorerEntities.cs" />
     <Compile Include="Entities\PhotoEntityModel.cs" />
+    <Compile Include="helpers\MyHtmlHelper.cs" />
     <Compile Include="Models\ProfileManagementViewModels.cs" />
     <Compile Include="Entities\UserEntityModel.cs" />
     <Compile Include="Models\ContentManagementViewModels.cs" />

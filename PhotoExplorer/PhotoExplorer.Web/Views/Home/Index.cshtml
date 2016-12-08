@@ -1,10 +1,11 @@
 ﻿@model  PhotoExplorer.Web.Models.UserDetailsViewModel
+@using PhotoExplorer.Web.helpers;
 
 @* home index *@
 <link href="~/Content/css/masonry.layout.css" rel="stylesheet" />
 
 <div class="jumbotron">
-    <h1>Explore</h1>
+    <h1>@Html.UpperCase("Explore")</h1>
     <p class="lead">...the world of photography</p>
 </div>
 
