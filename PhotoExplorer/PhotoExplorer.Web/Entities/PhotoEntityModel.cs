@@ -10,8 +10,6 @@ namespace PhotoExplorer.Web.Entities
     {
         public PhotoEntityModel()
         {
-            Comments = new List<CommentEntityModel>();
-            User = new UserEntityModel();
             DateCreated = DateTime.Now;
         }
 
@@ -24,8 +22,8 @@ namespace PhotoExplorer.Web.Entities
 
         public virtual List<CommentEntityModel> Comments { get; set; }
 
-        public virtual UserEntityModel User { get; set; }
-        public virtual AlbumEntityModel Album { get; set; }
+        public virtual UserEntityModel User { get; set; }//one side - use include where you need this property
+        public virtual AlbumEntityModel Album { get; set; }//one side - use include where you need this propety
 
     }
 }

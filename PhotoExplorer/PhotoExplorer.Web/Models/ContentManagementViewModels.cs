@@ -31,6 +31,11 @@ namespace PhotoExplorer.Web.Models
         public List<CommentEntityModel> Comments { get; set; }
         public UserEntityModel User { get; set; }
         public AlbumEntityModel Album { get; set; }
+
+        public PhotoDetailsViewModel()
+        {
+            Comments = new List<CommentEntityModel>();
+        }
     }
 
     public class AlbumCreateViewModel
@@ -55,6 +60,14 @@ namespace PhotoExplorer.Web.Models
         public ICollection<CommentEntityModel> Comments { get; set; }
         public ICollection<PhotoEntityModel> Photos { get; set; }
         public UserEntityModel User { get; set; }
+
+        public AlbumDetailsViewModel()
+        {
+            Comments = new List<CommentEntityModel>();
+            Photos = new List<PhotoEntityModel>();
+            DateCreated = DateTime.Now;
+        }
+
     }
     public class UserSimplifiedViewModel
     {

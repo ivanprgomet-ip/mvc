@@ -40,6 +40,8 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Details(int Id)
         {
+            //as soon as we enter the details page, load the comments!!!!! 
+
             #region retrieve photo to show
             PhotoDetailsViewModel model = null;
 
@@ -47,7 +49,6 @@ namespace PhotoExplorer.Web.Controllers
             {
                 PhotoEntityModel entity = cx.Photos
                     .Where(p => p.Id == Id)
-                    .Include(p => p.Comments)
                     .FirstOrDefault();
 
                 model = new PhotoDetailsViewModel()
@@ -57,7 +58,7 @@ namespace PhotoExplorer.Web.Controllers
                     FileName = entity.FileName,
                     DateCreated = entity.DateCreated,
                     Album = entity.Album,
-                    Comments = entity.Comments,
+                    Comments = entity.Comments, //due to us already having the model collection initialized, we only have to transfer the collection VALUES from the entity collection to the model collection.
                     Description = entity.Description,
                     User = entity.User,
                 };
@@ -70,52 +71,47 @@ namespace PhotoExplorer.Web.Controllers
         [HttpPost]
         public ActionResult Comment(int id, string txt_comment)
         {
-            #region get id of currently logged in user
-            ClaimsIdentity currentIdentity = User.Identity as ClaimsIdentity;
-            int userid = int.Parse(currentIdentity.Claims.FirstOrDefault(u => u.Type == ClaimTypes.NameIdentifier).Value); 
-            #endregion
 
             PhotoDetailsViewModel model = null;
 
             using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
 
+                // retrieve currently logged in user
+                ClaimsIdentity currentIdentity = User.Identity as ClaimsIdentity;
+                int userid = int.Parse(currentIdentity.Claims.FirstOrDefault(u => u.Type == ClaimTypes.NameIdentifier).Value); 
                 UserEntityModel loggedInEntity = cx.Users.FirstOrDefault(u => u.Id == userid);
 
-                #region get the photoentity commented on
-                PhotoEntityModel entity = cx.Photos
-                    .Where(p => p.Id == id)
-                    .Include(p => p.Comments)
-                    .FirstOrDefault();
-                #endregion
-
-                #region prepare a new comment for the photo and include important related data
-                //todo: get the commenter of the comment (user)
+                // initialize new comment entity 
                 CommentEntityModel commentModel = new CommentEntityModel()
                 {
                     DateCreated = DateTime.Now,
                     Comment = txt_comment,
-                    User = loggedInEntity,
+                    Commenter = loggedInEntity.Username,
                 };
-                #endregion
+
+                // retrieve the photo entity commented on
+                PhotoEntityModel entity = cx.Photos
+                    .Where(p => p.Id == id)
+                    .FirstOrDefault();
 
                 entity.Comments.Add(commentModel);
 
                 cx.SaveChanges();
 
-                #region mapping entity to model
+                //mapping
                 model = new PhotoDetailsViewModel()
                 {
                     Name = entity.Name,
-                    Comments = entity.Comments,
                     Album = entity.Album,
                     DateCreated = entity.DateCreated,
                     FileName = entity.FileName,
                     Description = entity.Description,
                     Id = entity.Id,
                     User = loggedInEntity,
+                    Comments = entity.Comments,
                 }; 
-                #endregion
+         
             }
 
             /*
@@ -123,6 +119,7 @@ namespace PhotoExplorer.Web.Controllers
             */
             return PartialView("_PhotoComments", model);
         }
+
         [HttpPost]
         public ActionResult Upload(PhotoEntityModel photo, HttpPostedFileBase[] photofiles)
         {

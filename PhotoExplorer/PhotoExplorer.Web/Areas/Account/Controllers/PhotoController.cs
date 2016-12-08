@@ -81,7 +81,7 @@ namespace PhotoExplorer.Web.Areas.Account.Controllers
                 model = new PhotoDetailsViewModel()
                 {
                     Name = entity.Name,
-                    Comments = entity.Comments,
+                    //Comments = entity.Comments,
                     Album = entity.Album,
                     DateCreated = entity.DateCreated,
                     FileName = entity.FileName,
@@ -115,7 +115,7 @@ namespace PhotoExplorer.Web.Areas.Account.Controllers
                     FileName = entity.FileName,
                     DateCreated = entity.DateCreated,
                     Album = entity.Album,
-                    Comments = entity.Comments,
+                    //Comments = entity.Comments,
                     Description = entity.Description,
                     User = entity.User,
                 };
