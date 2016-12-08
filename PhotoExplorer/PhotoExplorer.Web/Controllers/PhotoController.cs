@@ -58,7 +58,7 @@ namespace PhotoExplorer.Web.Controllers
                     FileName = entity.FileName,
                     DateCreated = entity.DateCreated,
                     Album = entity.Album,
-                    Comments = entity.Comments, //due to us already having the model collection initialized, we only have to transfer the collection VALUES from the entity collection to the model collection.
+                    Comments = entity.Comments, //due to us already having the model collection initialized in the photodetailsviewmodel class, we only have to transfer the collection VALUES from the entity collection to the model collection.
                     Description = entity.Description,
                     User = entity.User,
                 };
