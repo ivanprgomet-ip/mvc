@@ -40,8 +40,7 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Details(int Id)
         {
-            //as soon as we enter the details page, load the comments!!!!! 
-
+            //todo: retrieve this photos uploader
             #region retrieve photo to show
             PhotoDetailsViewModel model = null;
 
@@ -50,6 +49,26 @@ namespace PhotoExplorer.Web.Controllers
                 PhotoEntityModel entity = cx.Photos
                     .Where(p => p.Id == Id)
                     .FirstOrDefault();
+
+                ///todo: make this more effective..
+                #region retrieve uploader of photoentity
+                UserEntityModel photoOwnerEntity = null;
+                foreach (var user in cx.Users)
+                {
+                    foreach (var album in user.Albums)
+                    {
+                        foreach (var photo in album.Photos)
+                        {
+                            if (photo.Id == Id)
+                            {
+                                photoOwnerEntity = user;
+                                break;
+                            }
+                        }
+                    }
+                } 
+                #endregion
+
 
                 model = new PhotoDetailsViewModel()
                 {
@@ -60,7 +79,7 @@ namespace PhotoExplorer.Web.Controllers
                     Album = entity.Album,
                     Comments = entity.Comments, //due to us already having the model collection initialized in the photodetailsviewmodel class, we only have to transfer the collection VALUES from the entity collection to the model collection.
                     Description = entity.Description,
-                    User = entity.User,
+                    User = photoOwnerEntity,
                 };
             }
             #endregion

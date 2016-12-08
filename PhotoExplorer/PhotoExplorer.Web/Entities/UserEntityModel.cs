@@ -22,5 +22,6 @@ namespace PhotoExplorer.Web.Entities
         public string Email { get; set; }
 
         public virtual ICollection<AlbumEntityModel> Albums { get; set; }
+        //public virtual ICollection<PhotoEntityModel> Photos { get; set; }
     }
 }
