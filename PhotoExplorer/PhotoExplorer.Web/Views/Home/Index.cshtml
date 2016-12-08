@@ -8,7 +8,7 @@
     <p class="lead">...the world of photography</p>
 </div>
 
-<div>
+<div class="container">
     <h3>Photos</h3>
     <section class="row masoncontainer">
         @{
@@ -16,7 +16,7 @@
             {
                 foreach (var photo in album.Photos)
                 {
-                    <a href="@Url.Action("Details","Photo",new {id=Model.Id },null)">
+                    <a href="@Url.Action("Details","Photo",new {id=photo.Id },null)">
                         <img class="img-responsive masonitem" src="~/photos/@photo.FileName" alt="">
                     </a>
                 }
