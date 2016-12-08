@@ -10,7 +10,8 @@ namespace PhotoExplorer.Web.Entities
     {
         public UserEntityModel()
         {
-            Albums = new List<AlbumEntityModel>();
+            DateRegistered = DateTime.Now;
+            //Albums = new List<AlbumEntityModel>();
         }
 
         public int Id { get; set; }
@@ -20,11 +21,6 @@ namespace PhotoExplorer.Web.Entities
         public DateTime? DateRegistered { get; set; }
         public string Email { get; set; }
 
-        //slow apps do alot of eager-loading    (loading things right away). 
-        //Fast apps do alot of lazy-loading     (only loading things when they are needed)
-
-        //non-virtual property -        lazy load disabled
-        //virtual property -            lazy load enabled (for specific navigation property)
         public virtual ICollection<AlbumEntityModel> Albums { get; set; }
     }
 }

@@ -272,6 +272,7 @@
     <Content Include="Views\Authenticate\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Authenticate\Index.cshtml" />
+    <Content Include="Views\Authenticate\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

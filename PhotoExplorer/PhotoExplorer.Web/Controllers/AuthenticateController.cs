@@ -47,7 +47,7 @@ namespace PhotoExplorer.Web.Controllers
                     model.Id = userToLogin.Id;
                     model.Fullname = userToLogin.Fullname;
                     model.Username = userToLogin.Username;
-                    model.Password = userToLogin.Password; 
+                    model.Password = userToLogin.Password;
                     #endregion
 
                     var identity = new ClaimsIdentity(new[]
@@ -96,7 +96,26 @@ namespace PhotoExplorer.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(UserRegisterViewModel model)
         {
-            //todo: register user functionality
+            ViewBag.Message = "";
+
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
+            {
+                UserEntityModel entity = new UserEntityModel()
+                {
+                    Fullname = model.Fullname,
+                    Username = model.Username,
+                    Password = model.Password,
+                    Email = model.Email,
+                };
+
+                cx.Users.Add(entity);
+
+                cx.SaveChanges();
+
+                ViewBag.Message = entity.Username + " successfully registered";
+
+            }
+
             return View();
         }
     }
