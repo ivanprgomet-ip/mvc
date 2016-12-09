@@ -7,8 +7,6 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script> @*required for dropdown to work*@
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> @*required for dropdown to work*@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,16 +21,6 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <!-- dropdown -->
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Albums", "Index", "Album")</li>
-                            <li>@Html.ActionLink("Photos", "Index", "Photo")</li>
-                            <li>@Html.ActionLink("Users", "Index", "User")</li>
-                        </ul>
-                    </li>
-                    <!-- /dropdown -->
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("About Us", "AboutUs", "Home")</li>
                 </ul>
@@ -53,6 +41,5 @@
 
     <script src="/Scripts/jquery-3.1.1.min.js"></script>
     <script src="/Scripts/jquery.unobtrusive-ajax.min.js"></script> @*required for mvc ajax to work properly*@
-
 </body>
 </html>

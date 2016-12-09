@@ -3,16 +3,23 @@
 @{
     foreach (var comment in Model.Comments)
     {
-        <article class="breadcrumb">
-            <small>
-                @comment.Commenter commented:
-            </small>
+        <article class="breadcrumb" style="background-color:antiquewhite; width:330px; font-size:12px; font-family:cursive;">
+            <div style="display:flex;justify-content:space-between;color:dimgray;">
+                <p>
+                    <i class="glyphicon glyphicon-comment"></i>
+                    <smal style="font-weight:bold;">
+                        @comment.Commenter
+                    </smal>
+                    commented:
+                </p>
+                <p>
+                    @comment.DateCreated
+                </p>
+            </div>
             <p>
                 @comment.Comment
             </p>
-            <small>
-                @comment.DateCreated
-            </small>
+
         </article>
     }
 }

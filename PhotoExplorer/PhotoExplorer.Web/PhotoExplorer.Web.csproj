@@ -211,9 +211,6 @@
     <Content Include="Views\Home\AboutUs.cshtml" />
     <Content Include="Views\Shared\_Users.cshtml" />
     <Content Include="Views\Shared\_User.cshtml" />
-    <Content Include="Views\Shared\_Album.cshtml" />
-    <Content Include="Views\Shared\_Albums.cshtml" />
-    <Content Include="Views\Shared\_Photos.cshtml" />
     <Content Include="Views\Photo\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -261,17 +258,11 @@
     <Content Include="scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Album\Details.cshtml" />
-    <Content Include="Views\Album\Index.cshtml" />
-    <Content Include="Views\Photo\Index.cshtml" />
-    <Content Include="Views\Shared\_Photo.cshtml" />
     <Content Include="Views\Photo\_UploadPartial.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
-    <Content Include="Views\Photo\_Photo2.cshtml" />
-    <Content Include="Views\Album\_Album2.cshtml" />
     <Content Include="Views\Authenticate\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Authenticate\Index.cshtml" />
     <Content Include="Views\Authenticate\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

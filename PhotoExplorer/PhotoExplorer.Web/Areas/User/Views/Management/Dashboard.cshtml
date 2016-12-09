@@ -9,42 +9,43 @@
     }
 </style>
 
-<div class="container">
-    <h2>@Model.Username Details</h2>
-    <article class="user">
-        <div class="col-lg-6 col-md-6 col-xs-6" style="background-color:lemonchiffon">
-            <i class="glyphicon glyphicon-user" style="font-size:36px;"></i>
-            <div style="display:flex;flex-direction:column;">
-                <small style="font-weight:800">Fullname: @Model.Fullname</small>
-                <small>Date Registered: @Model.DateRegistered</small>
-            </div>
-            <div>
-                <small>@Html.ActionLink("Create New Album", "AlbumCreate", "Management")</small>
-            </div>
-            <div>
-                <h3>@Model.Username's Album(s)</h3>
-                <div class="albumslist">
-                    @{
-                        foreach (var album in Model.Albums)
-                        {
-                            <article class="album">
-                                <div>
-                                    <a href="@Url.Action(actionName: "AlbumDetails", controllerName: "Management",routeValues: new { id = album.Id })">
-                                        <i class="glyphicon glyphicon-book" style="font-size:36px;"></i>
-                                    </a>
-                                    <div>
-                                        <small style="font-weight:800">@album.Name</small>
-                                        <br />
-                                        <small>@album.DateCreated</small>
-                                        <br />
-                                        <small>@album.User.Username</small>
-                                    </div>
-                                </div>
-                            </article>
-                        }
-                    }
-                </div>
-            </div>
+<article class="container">
+    <h2 class="page-header">@Model.Username</h2>
+    <section style="display:flex;flex-direction:column;">
+        <div>
+            <i class="glyphicon glyphicon-user" style="font-size:16px;"></i>
+            <span>@Model.Fullname</span>
         </div>
-    </article>
-</div>
+        <div>
+            <i class="glyphicon glyphicon-calendar" style="font-size:16px;"></i>
+            <span> @Model.DateRegistered</span>
+        </div>
+        <div>
+            <i class="glyphicon glyphicon-book" style="font-size:16px;"></i>
+            <span>@Html.ActionLink("Create New Album", "AlbumCreate", "Management")</span>
+        </div>
+    </section>
+
+    <h3>Albums</h3>
+    <section>
+        <div class="albumslist">
+            @{
+                foreach (var album in Model.Albums)
+                {
+                    <article class="album">
+                        <div>
+                            <i class="glyphicon glyphicon-book" style="font-size:16px;text-decoration:none;color:cornflowerblue;"></i>
+                            <a href="@Url.Action(
+                                    actionName: "AlbumDetails",
+                                    controllerName: "Management",
+                                    routeValues: new { id = album.Id })"
+                               style="font-size:16px;text-decoration:none;color:cornflowerblue;">
+                                <span>@album.Name |<small> @album.DateCreated</small></span>
+                            </a>
+                        </div>
+                    </article>
+                }
+            }
+        </div>
+    </section>
+</article>

@@ -4,14 +4,12 @@
     <h2>@Model.Name</h2>
     @foreach (var photo in Model.Photos)
     {
-        @Html.Partial("_Photo", photo)
+        <article class="photo">
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="@Url.Action("Details","Photo",new {id=photo.Id },null)">
+                    <img class="img-responsive" src="~/photos/@photo.FileName" alt="">
+                </a>
+            </div>
+        </article>
     }
-    <p>
-        @Html.ActionLink(
-       linkText: "Upload Photo to " + "'" + Model.Name + "'",
-       actionName: "Create",
-       controllerName: "Photo",
-       routeValues: new { id = Model.Id },
-       htmlAttributes: null)
-    </p>
 </div>
