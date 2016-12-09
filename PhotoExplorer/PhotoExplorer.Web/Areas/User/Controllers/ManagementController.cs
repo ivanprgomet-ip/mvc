@@ -10,6 +10,12 @@ using System.Data.Entity;
 
 namespace PhotoExplorer.Web.Areas.User.Controllers
 {
+    /// <summary>
+    /// only actions that are specific for a user when he/she is managing account content, 
+    /// for example uploading new photo, creating new album, changing password etc.
+    /// general actions that are available for anonymous users like for example photodetails and 
+    /// albumdetails should be available in the main controllers.
+    /// </summary>z
     [Authorize]
     public class ManagementController : Controller
     {
@@ -111,8 +117,6 @@ namespace PhotoExplorer.Web.Areas.User.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PhotoCreate(PhotoUploadViewModel model, HttpPostedFileBase[] photofiles, int id /*albumid*/)
         {
-            //todo: make it save the images to the album we are inside of
-
             using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
                 AlbumEntityModel entity = cx.Albums.FirstOrDefault(a => a.Id == id);
@@ -198,14 +202,13 @@ namespace PhotoExplorer.Web.Areas.User.Controllers
                     .Include(p => p.Comments)
                     .FirstOrDefault();
 
-                model = new PhotoDetailsViewModel() //todo: object reference not set to an instance of an object?
+                model = new PhotoDetailsViewModel() 
                 {
                     Id = entity.Id,
                     Name = entity.Name,
                     FileName = entity.FileName,
                     DateCreated = entity.DateCreated,
                     Album = entity.Album,
-                    //Comments = entity.Comments,
                     Description = entity.Description,
                     User = entity.User,
                 };
