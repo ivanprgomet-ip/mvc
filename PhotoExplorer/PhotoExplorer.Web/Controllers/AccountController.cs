@@ -8,16 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 
-namespace PhotoExplorer.Web.Areas.User.Controllers
+namespace PhotoExplorer.Web.Controllers
 {
-    /// <summary>
-    /// only actions that are specific for a user when he/she is managing account content, 
-    /// for example uploading new photo, creating new album, changing password etc.
-    /// general actions that are available for anonymous users like for example photodetails and 
-    /// albumdetails should be available in the main controllers.
-    /// </summary>z
-    [Authorize]
-    public class ManagementController : Controller
+    public class AccountController : Controller
     {
         [HttpGet]
         public ActionResult Dashboard()
@@ -48,7 +41,7 @@ namespace PhotoExplorer.Web.Areas.User.Controllers
                 #endregion
             }
 
-            return View("Dashboard", model);
+            return View(model);
         }
 
         [HttpGet]
@@ -105,7 +98,7 @@ namespace PhotoExplorer.Web.Areas.User.Controllers
                 cx.SaveChanges();
             }
 
-            return RedirectToAction("Dashboard", "Management");
+            return RedirectToAction("Dashboard", "Account");
         }
 
         [HttpGet]
@@ -143,7 +136,7 @@ namespace PhotoExplorer.Web.Areas.User.Controllers
                 }
             }
 
-            return RedirectToAction("Dashboard", "Management");
+            return RedirectToAction("Dashboard", "Account");
         }
         [HttpPost]
         public ActionResult CommentOnPhoto(int id, string txt_comment)
@@ -202,7 +195,7 @@ namespace PhotoExplorer.Web.Areas.User.Controllers
                     .Include(p => p.Comments)
                     .FirstOrDefault();
 
-                model = new PhotoDetailsViewModel() 
+                model = new PhotoDetailsViewModel()
                 {
                     Id = entity.Id,
                     Name = entity.Name,

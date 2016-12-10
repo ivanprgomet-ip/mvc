@@ -18,24 +18,4 @@
             }
         }
     </section>
-    <h1 class="text-center">Albums</h1>
-    <section class="row">
-        @{
-            foreach (var album in Model.Albums)
-            {
-                <article class="album">
-                    <div class="col-lg-4 col-md-4 col-xs-4">
-                        <a href="@Url.Action("Details","Album",new {id=album.Id },null)">
-                            <i class="glyphicon glyphicon-book" style="font-size:36px;"></i>
-                        </a>
-                        <div style="display:flex;flex-direction:column;">
-                            <small style="font-weight:800">@album.Name</small>
-                            <small>@album.DateCreated</small>
-                            <small>@Html.ActionLink(@album.User.Username, "Details", "User", new { id = album.User.Id }, null)</small>
-                        </div>
-                    </div>
-                </article>
-            }
-        }
-    </section>
 </div>

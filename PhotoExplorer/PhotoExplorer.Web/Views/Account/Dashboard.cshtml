@@ -22,7 +22,7 @@
         </div>
         <div>
             <i class="glyphicon glyphicon-book" style="font-size:16px;"></i>
-            <span>@Html.ActionLink("Create New Album", "AlbumCreate", "Management")</span>
+            <span>@Html.ActionLink("Create New Album", "AlbumCreate", "Account")</span>
         </div>
     </section>
 
@@ -37,7 +37,7 @@
                             <i class="glyphicon glyphicon-book" style="font-size:16px;text-decoration:none;color:cornflowerblue;"></i>
                             <a href="@Url.Action(
                                     actionName: "AlbumDetails",
-                                    controllerName: "Management",
+                                    controllerName: "Account",
                                     routeValues: new { id = album.Id })"
                                style="font-size:16px;text-decoration:none;color:cornflowerblue;">
                                 <span>@album.Name |<small> @album.DateCreated</small></span>

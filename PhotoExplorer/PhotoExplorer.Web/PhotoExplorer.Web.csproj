@@ -185,15 +185,6 @@
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
-    <Content Include="Areas\User\Views\web.config" />
-    <Content Include="Areas\User\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\User\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\User\Views\Management\Dashboard.cshtml" />
-    <Content Include="Areas\User\Views\Management\AlbumDetails.cshtml" />
-    <Content Include="Areas\User\Views\Management\AlbumCreate.cshtml" />
-    <Content Include="Areas\User\Views\Management\PhotoCreate.cshtml" />
-    <Content Include="Areas\User\Views\Management\PhotoDetails.cshtml" />
-    <Content Include="Areas\User\Views\Shared\_PhotoCommentsPartial.cshtml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -216,13 +207,11 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
-    <Compile Include="Areas\User\Controllers\ManagementController.cs" />
-    <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PhotoController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -259,11 +248,14 @@
     <Content Include="scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Album\Details.cshtml" />
     <Content Include="Views\Photo\_UploadPartial.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\Authenticate\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Authenticate\Register.cshtml" />
+    <Content Include="Views\Account\AlbumCreate.cshtml" />
+    <Content Include="Views\Account\AlbumDetails.cshtml" />
+    <Content Include="Views\Account\Dashboard.cshtml" />
+    <Content Include="Views\Account\PhotoCreate.cshtml" />
+    <Content Include="Views\Account\PhotoDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -273,7 +265,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\User\Models\" />
     <Folder Include="scripts\js\" />
   </ItemGroup>
   <PropertyGroup>

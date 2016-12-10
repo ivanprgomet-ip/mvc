@@ -1,16 +1,21 @@
 ﻿.masoncontainer{
     column-count:4;
-    column-gap:5px;
+    column-gap:2px;
 
     -moz-column-count:4;
-    -moz-column-gap:5px;
+    -moz-column-gap:2px;
 
     -webkit-column-count:4;
-    -webkit-column-gap:5px;
+    -webkit-column-gap:2px;
 
 }
 .masonitem {
     display: inline-block;
-    margin: 0 0 5px;
+    margin-top: 2px;
     width: 100%;
+    border:2px solid black;
+}
+
+.masonitem:hover{
+    border-color:coral;
 }
