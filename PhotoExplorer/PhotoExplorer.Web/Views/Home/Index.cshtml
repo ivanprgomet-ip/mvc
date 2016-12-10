@@ -3,19 +3,23 @@
 
 <link href="~/Content/css/masonry.layout.css" rel="stylesheet" />
 
-<div class="container">
-    <h1 class="text-center">Photos</h1>
-    <section class="row masoncontainer">
-        @{
-            foreach (var album in Model.Albums)
+<div class="jumbotron">
+    <h1>Photo Explorer</h1>
+    <p>Explore thousands and thousands of photos and albums!</p>
+</div>
+
+<h1 class="text-center">Photos</h1>
+<section class="row masoncontainer">
+    @{
+        foreach (var album in Model.Albums)
+        {
+            foreach (var photo in album.Photos)
             {
-                foreach (var photo in album.Photos)
-                {
-                    <a href="@Url.Action("Details","Photo",new {id=photo.Id },null)">
-                        <img class="img-responsive masonitem" src="~/photos/@photo.FileName" alt="">
-                    </a>
-                }
+                <a href="@Url.Action("Details","Photo",new {id=photo.Id },null)">
+                    <img class="img-responsive masonitem" src="~/photos/@photo.FileName" alt="">
+                </a>
             }
         }
-    </section>
-</div>
+    }
+</section>
+
