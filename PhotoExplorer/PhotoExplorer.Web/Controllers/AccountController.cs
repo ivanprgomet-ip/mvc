@@ -138,62 +138,39 @@ namespace PhotoExplorer.Web.Controllers
 
             return RedirectToAction("Dashboard", "Account");
         }
-        [HttpPost]
-        public ActionResult CommentOnPhoto(int id, string txt_comment)
+
+        [HttpGet]
+        public ActionResult PhotoDetails(int Id)
         {
+            //todo: retrieve this photos uploader
+            #region retrieve photo to show
             PhotoDetailsViewModel model = null;
 
             using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
-                #region get the photoentity commented on
                 PhotoEntityModel entity = cx.Photos
-                    .Where(p => p.Id == id)
-                    .Include(p => p.Comments)
+                    .Where(p => p.Id == Id)
                     .FirstOrDefault();
-                #endregion
 
-                #region prepare a new comment for the photo
-                CommentEntityModel commentModel = new CommentEntityModel()
+                ///todo: make this more effective..
+                #region retrieve uploader of photoentity
+                UserEntityModel photoOwnerEntity = null;
+                foreach (var user in cx.Users)
                 {
-                    DateCreated = DateTime.Now,
-                    Comment = txt_comment,
-                };
+                    foreach (var album in user.Albums)
+                    {
+                        foreach (var photo in album.Photos)
+                        {
+                            if (photo.Id == Id)
+                            {
+                                photoOwnerEntity = user;
+                                break;
+                            }
+                        }
+                    }
+                }
                 #endregion
 
-                entity.Comments.Add(commentModel);
-
-                cx.SaveChanges();
-
-                #region mapping entity to model
-                model = new PhotoDetailsViewModel()
-                {
-                    Name = entity.Name,
-                    //Comments = entity.Comments,
-                    Album = entity.Album,
-                    DateCreated = entity.DateCreated,
-                    FileName = entity.FileName,
-                    Description = entity.Description,
-                    Id = entity.Id,
-                    User = entity.User,
-                };
-                #endregion
-            }
-
-            /*
-                note: only updating portion of the page by using partial view (with the NEW model)            
-            */
-            return PartialView("_PhotoCommentsPartial", model);
-        }
-        public ActionResult PhotoDetails(PhotoDetailsViewModel model)
-        {
-            #region retrieve photo to show
-
-            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
-            {
-                PhotoEntityModel entity = cx.Photos
-                    .Where(p => p.Id == model.Id)
-                    .Include(p => p.Comments)
-                    .FirstOrDefault();
 
                 model = new PhotoDetailsViewModel()
                 {
@@ -202,8 +179,9 @@ namespace PhotoExplorer.Web.Controllers
                     FileName = entity.FileName,
                     DateCreated = entity.DateCreated,
                     Album = entity.Album,
+                    Comments = entity.Comments, //due to us already having the model collection initialized in the photodetailsviewmodel class, we only have to transfer the collection VALUES from the entity collection to the model collection.
                     Description = entity.Description,
-                    User = entity.User,
+                    User = photoOwnerEntity,
                 };
             }
             #endregion
