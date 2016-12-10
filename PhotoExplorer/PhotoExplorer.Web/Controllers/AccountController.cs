@@ -88,7 +88,7 @@ namespace PhotoExplorer.Web.Controllers
                 AlbumEntityModel newEntityAlbum = new AlbumEntityModel()
                 {
                     Name = model.Name,
-                    Description = model.Name,
+                    Description = model.Description,
                 };
 
                 var userEntity = cx.Users.FirstOrDefault(u => u.Id == userid);

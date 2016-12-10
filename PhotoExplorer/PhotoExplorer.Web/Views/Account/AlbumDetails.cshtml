@@ -3,19 +3,18 @@
 <link href="~/Content/css/masonry.layout.css" rel="stylesheet" />
 
 @*make the styling the in the account albumdetails a little different from the
-regular details view of photos. eg. overwriting the column count of the masoncontainer
-    to make layout look a little more like a personal photo edit overwiew page.*@
+    regular details view of photos. eg. overwriting the column count of the masoncontainer
+        to make layout look a little more like a personal photo edit overwiew page.*@
 <style>
-    .masoncontainer{
-    column-count:8;
-
-    -moz-column-count:8;
-    
-    -webkit-column-count:8;
-}
+    .masoncontainer {
+        column-count: 8;
+        -moz-column-count: 8;
+        -webkit-column-count: 8;
+    }
 </style>
 
-    <h2>@Model.Name</h2>
+<h2>@Model.Name</h2>
+<p>@Model.Description</p>
     <section class="masoncontainer">
         @foreach (var photo in Model.Photos)
         {
