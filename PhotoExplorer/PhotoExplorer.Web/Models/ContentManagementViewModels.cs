@@ -14,7 +14,12 @@ namespace PhotoExplorer.Web.Models
         public string Name { get; set; }
         public string Description { get; set; }
     }
-
+    public class PhotoEditViewModel
+    {
+        [Required(ErrorMessage ="A name and description can highly help other users interpret your photo!")]
+        public string Name { get; set; }
+        public string Description { get; set; }
+    }
     public class PhotoListedViewModel
     {
         public int Id { get; set; }
@@ -28,6 +33,7 @@ namespace PhotoExplorer.Web.Models
         public string FileName { get; set; }
         public string Description { get; set; }
         public DateTime? DateCreated { get; set; }
+        public DateTime? DateChanged { get; set; }
         public List<CommentEntityModel> Comments { get; set; }
         public UserEntityModel User { get; set; }
         public AlbumEntityModel Album { get; set; }
