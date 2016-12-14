@@ -10,6 +10,7 @@ using System.Data.Entity;
 
 namespace PhotoExplorer.Web.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         [HttpGet]
