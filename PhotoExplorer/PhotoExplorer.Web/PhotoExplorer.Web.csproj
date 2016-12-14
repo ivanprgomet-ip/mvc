@@ -263,6 +263,7 @@
     <Content Include="Views\Account\PhotoDetails.cshtml" />
     <Content Include="Views\Shared\_PhotoComments.cshtml" />
     <Content Include="Views\Account\PhotoEdit.cshtml" />
+    <Content Include="Views\Account\PhotoDelete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -197,6 +197,18 @@ namespace PhotoExplorer.Web.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult PhotoDelete(int Id)
+        {
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
+            {
+                //delete photo with mathcing id
+                cx.Photos.Remove(cx.Photos.FirstOrDefault(p => p.Id == Id));
+                cx.SaveChanges();
+            }
+
+            return RedirectToAction("index", "Home");
+        }
         [HttpPost]
         public ActionResult PhotoEdit(PhotoEditViewModel model, int id)
         {
