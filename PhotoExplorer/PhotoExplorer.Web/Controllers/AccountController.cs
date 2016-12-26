@@ -198,7 +198,7 @@ namespace PhotoExplorer.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult PhotoDelete(int Id)
+        public ActionResult PhotoDeletePartial(int Id)
         {
             using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
