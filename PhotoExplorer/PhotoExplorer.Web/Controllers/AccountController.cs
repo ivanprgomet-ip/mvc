@@ -99,6 +99,8 @@ namespace PhotoExplorer.Web.Controllers
                 cx.SaveChanges();
             }
 
+            System.Threading.Thread.Sleep(500);//simulate waiting time
+
             return RedirectToAction("Dashboard", "Account");
         }
 

@@ -173,6 +173,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="icons\ring.gif" />
     <Content Include="info.txt" />
     <Content Include="photos\code1.jpg" />
     <Content Include="photos\event1.jpg" />
