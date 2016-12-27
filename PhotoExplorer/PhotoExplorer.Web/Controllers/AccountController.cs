@@ -109,11 +109,12 @@ namespace PhotoExplorer.Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PhotoCreate(PhotoUploadViewModel model, HttpPostedFileBase[] photofiles, int id /*albumid*/)
+        public ActionResult PhotoCreate(PhotoUploadViewModel model, HttpPostedFileBase[] photofiles, 
+            AlbumListedViewModel albumidmodel/*albumid*/)
         {
             using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
-                AlbumEntityModel entity = cx.Albums.FirstOrDefault(a => a.Id == id);
+                AlbumEntityModel entity = cx.Albums.FirstOrDefault(a => a.Id == albumidmodel.Id);
 
                 foreach (var file in photofiles)
                 {
