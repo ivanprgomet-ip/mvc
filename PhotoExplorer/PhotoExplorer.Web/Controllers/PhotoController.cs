@@ -139,35 +139,5 @@ namespace PhotoExplorer.Web.Controllers
             */
             return PartialView("_PhotoComments", model);
         }
-
-        [HttpPost]
-        public ActionResult Upload(PhotoEntityModel photo, HttpPostedFileBase[] photofiles)
-        {
-            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
-            {
-                //iterate all files uploaded by user
-                foreach (var file in photofiles)
-                {
-                    //create new class object representation of photo for every file uploaded
-                    PhotoEntityModel uploadedPhoto = new PhotoEntityModel()
-                    {
-                        FileName = file.FileName,
-                        DateCreated = DateTime.Now,
-                        Description = "no description",
-                    };
-
-                    //save physical file representation of photo 
-                    file.SaveAs(Server.MapPath($"~/photos/{uploadedPhoto.FileName}"));
-
-                    //save class object representation of photo 
-                    cx.Photos.Add(uploadedPhoto);
-
-                    //persist/save to database
-                    cx.SaveChanges();
-                }
-            }
-
-            return RedirectToAction("Index");
-        }
     }
 }
