@@ -108,11 +108,14 @@ namespace PhotoExplorer.Web.Controllers
                     Email = model.Email,
                 };
 
+
                 cx.Users.Add(entity);
 
                 cx.SaveChanges();
 
-                ViewBag.Message = entity.Username + " successfully registered";
+                System.Threading.Thread.Sleep(800); //simulate loading time for wait
+
+                //ViewBag.Message = entity.Username + " successfully registered";
 
             }
 
