@@ -140,6 +140,8 @@ namespace PhotoExplorer.Web.Controllers
                 }
             }
 
+            System.Threading.Thread.Sleep(800);//simulate waiting time
+
             return RedirectToAction("Dashboard", "Account");
         }
 
