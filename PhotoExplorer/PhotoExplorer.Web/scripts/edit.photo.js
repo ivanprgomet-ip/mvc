@@ -1,6 +1,7 @@
 ﻿/// <reference path="jquery-3.1.1.js" />
 
 var form = $('form');
+var loader = $(".loader").hide();
 
 form.on('submit', function (e) {
 
@@ -15,11 +16,16 @@ form.on('submit', function (e) {
         processData: false,
         contentType: false,
         success: function (data) {
-            console.log("edit suceeded");
-            window.location = $('#BackToDetails').attr('href');
+            $("#photoedit-msg").append("photo successfully editied");
         },
         error: function (data) {
-            console.log("Couldn't update image details");
+            $("#photoedit-msg").append("something went soo wrong");
+        },
+        beforeSend: function () {
+            loader.show();
+        },
+        complete: function () {
+            loader.hide();
         }
     });
 

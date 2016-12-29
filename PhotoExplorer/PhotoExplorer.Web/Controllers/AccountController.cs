@@ -229,6 +229,8 @@ namespace PhotoExplorer.Web.Controllers
                 cx.SaveChanges();
             }
 
+            System.Threading.Thread.Sleep(800);//simulate waiting time
+
             return RedirectToAction("Dashboard");
         }
 
