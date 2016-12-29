@@ -198,6 +198,7 @@
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\create.album.js" />
+    <Content Include="scripts\create.photo.js" />
     <Content Include="scripts\create.user.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
