@@ -9,10 +9,16 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>PhotoEditViewModel</h4>
         <hr />
+
+        @* getting the id from the url into the form and passing it into ajax, which can now cathc the id because
+        its part of the form, and gets passed into action finnally as id argument (which is the album id so we can find
+            the photo) *@
+        <input type="hidden" class="form-control" id="id" name="id" value="@Url.RequestContext.RouteData.Values["id"]" />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -41,3 +47,6 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+<script src="~/scripts/jquery-3.1.1.js"></script>
+<script src="~/scripts/edit.photo.js"></script>
