@@ -1,11 +1,11 @@
-﻿using System;
+﻿using PhotoExplorer.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PhotoExplorer.Web.Entities;
 
-namespace PhotoExplorer.Web.Repositories
+namespace PhotoExplorer.Data.Repositories
 {
     public class CommentRepository
     {

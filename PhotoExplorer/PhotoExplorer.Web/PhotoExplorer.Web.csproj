@@ -230,19 +230,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Entities\AlbumEntityModel.cs" />
-    <Compile Include="Entities\CommentEntityModel.cs" />
-    <Compile Include="Entities\PhotoExplorerEntities.cs" />
-    <Compile Include="Entities\PhotoEntityModel.cs" />
     <Compile Include="helpers\MyHtmlHelper.cs" />
     <Compile Include="Models\ProfileManagementViewModels.cs" />
-    <Compile Include="Entities\UserEntityModel.cs" />
     <Compile Include="Models\ContentManagementViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AlbumRepository.cs" />
-    <Compile Include="Repositories\CommentRepository.cs" />
-    <Compile Include="Repositories\PhotoRepository.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -279,6 +270,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="scripts\js\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhotoExplorer.Data\PhotoExplorer.Data.csproj">
+      <Project>{d87c515c-c92e-4420-a577-886ae89296bc}</Project>
+      <Name>PhotoExplorer.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

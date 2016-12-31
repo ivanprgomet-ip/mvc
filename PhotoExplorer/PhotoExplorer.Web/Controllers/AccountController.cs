@@ -1,4 +1,4 @@
-﻿using PhotoExplorer.Web.Entities;
+﻿using PhotoExplorer.Data.Entities;
 using PhotoExplorer.Web.Models;
 using System;
 using System.Collections.Generic;

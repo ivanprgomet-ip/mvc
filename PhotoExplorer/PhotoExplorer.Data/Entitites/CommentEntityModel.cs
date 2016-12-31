@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace PhotoExplorer.Web.Entities
+namespace PhotoExplorer.Data.Entities
 {
     public class CommentEntityModel
     {

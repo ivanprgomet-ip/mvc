@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Data.Entity;
-using PhotoExplorer.Web.Entities;
+using PhotoExplorer.Data.Entities;
 
-namespace MvcLab.Web.Repositories
+namespace PhotoExplorer.Data.Repositories
 {
     public class UserRepository
     {

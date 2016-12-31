@@ -1,9 +1,9 @@
-﻿using PhotoExplorer.Web.Entities;
+﻿using PhotoExplorer.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PhotoExplorer.Web.Repositories
+namespace PhotoExplorer.Data.Repositories
 {
     public class AlbumRepository
     {

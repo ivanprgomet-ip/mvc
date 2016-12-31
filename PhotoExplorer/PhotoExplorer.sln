@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoExplorer.Web", "PhotoE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoExplorer.Tests", "PhotoExplorer.Tests\PhotoExplorer.Tests.csproj", "{58E83D35-0EF9-4F91-9A9D-EEAB92DFF7AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoExplorer.Data", "PhotoExplorer.Data\PhotoExplorer.Data.csproj", "{D87C515C-C92E-4420-A577-886AE89296BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{58E83D35-0EF9-4F91-9A9D-EEAB92DFF7AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58E83D35-0EF9-4F91-9A9D-EEAB92DFF7AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58E83D35-0EF9-4F91-9A9D-EEAB92DFF7AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D87C515C-C92E-4420-A577-886AE89296BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D87C515C-C92E-4420-A577-886AE89296BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D87C515C-C92E-4420-A577-886AE89296BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D87C515C-C92E-4420-A577-886AE89296BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
