@@ -7,12 +7,20 @@ using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using PhotoExplorer.Data.Repositories;
+using PhotoExplorer.Web.helpers;
 
 namespace PhotoExplorer.Web.Areas.Dashboard.Controllers
 {
     [Authorize]
     public class ContentManagementController : Controller
     {
+        private UserRepository userRepo;
+        public ContentManagementController()
+        {
+            userRepo = new UserRepository();
+        }
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -23,24 +31,27 @@ namespace PhotoExplorer.Web.Areas.Dashboard.Controllers
             var modelid = int.Parse((currentIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)).Value);
             #endregion
 
-            UserDetailsViewModel model = null;
 
-            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
-            {
-                UserEntityModel entity = cx.Users.FirstOrDefault(u => u.Id == modelid);
+            UserDetailsViewModel model = EFMapper.EntityToModel(userRepo.GetUser(modelid));
 
-                #region mapping necessary properties from entitymodel to the viewmodel 
-                model = new UserDetailsViewModel()
-                {
-                    Id = entity.Id,
-                    Username = entity.Username,
-                    Fullname = entity.Fullname,
-                    Albums = entity.Albums,
-                    DateRegistered = entity.DateRegistered,
-                    Email = entity.Email,
-                };
-                #endregion
-            }
+            //UserDetailsViewModel model = null;
+
+            //using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
+            //{
+            //    UserEntityModel entity = cx.Users.FirstOrDefault(u => u.Id == modelid);
+
+            //    #region mapping necessary properties from entitymodel to the viewmodel 
+            //    model = new UserDetailsViewModel()
+            //    {
+            //        Id = entity.Id,
+            //        Username = entity.Username,
+            //        Fullname = entity.Fullname,
+            //        Albums = entity.Albums,
+            //        DateRegistered = entity.DateRegistered,
+            //        Email = entity.Email,
+            //    };
+            //    #endregion
+            //}
 
             return View(model);
         }

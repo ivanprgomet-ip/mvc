@@ -241,6 +241,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="helpers\EFMapper.cs" />
     <Compile Include="helpers\MyHtmlHelper.cs" />
     <Compile Include="Models\ProfileManagementViewModels.cs" />
     <Compile Include="Models\ContentManagementViewModels.cs" />
