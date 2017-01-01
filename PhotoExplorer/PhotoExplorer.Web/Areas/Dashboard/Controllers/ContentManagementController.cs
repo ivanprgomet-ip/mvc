@@ -16,9 +16,11 @@ namespace PhotoExplorer.Web.Areas.Dashboard.Controllers
     public class ContentManagementController : Controller
     {
         private UserRepository userRepo;
+        private AlbumRepository albumRepo;
         public ContentManagementController()
         {
             userRepo = new UserRepository();
+            albumRepo = new AlbumRepository();
         }
 
         [HttpGet]
@@ -34,6 +36,7 @@ namespace PhotoExplorer.Web.Areas.Dashboard.Controllers
 
             UserDetailsViewModel model = EFMapper.EntityToModel(userRepo.GetUser(modelid));
 
+            #region notused
             //UserDetailsViewModel model = null;
 
             //using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
@@ -51,7 +54,8 @@ namespace PhotoExplorer.Web.Areas.Dashboard.Controllers
             //        Email = entity.Email,
             //    };
             //    #endregion
-            //}
+            //} 
+            #endregion
 
             return View(model);
         }
@@ -59,26 +63,30 @@ namespace PhotoExplorer.Web.Areas.Dashboard.Controllers
         [HttpGet]
         public ActionResult AlbumDetails(int id)
         {
-            AlbumDetailsViewModel model = null;
+            AlbumDetailsViewModel model = EFMapper.EntityToModel(albumRepo.GetAlbum(id));
 
-            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
-            {
-                var entity = cx.Albums
-                    .Include(a => a.Photos)
-                    .Include(a => a.Comments)
-                    .FirstOrDefault(a => a.Id == id);
+            #region notused
+            //AlbumDetailsViewModel model = null;
 
-                model = new AlbumDetailsViewModel()
-                {
-                    Id = entity.Id,
-                    Name = entity.Name,
-                    Comments = entity.Comments,
-                    DateCreated = entity.DateCreated,
-                    Description = entity.Description,
-                    Photos = entity.Photos,
-                    User = entity.User,
-                };
-            }
+            //using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
+            //{
+            //    var entity = cx.Albums
+            //        .Include(a => a.Photos)
+            //        .Include(a => a.Comments)
+            //        .FirstOrDefault(a => a.Id == id);
+
+            //    model = new AlbumDetailsViewModel()
+            //    {
+            //        Id = entity.Id,
+            //        Name = entity.Name,
+            //        Comments = entity.Comments,
+            //        DateCreated = entity.DateCreated,
+            //        Description = entity.Description,
+            //        Photos = entity.Photos,
+            //        User = entity.User,
+            //    };
+            //} 
+            #endregion
 
             return View(model);
         }

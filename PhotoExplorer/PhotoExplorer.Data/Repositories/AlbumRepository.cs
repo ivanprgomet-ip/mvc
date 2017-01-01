@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 
 namespace PhotoExplorer.Data.Repositories
 {
@@ -46,6 +47,38 @@ namespace PhotoExplorer.Data.Repositories
 
                 return newAlbum;
             }
+        }
+
+        public AlbumEntityModel GetAlbum(int id)
+        {
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
+            {
+                /*
+                    the error with the disposed thingy is because i missed including the user (lazy loading)
+                    which caused the app to crash, because when i try to access user properties later on, the user
+                    for an album is not loaded, and the connection is closed by then
+                */
+                AlbumEntityModel entity = cx.Albums
+                    .Where(a=>a.Id==id)
+                    .Include(a => a.Photos)
+                    .Include(a => a.Comments)
+                    .Include(a=>a.User)
+                    .FirstOrDefault();
+
+                return entity;
+            }
+
+
+            //using (PhotoExplorerEntities _context = new PhotoExplorerEntities())
+            //{
+            //    UserEntityModel user = _context.Users
+            //        .Where(u => u.Id == IserModelId)
+            //        .Include(u => u.Albums
+            //            .Select(p => p.Photos
+            //            .Select(c => c.Comments))) //neccessary to include the albums 
+            //        .FirstOrDefault();
+            //    return user;
+            //}
         }
     }
 }

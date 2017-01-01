@@ -23,5 +23,20 @@ namespace PhotoExplorer.Web.helpers
 
             return model;
         }
+        public static AlbumDetailsViewModel EntityToModel(AlbumEntityModel entity)
+        {
+            AlbumDetailsViewModel model = new AlbumDetailsViewModel()
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                Comments = entity.Comments,
+                DateCreated = entity.DateCreated,
+                Description = entity.Description,
+                Photos = entity.Photos,
+                User = entity.User,
+            };
+
+            return model;
+        }
     }
 }
