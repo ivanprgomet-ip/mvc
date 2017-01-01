@@ -199,7 +199,6 @@
     <Content Include="Areas\Dashboard\Views\ContentManagement\AlbumDetails.cshtml" />
     <Content Include="Areas\Dashboard\Views\ContentManagement\Index.cshtml" />
     <Content Include="Areas\Dashboard\Views\ContentManagement\PhotoCreate.cshtml" />
-    <Content Include="Areas\Dashboard\Views\ContentManagement\PhotoDeletePartial.cshtml" />
     <Content Include="Areas\Dashboard\Views\ContentManagement\PhotoDetails.cshtml" />
     <Content Include="Areas\Dashboard\Views\ContentManagement\PhotoEdit.cshtml" />
     <Content Include="Areas\Dashboard\Views\_ViewStart.cshtml" />
