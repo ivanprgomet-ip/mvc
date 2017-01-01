@@ -8,10 +8,11 @@
     <li>
         @Html.ActionLink(
                linkText: "Hello " + User.Identity.GetUserName() + "!",
-               actionName: "Dashboard",
-               controllerName: "Account",
-               routeValues: null,
-               htmlAttributes: new { title = "Home" })
+               actionName: "Index",
+               controllerName: "ContentManagement",
+               routeValues: new
+               { area= "Dashboard"},
+                   htmlAttributes: new { title = "Dashboard" })
     </li>
 }
 else

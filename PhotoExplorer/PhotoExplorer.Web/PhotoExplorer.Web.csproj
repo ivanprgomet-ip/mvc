@@ -194,8 +194,16 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Areas\asdf\Views\web.config" />
     <Content Include="Areas\Dashboard\Views\web.config" />
+    <Content Include="Areas\Dashboard\Views\ContentManagement\AlbumCreate.cshtml" />
+    <Content Include="Areas\Dashboard\Views\ContentManagement\AlbumDetails.cshtml" />
+    <Content Include="Areas\Dashboard\Views\ContentManagement\Index.cshtml" />
+    <Content Include="Areas\Dashboard\Views\ContentManagement\PhotoCreate.cshtml" />
+    <Content Include="Areas\Dashboard\Views\ContentManagement\PhotoDeletePartial.cshtml" />
+    <Content Include="Areas\Dashboard\Views\ContentManagement\PhotoDetails.cshtml" />
+    <Content Include="Areas\Dashboard\Views\ContentManagement\PhotoEdit.cshtml" />
+    <Content Include="Areas\Dashboard\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Shared\_Layout.cshtml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -224,7 +232,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
-    <Compile Include="Areas\asdf\asdfAreaRegistration.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\ContentManagementController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
@@ -273,12 +281,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\asdf\Controllers\" />
-    <Folder Include="Areas\asdf\Models\" />
-    <Folder Include="Areas\asdf\Views\Shared\" />
-    <Folder Include="Areas\Dashboard\Controllers\" />
     <Folder Include="Areas\Dashboard\Models\" />
-    <Folder Include="Areas\Dashboard\Views\Shared\" />
     <Folder Include="scripts\js\" />
   </ItemGroup>
   <ItemGroup>

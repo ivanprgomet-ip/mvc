@@ -1,0 +1,51 @@
+﻿@model PhotoExplorer.Web.Models.UserDetailsViewModel
+
+<style>
+    .albumslist {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+</style>
+
+<article class="well">
+    <h2 class="page-header">@Model.Username</h2>
+    <section style="display:flex;flex-direction:column;">
+        <div>
+            <i class="glyphicon glyphicon-user" style="font-size:16px;"></i>
+            <span>@Model.Fullname</span>
+        </div>
+        <div>
+            <i class="glyphicon glyphicon-calendar" style="font-size:16px;"></i>
+            <span> @Model.DateRegistered</span>
+        </div>
+        <div>
+            <i class="glyphicon glyphicon-book" style="font-size:16px;"></i>
+            <span>@Html.ActionLink("Create New Album", "AlbumCreate", "ContentManagement")</span>
+        </div>
+    </section>
+
+    <h3 >Albums</h3>
+    <section>
+        <div class="albumslist">
+            @{
+                foreach (var album in Model.Albums)
+                {
+                    <article class="album">
+                        <div>
+                            <i class="glyphicon glyphicon-book" style="font-size:16px;text-decoration:none;color:cornflowerblue;"></i>
+                            <a href="@Url.Action(
+                                    actionName: "AlbumDetails",
+                                    controllerName: "ContentManagement",
+                                    routeValues: new { id = album.Id })"
+                               style="font-size:16px;text-decoration:none;color:cornflowerblue;">
+                                <span>@album.Name |<small> @album.DateCreated</small></span>
+                            </a>
+                        </div>
+                    </article>
+                }
+            }
+        </div>
+    </section>
+</article>
