@@ -102,21 +102,23 @@ namespace PhotoExplorer.Web.Areas.Dashboard.Controllers
             ClaimsIdentity currentIdentity = User.Identity as ClaimsIdentity;
             int userid = int.Parse(currentIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
 
-            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
-            {
+            userRepo.CreateAlbum(userid,model.Name,model.Description);
 
-                AlbumEntityModel newEntityAlbum = new AlbumEntityModel()
-                {
-                    Name = model.Name,
-                    Description = model.Description,
-                };
+            //using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
+            //{
 
-                var userEntity = cx.Users.FirstOrDefault(u => u.Id == userid);
+            //    AlbumEntityModel newEntityAlbum = new AlbumEntityModel()
+            //    {
+            //        Name = model.Name,
+            //        Description = model.Description,
+            //    };
 
-                userEntity.Albums.Add(newEntityAlbum);
+            //    var userEntity = cx.Users.FirstOrDefault(u => u.Id == userid);
 
-                cx.SaveChanges();
-            }
+            //    userEntity.Albums.Add(newEntityAlbum);
+
+            //    cx.SaveChanges();
+            //}
 
             System.Threading.Thread.Sleep(500);//simulate waiting time
 

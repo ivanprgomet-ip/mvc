@@ -58,5 +58,23 @@ namespace PhotoExplorer.Data.Repositories
 
             return entities;
         }
+
+        public void CreateAlbum(int userid, string albumName, string albumDescription)
+        {
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
+            {
+                AlbumEntityModel newEntityAlbum = new AlbumEntityModel()
+                {
+                    Name = albumName,
+                    Description = albumDescription,
+                };
+
+                var userEntity = cx.Users.FirstOrDefault(u => u.Id == userid);
+
+                userEntity.Albums.Add(newEntityAlbum);
+
+                cx.SaveChanges();
+            }
+        }
     }
 }
