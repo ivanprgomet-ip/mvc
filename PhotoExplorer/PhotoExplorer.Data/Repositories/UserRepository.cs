@@ -44,22 +44,19 @@ namespace PhotoExplorer.Data.Repositories
 
         }
 
-        public List<UserEntityModel> RetrieveAll()
+        public List<UserEntityModel> RetrieveAllUsers()
         {
-            List<UserEntityModel> users = new List<UserEntityModel>();
+            List<UserEntityModel> entities = new List<UserEntityModel>();
 
-            using (PhotoExplorerEntities _context = new PhotoExplorerEntities())
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
-                List<UserEntityModel> userEntitiesFromDB = _context.Users.ToList();
-
-                foreach (var user in userEntitiesFromDB)
-                {
-                    users.Add(user);
-                }
-
-                return users;
+                entities = cx.Users
+                    .Include(u => u.Albums
+                        .Select(a => a.Photos))
+                    .ToList();
             }
 
+            return entities;
         }
     }
 }

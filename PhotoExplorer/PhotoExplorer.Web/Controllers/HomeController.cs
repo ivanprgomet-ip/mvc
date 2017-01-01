@@ -4,11 +4,18 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
 using PhotoExplorer.Web.Models;
+using PhotoExplorer.Data.Repositories;
 
 namespace PhotoExplorer.Web.Controllers
 {
     public class HomeController : Controller
     {
+        UserRepository userRepo;
+        public HomeController()
+        {
+            userRepo = new UserRepository();
+        }
+
         /// <summary>
         /// in this particular action, the only importatn property of the UserDetailsViewModel 
         /// will be the albums, because thats the only thing that is used in the index view, the 
@@ -18,23 +25,15 @@ namespace PhotoExplorer.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            List<UserEntityModel> usersFromDB = new List<UserEntityModel>();
+            List<UserEntityModel> entities = userRepo.RetrieveAllUsers();
 
             UserDetailsViewModel model = new UserDetailsViewModel();
 
-            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
+            foreach (var user in entities)
             {
-                usersFromDB = cx.Users
-                    .Include(u=>u.Albums
-                        .Select(a=>a.Photos))
-                    .ToList();
-
-                foreach (var user in usersFromDB)
+                foreach (var album in user.Albums)
                 {
-                    foreach (var album in user.Albums)
-                    {
-                        model.Albums.Add(album);
-                    }
+                    model.Albums.Add(album);
                 }
             }
 
