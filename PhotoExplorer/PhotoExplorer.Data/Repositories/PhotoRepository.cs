@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace PhotoExplorer.Data.Repositories
 {
@@ -49,7 +50,11 @@ namespace PhotoExplorer.Data.Repositories
         {
             using (PhotoExplorerEntities _context = new PhotoExplorerEntities())
             {
-                return _context.Photos.FirstOrDefault(p => p.Id == id);
+                return _context.Photos
+                    .Include(p=>p.User)
+                    .Include(p => p.Album)
+                    .Include(p => p.Comments)
+                    .FirstOrDefault(p => p.Id == id);
             }
         }
 

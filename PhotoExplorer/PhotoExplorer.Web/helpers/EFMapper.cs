@@ -38,5 +38,22 @@ namespace PhotoExplorer.Web.helpers
 
             return model;
         }
+        public static PhotoDetailsViewModel EntityToModel(PhotoEntityModel entity)
+        {
+            PhotoDetailsViewModel model = new PhotoDetailsViewModel()
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                FileName = entity.FileName,
+                DateCreated = entity.DateCreated,
+                DateChanged = entity.DateChanged,
+                Album = entity.Album,
+                Comments = entity.Comments,
+                Description = entity.Description,
+                User = entity.User,
+            };
+
+            return model;
+        }
     }
 }

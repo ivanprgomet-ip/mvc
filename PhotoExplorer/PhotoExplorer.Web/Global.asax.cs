@@ -24,6 +24,12 @@ namespace PhotoExplorer.Web
 
         private void Seed()
         {
+            /*
+                due to us not adding the user,album and comments properties to the instantiation
+                of the photoentities, we cannot include them later on for the photos when retrieving them
+                int he photodetails action in contentmanagementcontroller. we have to get the specific 
+                photo by going through the users and their albums, and then the photos.
+            */
             #region user 1
             PhotoEntityModel p1 = new PhotoEntityModel()
             {

@@ -135,8 +135,7 @@ namespace PhotoExplorer.Web.Areas.Dashboard.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PhotoCreate(PhotoUploadViewModel model, HttpPostedFileBase[] photofiles,
-            AlbumListedViewModel albumidmodel/*albumid*/)
+        public ActionResult PhotoCreate(PhotoUploadViewModel model, HttpPostedFileBase[] photofiles, AlbumListedViewModel albumidmodel/*albumid*/)
         {
             using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
@@ -172,19 +171,11 @@ namespace PhotoExplorer.Web.Areas.Dashboard.Controllers
         [HttpGet]
         public ActionResult PhotoDetails(int Id)
         {
-            //todo: retrieve this photos uploader
-            #region retrieve photo to show
-            PhotoDetailsViewModel model = null;
+            PhotoDetailsViewModel model = EFMapper.EntityToModel(photoRepo.GetPhoto(Id));
 
+            //get user of photo (make this code more effective)
             using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
-                PhotoEntityModel entity = cx.Photos
-                    .Where(p => p.Id == Id)
-                    .FirstOrDefault();
-
-                ///todo: make this more effective..
-                #region retrieve uploader of photoentity
-                UserEntityModel photoOwnerEntity = null;
                 foreach (var user in cx.Users)
                 {
                     foreach (var album in user.Albums)
@@ -193,28 +184,59 @@ namespace PhotoExplorer.Web.Areas.Dashboard.Controllers
                         {
                             if (photo.Id == Id)
                             {
-                                photoOwnerEntity = user;
+                                model.User = user;
                                 break;
                             }
                         }
                     }
                 }
-                #endregion
-
-
-                model = new PhotoDetailsViewModel()
-                {
-                    Id = entity.Id,
-                    Name = entity.Name,
-                    FileName = entity.FileName,
-                    DateCreated = entity.DateCreated,
-                    DateChanged = entity.DateChanged,
-                    Album = entity.Album,
-                    Comments = entity.Comments, //due to us already having the model collection initialized in the photodetailsviewmodel class, we only have to transfer the collection VALUES from the entity collection to the model collection.
-                    Description = entity.Description,
-                    User = photoOwnerEntity,
-                };
             }
+
+            #region notused
+            ////todo: retrieve this photos uploader
+            //#region retrieve photo to show
+            //PhotoDetailsViewModel model = null;
+
+            //using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
+            //{
+            //    PhotoEntityModel entity = cx.Photos
+            //        .Where(p => p.Id == Id)
+            //        .FirstOrDefault();
+
+            //    ///todo: make this more effective..
+            //    #region retrieve uploader of photoentity
+            //    UserEntityModel photoOwnerEntity = null;
+            //    foreach (var user in cx.Users)
+            //    {
+            //        foreach (var album in user.Albums)
+            //        {
+            //            foreach (var photo in album.Photos)
+            //            {
+            //                if (photo.Id == Id)
+            //                {
+            //                    photoOwnerEntity = user;
+            //                    break;
+            //                }
+            //            }
+            //        }
+            //    }
+            //    #endregion
+
+
+            //    model = new PhotoDetailsViewModel()
+            //    {
+            //        Id = entity.Id,
+            //        Name = entity.Name,
+            //        FileName = entity.FileName,
+            //        DateCreated = entity.DateCreated,
+            //        DateChanged = entity.DateChanged,
+            //        Album = entity.Album,
+            //        Comments = entity.Comments, //due to us already having the model collection initialized in the photodetailsviewmodel class, we only have to transfer the collection VALUES from the entity collection to the model collection.
+            //        Description = entity.Description,
+            //        User = photoOwnerEntity,
+            //    };
+            //}
+            //#endregion 
             #endregion
 
             return View(model);
@@ -231,12 +253,14 @@ namespace PhotoExplorer.Web.Areas.Dashboard.Controllers
         {
             photoRepo.DeletePhoto(Id);
 
+            #region notused
             //using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             //{
             //    //delete photo with mathcing id
             //    cx.Photos.Remove(cx.Photos.FirstOrDefault(p => p.Id == Id));
             //    cx.SaveChanges();
-            //}
+            //} 
+            #endregion
 
             return RedirectToAction("Index");
         }
