@@ -25,16 +25,23 @@ namespace PhotoExplorer.Data.Repositories
             //todo: create photo method
         }
 
-        public void DeletePhoto(PhotoEntityModel photo)
+        public void DeletePhoto(int id)
         {
-            using (PhotoExplorerEntities _context = new PhotoExplorerEntities())
+            //using (PhotoExplorerEntities _context = new PhotoExplorerEntities())
+            //{
+            //    PhotoEntityModel photoToBeRemoved = _context.Photos
+            //        .FirstOrDefault(p => p.Id == photo.Id);
+
+            //    _context.Photos.Remove(photoToBeRemoved);
+
+            //    _context.SaveChanges();
+            //}
+
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
-                PhotoEntityModel photoToBeRemoved = _context.Photos
-                    .FirstOrDefault(p => p.Id == photo.Id);
+                cx.Photos.Remove(cx.Photos.FirstOrDefault(p => p.Id == id));
 
-                _context.Photos.Remove(photoToBeRemoved);
-
-                _context.SaveChanges();
+                cx.SaveChanges();
             }
         }
 
@@ -43,6 +50,23 @@ namespace PhotoExplorer.Data.Repositories
             using (PhotoExplorerEntities _context = new PhotoExplorerEntities())
             {
                 return _context.Photos.FirstOrDefault(p => p.Id == id);
+            }
+        }
+
+        public void UpdatePhoto(int id, string photoName, string photoDescription)
+        {
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
+            {
+                //retrieve photo and update with new info
+                PhotoEntityModel entity = cx.Photos.FirstOrDefault(p => p.Id == id);
+
+                entity.Name = photoName;
+
+                entity.Description = photoDescription;
+
+                entity.DateChanged = DateTime.Now;
+
+                cx.SaveChanges();
             }
         }
     }

@@ -17,10 +17,13 @@ namespace PhotoExplorer.Web.Areas.Dashboard.Controllers
     {
         private UserRepository userRepo;
         private AlbumRepository albumRepo;
+        private PhotoRepository photoRepo;
+
         public ContentManagementController()
         {
             userRepo = new UserRepository();
             albumRepo = new AlbumRepository();
+            photoRepo = new PhotoRepository();
         }
 
         [HttpGet]
@@ -226,31 +229,38 @@ namespace PhotoExplorer.Web.Areas.Dashboard.Controllers
         [HttpGet]
         public ActionResult PhotoDeletePartial(int Id)
         {
-            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
-            {
-                //delete photo with mathcing id
-                cx.Photos.Remove(cx.Photos.FirstOrDefault(p => p.Id == Id));
-                cx.SaveChanges();
-            }
+            photoRepo.DeletePhoto(Id);
+
+            //using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
+            //{
+            //    //delete photo with mathcing id
+            //    cx.Photos.Remove(cx.Photos.FirstOrDefault(p => p.Id == Id));
+            //    cx.SaveChanges();
+            //}
 
             return RedirectToAction("Index");
         }
         [HttpPost]
         public ActionResult PhotoEdit(PhotoEditViewModel model, int id)
         {
-            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
-            {
-                //retrieve photo and update with new info
-                PhotoEntityModel entity = cx.Photos.FirstOrDefault(p => p.Id == id);
 
-                entity.Name = model.Name;
+            photoRepo.UpdatePhoto(id,model.Name,model.Description);
 
-                entity.Description = model.Description;
+            #region notused
+            //using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
+            //{
+            //    //retrieve photo and update with new info
+            //    PhotoEntityModel entity = cx.Photos.FirstOrDefault(p => p.Id == id);
 
-                entity.DateChanged = DateTime.Now;
+            //    entity.Name = model.Name;
 
-                cx.SaveChanges();
-            }
+            //    entity.Description = model.Description;
+
+            //    entity.DateChanged = DateTime.Now;
+
+            //    cx.SaveChanges();
+            //} 
+            #endregion
 
             System.Threading.Thread.Sleep(800);//simulate waiting time
 
