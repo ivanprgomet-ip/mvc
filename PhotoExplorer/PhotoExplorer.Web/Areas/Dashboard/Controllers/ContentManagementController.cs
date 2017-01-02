@@ -107,6 +107,7 @@ namespace PhotoExplorer.Web.Areas.Dashboard.Controllers
 
             userRepo.CreateAlbum(userid,model.Name,model.Description);
 
+            #region notused
             //using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             //{
 
@@ -121,7 +122,8 @@ namespace PhotoExplorer.Web.Areas.Dashboard.Controllers
             //    userEntity.Albums.Add(newEntityAlbum);
 
             //    cx.SaveChanges();
-            //}
+            //} 
+            #endregion
 
             System.Threading.Thread.Sleep(500);//simulate waiting time
 
@@ -137,6 +139,7 @@ namespace PhotoExplorer.Web.Areas.Dashboard.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PhotoCreate(PhotoUploadViewModel model, HttpPostedFileBase[] photofiles, AlbumListedViewModel albumidmodel/*albumid*/)
         {
+
             using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
                 AlbumEntityModel entity = cx.Albums.FirstOrDefault(a => a.Id == albumidmodel.Id);
