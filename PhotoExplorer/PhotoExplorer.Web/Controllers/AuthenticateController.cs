@@ -2,6 +2,7 @@
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using PhotoExplorer.Data.Entities;
+using PhotoExplorer.Data.Repositories;
 using PhotoExplorer.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,12 @@ namespace PhotoExplorer.Web.Controllers
     [Authorize]
     public class AuthenticateController : Controller
     {
+        UserRepository userRepo;
+        public AuthenticateController()
+        {
+            userRepo = new UserRepository();
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login()
@@ -96,28 +103,11 @@ namespace PhotoExplorer.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(UserRegisterViewModel model)
         {
+            userRepo.RegisterNewUser(model.Fullname,model.Username,model.Password,model.Email);
+
             ViewBag.Message = "";
 
-            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
-            {
-                UserEntityModel entity = new UserEntityModel()
-                {
-                    Fullname = model.Fullname,
-                    Username = model.Username,
-                    Password = model.Password,
-                    Email = model.Email,
-                };
-
-
-                cx.Users.Add(entity);
-
-                cx.SaveChanges();
-
-                System.Threading.Thread.Sleep(800); //simulate loading time for wait
-
-                //ViewBag.Message = entity.Username + " successfully registered";
-
-            }
+            System.Threading.Thread.Sleep(800); //simulate loading time for wait
 
             return View();
         }

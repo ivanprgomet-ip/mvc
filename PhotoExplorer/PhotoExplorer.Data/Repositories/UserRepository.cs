@@ -76,5 +76,23 @@ namespace PhotoExplorer.Data.Repositories
                 cx.SaveChanges();
             }
         }
+
+        public void RegisterNewUser(string fullname, string username, string password, string email)
+        {
+            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
+            {
+                UserEntityModel entity = new UserEntityModel()
+                {
+                    Fullname = fullname,
+                    Username = username,
+                    Password = password,
+                    Email = email,
+                };
+
+                cx.Users.Add(entity);
+
+                cx.SaveChanges();
+            }
+        }
     }
 }
