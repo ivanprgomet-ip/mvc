@@ -18,30 +18,6 @@ namespace PhotoExplorer.Web.Controllers
             photoRepo = new PhotoRepository();
         }
 
-        //[HttpGet]
-        //public ActionResult Index()
-        //{
-        //    List<PhotoListedViewModel> model = new List<PhotoListedViewModel>();
-
-        //    using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
-        //    {
-        //        var entities = cx.Photos.ToList();
-
-        //        foreach (var entity in entities)
-        //        {
-        //            PhotoListedViewModel photoModel = new PhotoListedViewModel()
-        //            {
-        //                Id = entity.Id,
-        //                FileName = entity.FileName,
-        //            };
-
-        //            model.Add(photoModel);
-        //        }
-        //    }
-
-        //    return View(model);
-        //}
-
         [HttpGet]
         public ActionResult Details(int Id)
         {
