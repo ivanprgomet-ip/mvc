@@ -5,51 +5,50 @@ using System.Linq;
 using System.Web.Mvc;
 using PhotoExplorer.Web.Models;
 using System.Security.Claims;
+using PhotoExplorer.Web.helpers;
+using PhotoExplorer.Data.Repositories;
 
 namespace PhotoExplorer.Web.Controllers
 {
     public class PhotoController : Controller
     {
-        [HttpGet]
-        public ActionResult Index()
+        PhotoRepository photoRepo;
+        public PhotoController()
         {
-            List<PhotoListedViewModel> model = new List<PhotoListedViewModel>();
-
-            using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
-            {
-                var entities = cx.Photos.ToList();
-
-                foreach (var entity in entities)
-                {
-                    PhotoListedViewModel photoModel = new PhotoListedViewModel()
-                    {
-                        Id = entity.Id,
-                        FileName = entity.FileName,
-                    };
-
-                    model.Add(photoModel);
-                }
-            }
-
-            return View(model);
+            photoRepo = new PhotoRepository();
         }
+
+        //[HttpGet]
+        //public ActionResult Index()
+        //{
+        //    List<PhotoListedViewModel> model = new List<PhotoListedViewModel>();
+
+        //    using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
+        //    {
+        //        var entities = cx.Photos.ToList();
+
+        //        foreach (var entity in entities)
+        //        {
+        //            PhotoListedViewModel photoModel = new PhotoListedViewModel()
+        //            {
+        //                Id = entity.Id,
+        //                FileName = entity.FileName,
+        //            };
+
+        //            model.Add(photoModel);
+        //        }
+        //    }
+
+        //    return View(model);
+        //}
 
         [HttpGet]
         public ActionResult Details(int Id)
         {
-            //todo: retrieve this photos uploader
-            #region retrieve photo to show
-            PhotoDetailsViewModel model = null;
+            PhotoDetailsViewModel model = EFMapper.EntityToModel(photoRepo.GetPhoto(Id));
 
             using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
             {
-                PhotoEntityModel entity = cx.Photos
-                    .Where(p => p.Id == Id)
-                    .FirstOrDefault();
-
-                ///todo: make this more effective..
-                #region retrieve uploader of photoentity
-                UserEntityModel photoOwnerEntity = null;
                 foreach (var user in cx.Users)
                 {
                     foreach (var album in user.Albums)
@@ -58,28 +57,59 @@ namespace PhotoExplorer.Web.Controllers
                         {
                             if (photo.Id == Id)
                             {
-                                photoOwnerEntity = user;
+                                model.User = user;
                                 break;
                             }
                         }
                     }
-                } 
-                #endregion
-
-
-                model = new PhotoDetailsViewModel()
-                {
-                    Id = entity.Id,
-                    Name = entity.Name,
-                    FileName = entity.FileName,
-                    DateCreated = entity.DateCreated,
-                    DateChanged = entity.DateChanged,
-                    Album = entity.Album,
-                    Comments = entity.Comments, //due to us already having the model collection initialized in the photodetailsviewmodel class, we only have to transfer the collection VALUES from the entity collection to the model collection.
-                    Description = entity.Description,
-                    User = photoOwnerEntity,
-                };
+                }
             }
+
+            #region notused
+            ////todo: retrieve this photos uploader
+            //#region retrieve photo to show
+            //PhotoDetailsViewModel model = null;
+
+            //using (PhotoExplorerEntities cx = new PhotoExplorerEntities())
+            //{
+            //    PhotoEntityModel entity = cx.Photos
+            //        .Where(p => p.Id == Id)
+            //        .FirstOrDefault();
+
+            //    ///todo: make this more effective..
+            //    #region retrieve uploader of photoentity
+            //    UserEntityModel photoOwnerEntity = null;
+            //    foreach (var user in cx.Users)
+            //    {
+            //        foreach (var album in user.Albums)
+            //        {
+            //            foreach (var photo in album.Photos)
+            //            {
+            //                if (photo.Id == Id)
+            //                {
+            //                    photoOwnerEntity = user;
+            //                    break;
+            //                }
+            //            }
+            //        }
+            //    } 
+            //    #endregion
+
+
+            //    model = new PhotoDetailsViewModel()
+            //    {
+            //        Id = entity.Id,
+            //        Name = entity.Name,
+            //        FileName = entity.FileName,
+            //        DateCreated = entity.DateCreated,
+            //        DateChanged = entity.DateChanged,
+            //        Album = entity.Album,
+            //        Comments = entity.Comments, //due to us already having the model collection initialized in the photodetailsviewmodel class, we only have to transfer the collection VALUES from the entity collection to the model collection.
+            //        Description = entity.Description,
+            //        User = photoOwnerEntity,
+            //    };
+            //}
+            //#endregion 
             #endregion
 
             return View("Details", model);
@@ -96,7 +126,7 @@ namespace PhotoExplorer.Web.Controllers
 
                 // retrieve currently logged in user
                 ClaimsIdentity currentIdentity = User.Identity as ClaimsIdentity;
-                int userid = int.Parse(currentIdentity.Claims.FirstOrDefault(u => u.Type == ClaimTypes.NameIdentifier).Value); 
+                int userid = int.Parse(currentIdentity.Claims.FirstOrDefault(u => u.Type == ClaimTypes.NameIdentifier).Value);
                 UserEntityModel loggedInEntity = cx.Users.FirstOrDefault(u => u.Id == userid);
 
                 // initialize new comment entity 
@@ -127,8 +157,8 @@ namespace PhotoExplorer.Web.Controllers
                     Id = entity.Id,
                     User = loggedInEntity,
                     Comments = entity.Comments,
-                }; 
-         
+                };
+
             }
 
             /*
