@@ -71,3 +71,20 @@
         @Html.ActionLink("Back to List", "Index", "Home")
     </div>
 </section>
+
+<script src="~/scripts/jquery-3.1.1.js"></script>
+<script>
+    setInterval(RefreshComments, 5000);
+
+    //function that refreshes page
+    function RefreshComments() {
+        $.ajax({
+            type: "GET",
+            url: window.location.href,
+            success: function () {
+                location.reload();
+                console.log("current page refreshed")
+            }
+        });
+    }
+</script>
