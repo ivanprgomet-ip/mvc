@@ -1,9 +1,9 @@
-﻿@model IEnumerable<Contacts.Data.ContactViewModel>
+﻿@model IEnumerable<ContactBook.Web.Models.ContactViewModel>
 
 @foreach (var contact in Model)
 {
     <div>
-        <h3>@contact.Firstname @contact.Lastname</h3>
+        <h3>@contact.Name</h3>
         @* REMOVE A CONTACT *@
         <div>
             @Ajax.ActionLink("Remove contact", "Delete", new { id = contact.Id },
@@ -11,7 +11,7 @@
                 {
                     HttpMethod = "POST",
                     UpdateTargetId = "result", //mvc understands that this div is outside of the view
-                    Confirm = $"are you sure you want to remove {contact.Firstname}?"
+                    Confirm = $"are you sure you want to remove {contact.Name}?"
                 })
         </div>
     </div>

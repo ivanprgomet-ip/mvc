@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook.Web", "AddressBook.Web\AddressBook.Web.csproj", "{BC5CFA87-8CD1-4FB8-9DFC-1563D0C3739E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook.Tests", "AddressBook.Tests\AddressBook.Tests.csproj", "{831A4FE0-4537-4DF2-BC69-183E5EB7C4E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC5CFA87-8CD1-4FB8-9DFC-1563D0C3739E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC5CFA87-8CD1-4FB8-9DFC-1563D0C3739E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC5CFA87-8CD1-4FB8-9DFC-1563D0C3739E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC5CFA87-8CD1-4FB8-9DFC-1563D0C3739E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{831A4FE0-4537-4DF2-BC69-183E5EB7C4E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{831A4FE0-4537-4DF2-BC69-183E5EB7C4E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{831A4FE0-4537-4DF2-BC69-183E5EB7C4E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{831A4FE0-4537-4DF2-BC69-183E5EB7C4E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
