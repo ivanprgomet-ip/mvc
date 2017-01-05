@@ -4,6 +4,7 @@
 {
     <div>
         <h3>@contact.Name</h3>
+        <h4>@contact.Phone</h4>
         @* REMOVE A CONTACT *@
         <div>
             @Ajax.ActionLink("Remove contact", "Delete", new { id = contact.Id },
@@ -13,6 +14,9 @@
                     UpdateTargetId = "result", //mvc understands that this div is outside of the view
                     Confirm = $"are you sure you want to remove {contact.Name}?"
                 })
+        </div>
+        <div>
+            @Html.ActionLink("Details", "Details",new { id = contact.Id })
         </div>
     </div>
 }
